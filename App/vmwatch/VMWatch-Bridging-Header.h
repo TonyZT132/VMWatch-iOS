@@ -10,4 +10,3 @@
 #import "CYLPlusButton.h"
 #import "RSKImageCropViewController.h"
 #import "SVProgressHUD.h"
-#import "IQActionSheetPickerView.h"

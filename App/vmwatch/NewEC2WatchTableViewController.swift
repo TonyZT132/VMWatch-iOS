@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewEC2WatchTableViewController: UITableViewController, IQActionSheetPickerViewDelegate {
+class NewEC2WatchTableViewController: UITableViewController {
     
     let EC2_REGION = [
         "us-east-1"
