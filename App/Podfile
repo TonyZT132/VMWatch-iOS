@@ -1,0 +1,7 @@
+target ‘VMWatch’ do
+pod 'Parse'
+pod 'CYLTabBarController'
+pod 'RSKImageCropper'
+pod 'SVProgressHUD'
+pod 'IQActionSheetPickerView'
+end

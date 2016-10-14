@@ -1,2 +1,2 @@
 # VMWatch
-VMWatch iOS App
+VM Monitoring App

@@ -1,0 +1,4 @@
+vmwatch.xcworkspace
+Pods/
+Podfile.lock
+.DS_Store
