@@ -118,7 +118,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
-                    message: "Nickname length should be between 1 to 8 charcters",
+                    message: "Nickname length should be between 1 to 20 charcters",
                     actionButton: "OK"
                 ),
                 animated: true,

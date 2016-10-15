@@ -40,7 +40,7 @@ internal class VMWInputParser{
         let nicknameLength = nicknameNSString.length
         
         /*Check the length of the nickname*/
-        if(nicknameLength < 1 || nicknameLength > 8){
+        if(nicknameLength < 1 || nicknameLength > 20){
             throw VMWInputParserError.InvalidNicknameLength
         }
     }

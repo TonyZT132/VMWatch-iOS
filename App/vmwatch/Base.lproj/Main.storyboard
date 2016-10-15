@@ -365,7 +365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGq-J7-no4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2295.1999999999998" y="1709.5952023988007"/>
+            <point key="canvasLocation" x="1967" y="1710"/>
         </scene>
         <!--Validation Page Table View Controller-->
         <scene sceneID="GGJ-vK-HIX">
@@ -509,7 +509,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypm-pP-qr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2295" y="2513"/>
+            <point key="canvasLocation" x="1966" y="2513"/>
         </scene>
         <!--Signup-->
         <scene sceneID="Bla-l6-Gc5">
@@ -645,7 +645,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pax-Ci-ecV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4476" y="2512.8935532233886"/>
+            <point key="canvasLocation" x="3982" y="2513"/>
         </scene>
         <!--Home Page Nav View Controller-->
         <scene sceneID="vTg-EN-GB2">
@@ -872,7 +872,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rf-Hl-4oI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356" y="1709.5952023988007"/>
+            <point key="canvasLocation" x="982" y="1710"/>
         </scene>
         <!--Validation Page Nav View Controller-->
         <scene sceneID="gMp-Kw-KNE">
@@ -890,7 +890,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jie-w3-7mp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356" y="2512.8935532233886"/>
+            <point key="canvasLocation" x="982" y="2513"/>
         </scene>
         <!--Signup Page Nav View Controller-->
         <scene sceneID="3xd-sG-MCh">
@@ -908,7 +908,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9v-jK-K6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3474" y="2513"/>
+            <point key="canvasLocation" x="3041" y="2513"/>
         </scene>
         <!--NewEC2 Watch Nav View Controller-->
         <scene sceneID="SwU-rM-ZAr">

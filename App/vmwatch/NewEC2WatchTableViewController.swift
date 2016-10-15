@@ -10,10 +10,6 @@ import UIKit
 
 class NewEC2WatchTableViewController: UITableViewController {
     
-    let EC2_REGION = [
-        "us-east-1"
-    ]
-    
     var region:String?
     
     @IBOutlet weak var ec2AccessIDTextField: UITextField!
@@ -97,7 +93,6 @@ class NewEC2WatchTableViewController: UITableViewController {
         optionMenu.addAction(USWestTwo)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
-        
     }
     
     @IBAction func doSubmit(_ sender: AnyObject) {
@@ -106,7 +101,7 @@ class NewEC2WatchTableViewController: UITableViewController {
             "accesskey" as NSObject: ec2AccessKeyTextField.text! as AnyObject,
             "instanceid" as NSObject: instanceIDTextField.text! as AnyObject,
             "region" as NSObject: "us-east-1" as AnyObject
-            ] as [NSObject:AnyObject]
+        ] as [NSObject:AnyObject]
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, error) in
             print("call done");
