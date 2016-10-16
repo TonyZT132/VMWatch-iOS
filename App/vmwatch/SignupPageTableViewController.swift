@@ -188,6 +188,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                     if(error == nil){
                         let isDeleted = response as! Bool
                         if(isDeleted == true){
+                            indicator.dismiss()
                             indicator.showWithMessage(context: "Logging")
                             PFUser.logInWithUsername(inBackground: user.username!, password: user.password!, block: {
                                 (loggedUser, loggingError) in

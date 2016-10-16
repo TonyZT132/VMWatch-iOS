@@ -11,6 +11,7 @@ import UIKit
 class NewEC2WatchTableViewController: UITableViewController {
     
     var region:String?
+    let alert = VMWAlertView()
     
     @IBOutlet weak var ec2AccessIDTextField: UITextField!
     @IBOutlet weak var ec2AccessKeyTextField: UITextField!
@@ -103,8 +104,40 @@ class NewEC2WatchTableViewController: UITableViewController {
             "region" as NSObject: "us-east-1" as AnyObject
         ] as [NSObject:AnyObject]
         
-        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, error) in
-            print("call done");
+        indicator.showWithMessage(context: "Getting Data")
+        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
+            if(ec2WatchError == nil){
+                let jsonParser = VMWEC2JSONParser(inputData: response)
+                do{
+                    let cpuUtilizationData = try jsonParser.getCPUUtilization()
+                    let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+                    ec2Result.cpuUtilizationData = cpuUtilizationData
+                    ec2Result.hidesBottomBarWhenPushed = true
+                    self.navigationController!.navigationBar.tintColor = UIColor.white
+                    indicator.dismiss()
+                    self.navigationController?.pushViewController(ec2Result, animated: true)
+                } catch {
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Error",
+                            message: "Error occured while getting data",
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
+                }
+            }else{
+                self.present(
+                    self.alert.showAlertWithOneButton(
+                        title: "Error",
+                        message: ec2WatchError.debugDescription,
+                        actionButton: "OK"
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
         }
     }
 }
