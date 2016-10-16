@@ -117,6 +117,7 @@ class NewEC2WatchTableViewController: UITableViewController {
                     indicator.dismiss()
                     self.navigationController?.pushViewController(ec2Result, animated: true)
                 } catch {
+                    indicator.dismiss()
                     self.present(
                         self.alert.showAlertWithOneButton(
                             title: "Error",
