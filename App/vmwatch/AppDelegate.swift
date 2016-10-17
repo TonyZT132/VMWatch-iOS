@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initialize(with: configuration)
         
         /*Set up Navigation bar*/
-        UINavigationBar.appearance().barTintColor = UIColor(red: 31.0/255.0, green: 134.0/255.0, blue: 204.0/255.0, alpha:1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha:1.0)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.window?.makeKeyAndVisible()

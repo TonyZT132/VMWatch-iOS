@@ -152,6 +152,7 @@ class ValidationPageTableViewController: UITableViewController {
     
     @IBAction func doValidation(_ sender: AnyObject) {
         do{
+            try inputParser.digitNumberParser(content: phoneNumberTextView.text, length: 10)
             try inputParser.digitNumberParser(content: validationCodeTextView.text, length: 4)
             
             let params = [
@@ -190,6 +191,16 @@ class ValidationPageTableViewController: UITableViewController {
                     )
                 }
             }
+        } catch VMWInputParserError.EmptyPhoneNumber {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Phone number is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         } catch VMWInputParserError.EmptyValidationCode {
             self.present(
                 self.alert.showAlertWithOneButton(

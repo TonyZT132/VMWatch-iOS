@@ -181,7 +181,6 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
         indicator.showWithMessage(context: "Signing")
         user.signUpInBackground { (success, signinError) in
             if(signinError == nil){
-                print("sign up success")
                 registeredUser?.setRegisterStatus(status: true)
                 
                 PFCloud.callFunction(inBackground: "deleteValidationRecord", withParameters: ["number": user.username!]) { (response, error) in
@@ -200,7 +199,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                                     self.present(
                                         self.alert.showAlertWithOneButton(
                                             title: "Error",
-                                            message: error.debugDescription,
+                                            message: "Login Failed, please try again or contact customer service",
                                             actionButton: "OK"
                                         ),
                                         animated: true,
@@ -223,7 +222,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                         self.present(
                             self.alert.showAlertWithOneButton(
                                 title: "Error",
-                                message: error.debugDescription,
+                                message: "Sign up Failed, please try again or contact customer service",
                                 actionButton: "OK"
                             ),
                             animated: true,

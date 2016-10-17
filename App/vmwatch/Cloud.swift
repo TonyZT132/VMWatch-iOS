@@ -12,17 +12,27 @@ import Foundation
 let SERVICE = [
     [
         "name":"aws",
-        "icon":"aws_logo",
+        "icon":"aws-logo",
         "avaliable":true
     ],
     [
-        "name":"ibm",
-        "icon":"ibm_logo",
+        "name":"azure",
+        "icon":"azure-logo",
         "avaliable":false
     ],
     [
-        "name":"docker",
-        "icon":"docker_logo",
+        "name":"google",
+        "icon":"google-logo",
+        "avaliable":false
+    ],
+    [
+        "name":"heroku",
+        "icon":"heroku-logo",
+        "avaliable":false
+    ],
+    [
+        "name":"vmware",
+        "icon":"vmware-logo",
         "avaliable":false
     ]
 ]

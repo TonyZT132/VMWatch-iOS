@@ -61,7 +61,7 @@ class LoginTableViewController: UITableViewController{
                     self.present(
                         self.alert.showAlertWithOneButton(
                             title: "Error",
-                            message: loggingError.debugDescription,
+                            message: "Login Failed, please try again or contact customer service",
                             actionButton: "OK"
                         ),
                         animated: true,
@@ -69,11 +69,21 @@ class LoginTableViewController: UITableViewController{
                     )
                 }
             })
+        } catch VMWInputParserError.EmptyPhoneNumber {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Phone number is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         } catch VMWInputParserError.InvalidDigitNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
-                    message: "Phone number is empty or invalid",
+                    message: "Phone number is invalid",
                     actionButton: "OK"
                 ),
                 animated: true,

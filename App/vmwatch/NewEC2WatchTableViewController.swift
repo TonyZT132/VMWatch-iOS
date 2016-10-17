@@ -108,7 +108,7 @@ class NewEC2WatchTableViewController: UITableViewController {
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
             if(ec2WatchError == nil){
                 let jsonParser = VMWEC2JSONParser(inputData: response)
-                do{
+                do {
                     let cpuUtilizationData = try jsonParser.getCPUUtilization()
                     let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
                     ec2Result.cpuUtilizationData = cpuUtilizationData
@@ -129,10 +129,11 @@ class NewEC2WatchTableViewController: UITableViewController {
                     )
                 }
             }else{
+                indicator.dismiss()
                 self.present(
                     self.alert.showAlertWithOneButton(
                         title: "Error",
-                        message: ec2WatchError.debugDescription,
+                        message: "Server Error, please try again or contact customer service",
                         actionButton: "OK"
                     ),
                     animated: true,

@@ -18,7 +18,7 @@ internal class VMWEC2JSONParser {
     public func getCPUUtilization() throws -> Double {
         if let dict = self.data as? NSDictionary {
             if let datapointsArray = dict["Datapoints"] as? NSArray{
-                if let cpuData = datapointsArray[0] as? NSDictionary{
+                if let cpuData = datapointsArray[0] as? NSDictionary {
                     return (cpuData["Average"]! as AnyObject).doubleValue
                 }
             }

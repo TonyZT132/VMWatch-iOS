@@ -13,20 +13,21 @@ class NewPageViewController: UIViewController {
     let alert = VMWAlertView()
     
     let WIDTH = UIScreen.main.bounds.width
-    let SELECTION_BUTTON_HEIGHT:CGFloat = 140
+    let HEIGHT = UIScreen.main.bounds.height
+    let LOGO_SIZE_FACTOR:CGFloat = 1.70454545454545
+    var SELECTION_BUTTON_HEIGHT:CGFloat!
+    var scrollView: UIScrollView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    var scrollViewHeight:CGFloat = 10
+    var scrollViewHeight:CGFloat = 0
     var buttonArr = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SELECTION_BUTTON_HEIGHT = WIDTH / LOGO_SIZE_FACTOR
+        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
         scrollView.layer.backgroundColor = UIColor.clear.cgColor
+        self.view.addSubview(scrollView)
         self.startLoadView()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,12 +37,9 @@ class NewPageViewController: UIViewController {
     
     private func startLoadView(){
         for i in 0 ... (SERVICE.count - 1) {
-            let selectionButton = UIButton(frame: CGRect(x:20, y:scrollViewHeight, width: WIDTH - 40, height: SELECTION_BUTTON_HEIGHT))
+            let selectionButton = UIButton(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: SELECTION_BUTTON_HEIGHT))
             selectionButton.tag = i
             selectionButton.addTarget(self, action: #selector(self.buttonSelected(sender:)), for: .touchUpInside)
-            selectionButton.layer.borderWidth = 2
-            selectionButton.layer.borderColor = UIColor(red: 31.0/255.0, green: 134.0/255.0, blue: 204.0/255.0, alpha:1.0).cgColor
-            selectionButton.layer.cornerRadius = 5
             selectionButton.clipsToBounds = true
             let dict = SERVICE[i] as Dictionary
             let logo = UIImage(named: dict["icon"] as! String)
@@ -50,7 +48,7 @@ class NewPageViewController: UIViewController {
             selectionButton.addSubview(logoView)
             scrollView.addSubview(selectionButton)
             buttonArr.add(selectionButton)
-            scrollViewHeight += SELECTION_BUTTON_HEIGHT + 10
+            scrollViewHeight += SELECTION_BUTTON_HEIGHT
         }
         scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
@@ -74,16 +72,4 @@ class NewPageViewController: UIViewController {
                 )
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

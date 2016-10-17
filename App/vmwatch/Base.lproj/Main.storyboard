@@ -40,21 +40,9 @@
                     <view key="view" contentMode="scaleToFill" id="yjW-8C-Eiz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptB-Zs-wrq"/>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ptB-Zs-wrq" firstAttribute="top" secondItem="yjW-8C-Eiz" secondAttribute="top" id="0tV-F4-HZq"/>
-                            <constraint firstAttribute="trailing" secondItem="ptB-Zs-wrq" secondAttribute="trailing" id="Qbm-jl-2aq"/>
-                            <constraint firstItem="ptB-Zs-wrq" firstAttribute="bottom" secondItem="QDy-oX-xaK" secondAttribute="top" id="gLp-I0-Ac1"/>
-                            <constraint firstItem="ptB-Zs-wrq" firstAttribute="leading" secondItem="yjW-8C-Eiz" secondAttribute="leading" id="uTA-AW-MuY"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New" id="vPO-aY-9yO"/>
-                    <connections>
-                        <outlet property="scrollView" destination="ptB-Zs-wrq" id="BYh-M3-62X"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-f8-6Ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="gER-RH-SU6">
-                            <rect key="frame" x="0.0" y="320.5" width="375" height="85"/>
+                            <rect key="frame" x="0.0" y="321" width="375" height="85"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQB-IX-WGf">
@@ -229,7 +217,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.1215686275" green="0.52549019610000003" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0078431372549019607" green="0.46666666666666667" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ksU-zr-Hac" firstAttribute="top" secondItem="dO2-b4-dmd" secondAttribute="bottom" constant="118" id="6hY-J2-xQd"/>
                             <constraint firstItem="ez2-9N-d4R" firstAttribute="trailing" secondItem="Gfm-qv-Kwh" secondAttribute="trailing" id="CQ4-yZ-TLv"/>
@@ -292,7 +280,7 @@
                                         <rect key="frame" x="0.0" y="99" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7EY-Ib-Tcs" id="bKL-cd-0D0">
-                                            <frame key="frameInset" width="375" height="55"/>
+                                            <frame key="frameInset" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAf-LC-gpH">
@@ -324,7 +312,7 @@
                                         <rect key="frame" x="0.0" y="154" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y92-i7-6SM" id="ERy-6q-t6V">
-                                            <frame key="frameInset" width="375" height="55"/>
+                                            <frame key="frameInset" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bbc-hK-b7g">
@@ -367,7 +355,7 @@
             </objects>
             <point key="canvasLocation" x="1967" y="1710"/>
         </scene>
-        <!--Validation Page Table View Controller-->
+        <!--Phone Validation-->
         <scene sceneID="GGJ-vK-HIX">
             <objects>
                 <tableViewController id="bcb-q0-pBk" customClass="ValidationPageTableViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
@@ -406,7 +394,7 @@
                                         <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eU2-Lb-jEf" id="z6n-vB-9xC">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVX-jY-mzJ">
@@ -467,7 +455,7 @@
                                         <rect key="frame" x="0.0" y="143" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xAF-HJ-m4l" id="NnL-lH-bmQ">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Validation Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RNg-BR-rGm">
@@ -492,7 +480,7 @@
                             <outlet property="delegate" destination="bcb-q0-pBk" id="EX2-aR-LJ9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ZNA-M8-AmY">
+                    <navigationItem key="navigationItem" title="Phone Validation" id="ZNA-M8-AmY">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="W33-Rj-i9q">
                             <connections>
                                 <action selector="dismissPage:" destination="bcb-q0-pBk" id="FNA-9Y-LSl"/>
@@ -520,7 +508,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="u9s-rs-7HH">
-                            <rect key="frame" x="0.0" y="325.5" width="375" height="107"/>
+                            <rect key="frame" x="0.0" y="327" width="375" height="107"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9m5-aa-pXp">
@@ -587,7 +575,7 @@
                             <tableViewSection headerTitle="Password" id="h7R-Ne-bYj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="RwL-hm-ioo">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RwL-hm-ioo" id="ihx-S9-MIg">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -608,7 +596,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="pNE-qz-BGz">
-                                        <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="265" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pNE-qz-BGz" id="bld-z9-Zwn">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -710,7 +698,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="kyu-lM-LhF">
-                            <rect key="frame" x="0.0" y="425.5" width="375" height="97"/>
+                            <rect key="frame" x="0.0" y="428" width="375" height="97"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jle-Uz-5OD">
@@ -786,7 +774,7 @@
                             <tableViewSection headerTitle="Instance ID" id="20w-BJ-EYG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="npX-8U-5Xe">
-                                        <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="265" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="npX-8U-5Xe" id="cWa-A9-s7u">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -812,7 +800,7 @@
                             <tableViewSection headerTitle="Region" id="n3z-ID-rqt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Hgx-8L-ido">
-                                        <rect key="frame" x="0.0" y="364" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="366" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hgx-8L-ido" id="isr-Nd-Ug8">
                                             <frame key="frameInset" width="375" height="43"/>
