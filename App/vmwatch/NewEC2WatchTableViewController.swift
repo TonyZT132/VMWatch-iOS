@@ -101,7 +101,7 @@ class NewEC2WatchTableViewController: UITableViewController {
             "accessid" as NSObject: ec2AccessIDTextField.text! as AnyObject,
             "accesskey" as NSObject: ec2AccessKeyTextField.text! as AnyObject,
             "instanceid" as NSObject: instanceIDTextField.text! as AnyObject,
-            "region" as NSObject: "us-east-1" as AnyObject
+            "region" as NSObject: self.region as AnyObject
         ] as [NSObject:AnyObject]
         
         indicator.showWithMessage(context: "Getting Data")
