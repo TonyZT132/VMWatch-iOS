@@ -21,12 +21,8 @@ class NewEC2WatchTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.submitButton.layer.cornerRadius = 5
+        self.submitButton.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,7 +97,7 @@ class NewEC2WatchTableViewController: UITableViewController {
             "accessid" as NSObject: ec2AccessIDTextField.text! as AnyObject,
             "accesskey" as NSObject: ec2AccessKeyTextField.text! as AnyObject,
             "instanceid" as NSObject: instanceIDTextField.text! as AnyObject,
-            "region" as NSObject: self.region as AnyObject
+            "region" as NSObject: "us-east-1" as AnyObject
         ] as [NSObject:AnyObject]
         
         indicator.showWithMessage(context: "Getting Data")
@@ -109,6 +105,7 @@ class NewEC2WatchTableViewController: UITableViewController {
             if(ec2WatchError == nil){
                 let jsonParser = VMWEC2JSONParser(inputData: response)
                 do {
+                    print(response)
                     let cpuUtilizationData = try jsonParser.getCPUUtilization()
                     let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
                     ec2Result.cpuUtilizationData = cpuUtilizationData
