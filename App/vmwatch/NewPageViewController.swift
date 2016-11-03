@@ -72,4 +72,8 @@ class NewPageViewController: UIViewController {
                 )
         }
     }
+    
+    @objc private func hideKeyboard (sender: AnyObject!) {
+    
+    }
 }

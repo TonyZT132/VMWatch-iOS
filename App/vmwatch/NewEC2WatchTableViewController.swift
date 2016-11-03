@@ -23,6 +23,10 @@ class NewEC2WatchTableViewController: UITableViewController {
         super.viewDidLoad()
         self.submitButton.layer.cornerRadius = 5
         self.submitButton.clipsToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {

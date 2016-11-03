@@ -38,6 +38,10 @@ class ValidationPageTableViewController: UITableViewController {
         
         self.validationButton.layer.cornerRadius = 5
         self.validationButton.clipsToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
