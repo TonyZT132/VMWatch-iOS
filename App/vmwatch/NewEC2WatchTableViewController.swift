@@ -155,4 +155,14 @@ extension String {
         let hexBytes = digest.map { String(format: "%02hhx", $0) }
         return hexBytes.joined()
     }
+    
+    func sha256() -> String {
+        let data = self.data(using: String.Encoding.utf8)!
+        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA256($0, CC_LONG(data.count), &hash)
+        }
+        let hexBytes = hash.map { String(format: "%02hhx", $0) }
+        return hexBytes.joined()
+    }
 }
