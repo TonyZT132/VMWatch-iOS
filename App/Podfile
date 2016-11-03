@@ -1,6 +1,6 @@
 target ‘VMWatch’ do
-pod 'Parse'
-pod 'CYLTabBarController'
-pod 'RSKImageCropper'
-pod 'SVProgressHUD'
+    pod 'Parse'
+    pod 'CYLTabBarController'
+    pod 'RSKImageCropper'
+    pod 'SVProgressHUD'
 end

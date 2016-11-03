@@ -109,7 +109,7 @@ class NewEC2WatchTableViewController: UITableViewController {
             if(ec2WatchError == nil){
                 let jsonParser = VMWEC2JSONParser(inputData: response)
                 do {
-                    print(response)
+                    print(response!)
                     let cpuUtilizationData = try jsonParser.getCPUUtilization()
                     let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
                     ec2Result.cpuUtilizationData = cpuUtilizationData
