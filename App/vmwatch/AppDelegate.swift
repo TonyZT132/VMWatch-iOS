@@ -111,6 +111,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func getContext () -> NSManagedObjectContext {
+        return self.persistentContainer.viewContext
+    }
 
 }
 
