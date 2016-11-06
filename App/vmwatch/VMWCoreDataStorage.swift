@@ -69,7 +69,7 @@ internal class VMWEC2HistoryStorage {
                 self.context.delete(managedObjectData)
             }
         } catch let error as NSError {
-            NSlog("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+            NSLog("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
 }
