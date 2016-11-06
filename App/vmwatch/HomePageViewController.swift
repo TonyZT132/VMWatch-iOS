@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 class HomePageViewController: UIViewController {
-
+    private var historydata:[History_EC2]! = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -19,7 +20,7 @@ class HomePageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let history = VMWEC2HistoryStorage()
         do{
-            let historydata = try history.getEC2History()
+            self.historydata = try history.getEC2History()
             
             if(historydata.count > 0){
                 for trans in historydata as [NSManagedObject] {

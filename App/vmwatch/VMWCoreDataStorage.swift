@@ -56,7 +56,7 @@ internal class VMWEC2HistoryStorage {
          */
     }
     
-    public func clearHistory(entity: String){
+    public func clearHistory(entity: String) throws {
         let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
         
@@ -70,6 +70,7 @@ internal class VMWEC2HistoryStorage {
             }
         } catch let error as NSError {
             NSLog("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+            throw VMWEC2CoreDataStorageError.DatabaseDeleteError
         }
     }
 }
@@ -87,6 +88,7 @@ internal class VMWHistoryDate {
 enum VMWEC2CoreDataStorageError: Error {
     case DatabaseStoreError
     case DatabaseFetchError
+    case DatabaseDeleteError
 }
 
 
