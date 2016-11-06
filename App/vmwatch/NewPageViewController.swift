@@ -25,6 +25,8 @@ class NewPageViewController: UIViewController {
         super.viewDidLoad()
         SELECTION_BUTTON_HEIGHT = WIDTH / LOGO_SIZE_FACTOR
         scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
         scrollView.layer.backgroundColor = UIColor.clear.cgColor
         self.view.addSubview(scrollView)
         self.startLoadView()
@@ -71,9 +73,5 @@ class NewPageViewController: UIViewController {
                     completion: nil
                 )
         }
-    }
-    
-    @objc private func hideKeyboard (sender: AnyObject!) {
-    
     }
 }

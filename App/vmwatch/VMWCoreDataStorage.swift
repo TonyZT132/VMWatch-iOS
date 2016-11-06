@@ -29,9 +29,9 @@ internal class VMWEC2HistoryStorage {
         //save the object
         do {
             try context.save()
-            print("Save success")
+            NSLog("Save success")
         } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
+            NSLog("Could not save \(error), \(error.userInfo)")
             throw VMWEC2CoreDataStorageError.DatabaseStoreError
         }
     }
@@ -41,14 +41,9 @@ internal class VMWEC2HistoryStorage {
         
         do {
             let searchResults = try self.context.fetch(fetchRequest)
-            print ("num of results = \(searchResults.count)")
-            
-            for trans in searchResults as [NSManagedObject] {
-                print("\(trans.value(forKey: "access_id"))")
-            }
             return searchResults
         } catch {
-            print("Error with request: \(error)")
+            NSLog("Error with request: \(error)")
             throw VMWEC2CoreDataStorageError.DatabaseFetchError
         }
     }

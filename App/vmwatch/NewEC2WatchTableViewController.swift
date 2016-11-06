@@ -11,6 +11,9 @@ import UIKit
 class NewEC2WatchTableViewController: UITableViewController {
     
     var region:String?
+    var accessID:String?
+    var accessKey:String?
+    var instanceID:String?
     let alert = VMWAlertView()
     
     @IBOutlet weak var ec2AccessIDTextField: UITextField!
@@ -97,11 +100,15 @@ class NewEC2WatchTableViewController: UITableViewController {
     }
     
     @IBAction func doSubmit(_ sender: AnyObject) {
+        self.accessID = ec2AccessIDTextField.text!
+        self.accessKey = ec2AccessKeyTextField.text!
+        self.instanceID = instanceIDTextField.text!
+        
         let params = [
-            "accessid" as NSObject: ec2AccessIDTextField.text! as AnyObject,
-            "accesskey" as NSObject: ec2AccessKeyTextField.text! as AnyObject,
-            "instanceid" as NSObject: instanceIDTextField.text! as AnyObject,
-            "region" as NSObject: "us-east-1" as AnyObject
+            "accessid" as NSObject: self.accessID as AnyObject,
+            "accesskey" as NSObject: self.accessKey as AnyObject,
+            "instanceid" as NSObject: self.instanceID as AnyObject,
+            "region" as NSObject: self.region as AnyObject
         ] as [NSObject:AnyObject]
         
         indicator.showWithMessage(context: "Getting Data")
@@ -109,14 +116,21 @@ class NewEC2WatchTableViewController: UITableViewController {
             if(ec2WatchError == nil){
                 let jsonParser = VMWEC2JSONParser(inputData: response)
                 do {
-                    print(response!)
+                    //print(response!)
                     let cpuUtilizationData = try jsonParser.getCPUUtilization()
+                    
+                    //store history
+                    let history = VMWEC2HistoryStorage()
+                    try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+                    
                     let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
                     ec2Result.cpuUtilizationData = cpuUtilizationData
                     ec2Result.hidesBottomBarWhenPushed = true
                     self.navigationController!.navigationBar.tintColor = UIColor.white
                     indicator.dismiss()
                     self.navigationController?.pushViewController(ec2Result, animated: true)
+                } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
+                    NSLog("Could not save the history data due to database issue")
                 } catch {
                     indicator.dismiss()
                     self.present(
