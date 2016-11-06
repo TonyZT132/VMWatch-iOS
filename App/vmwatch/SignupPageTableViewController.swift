@@ -182,7 +182,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
         let imageFile = PFFile (data:imageData!)
         user["profileImage"] = imageFile
         
-        indicator.showWithMessage(context: "Signing")
+        indicator.showWithMessage(context: "Signing up")
         user.signUpInBackground { (success, signinError) in
             if(signinError == nil){
                 registeredUser?.setRegisterStatus(status: true)
@@ -192,7 +192,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                         let isDeleted = response as! Bool
                         if(isDeleted == true){
                             indicator.dismiss()
-                            indicator.showWithMessage(context: "Logging")
+                            indicator.showWithMessage(context: "Logging in")
                             PFUser.logInWithUsername(inBackground: user.username!, password: user.password!, block: {
                                 (loggedUser, loggingError) in
                                 

@@ -16,7 +16,6 @@ internal class VMWEC2HistoryStorage {
     
     public func storeEC2History (accessID: String, accessKey: String, instanceID: String, region:String) throws {
         let entity =  NSEntityDescription.entity(forEntityName: "History_EC2", in: self.context)
-        
         let transc = NSManagedObject(entity: entity!, insertInto: context)
         
         //set the entity values
@@ -36,7 +35,7 @@ internal class VMWEC2HistoryStorage {
         }
     }
     
-    public func getEC2History () throws -> [History_EC2] {
+    public func getEC2History() throws -> [History_EC2] {
         let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
         
         do {
@@ -45,6 +44,32 @@ internal class VMWEC2HistoryStorage {
         } catch {
             NSLog("Error with request: \(error)")
             throw VMWEC2CoreDataStorageError.DatabaseFetchError
+        }
+    }
+    
+    public func deleteHistoryRecord(accessID:String, accessKey:String, instanceID: String, region:String){
+        let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "accessID", ascending: true)]
+        
+        /*
+         TODO: Finish NSPredicate
+         */
+    }
+    
+    public func clearHistory(entity: String){
+        let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            let results = try self.context.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as NSManagedObject
+                self.context.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            NSlog("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
 }
