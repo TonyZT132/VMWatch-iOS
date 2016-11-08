@@ -40,6 +40,7 @@ internal class VMWEC2HistoryStorage {
         
         do {
             let searchResults = try self.context.fetch(fetchRequest)
+            NSLog("Fetch success")
             return searchResults
         } catch {
             NSLog("Error with request: \(error)")
@@ -47,27 +48,46 @@ internal class VMWEC2HistoryStorage {
         }
     }
     
-    public func deleteHistoryRecord(accessID:String, accessKey:String, instanceID: String, region:String){
+    public func deleteHistoryRecord(accessID:String, accessKey:String, instanceID: String, region:String) throws {
         let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "accessID", ascending: true)]
+        fetchRequest.returnsObjectsAsFaults = false;
         
-        /*
-         TODO: Finish NSPredicate
-         */
+        let resultPredicate1 = NSPredicate(format: "access_id = %@", accessID)
+        let resultPredicate2 = NSPredicate(format: "access_key = %@", accessKey)
+        let resultPredicate3 = NSPredicate(format: "instance_id = %@", instanceID)
+        let resultPredicate4 = NSPredicate(format: "region = %@", region)
+        
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [resultPredicate1, resultPredicate2, resultPredicate3, resultPredicate4])
+        fetchRequest.predicate = compound
+        do {
+            let searchResults = try self.context.fetch(fetchRequest)
+            
+            if(searchResults.count > 0){
+                for managedObject in searchResults
+                {
+                    let managedObjectData:NSManagedObject = managedObject as NSManagedObject
+                    self.context.delete(managedObjectData)
+                }
+                NSLog("Delete record success")
+            }
+        } catch let error as NSError {
+            NSLog("Error with request: \(error)")
+            throw VMWEC2CoreDataStorageError.DatabaseDeleteError
+        }
     }
     
     public func clearHistory(entity: String) throws {
         let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
         
-        do
-        {
+        do {
             let results = try self.context.fetch(fetchRequest)
             for managedObject in results
             {
                 let managedObjectData:NSManagedObject = managedObject as NSManagedObject
                 self.context.delete(managedObjectData)
             }
+            NSLog("Database clear success")
         } catch let error as NSError {
             NSLog("Detele all data in \(entity) error : \(error) \(error.userInfo)")
             throw VMWEC2CoreDataStorageError.DatabaseDeleteError

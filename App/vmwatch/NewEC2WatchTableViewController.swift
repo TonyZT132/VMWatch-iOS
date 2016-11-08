@@ -116,11 +116,11 @@ class NewEC2WatchTableViewController: UITableViewController {
             if(ec2WatchError == nil){
                 let jsonParser = VMWEC2JSONParser(inputData: response)
                 do {
-                    //print(response!)
                     let cpuUtilizationData = try jsonParser.getCPUUtilization()
                     
                     //store history
                     let history = VMWEC2HistoryStorage()
+                    try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
                     try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
                     
                     let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
