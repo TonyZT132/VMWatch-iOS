@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 internal class VMWEC2HistoryStorage {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).getContext()

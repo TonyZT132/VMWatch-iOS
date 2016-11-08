@@ -131,6 +131,8 @@ class NewEC2WatchTableViewController: UITableViewController {
                     self.navigationController?.pushViewController(ec2Result, animated: true)
                 } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
                     NSLog("Could not save the history data due to database issue")
+                } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
+                    NSLog("Fail to remove previous history data due to database issue")
                 } catch {
                     indicator.dismiss()
                     self.present(
