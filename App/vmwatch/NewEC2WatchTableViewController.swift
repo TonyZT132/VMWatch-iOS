@@ -116,12 +116,21 @@ class NewEC2WatchTableViewController: UITableViewController {
             if(ec2WatchError == nil){
                 let jsonParser = VMWEC2JSONParser(inputData: response)
                 do {
-                    let cpuUtilizationData = try jsonParser.getCPUUtilization()
-                    
                     //store history
                     let history = VMWEC2HistoryStorage()
-                    try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
-                    try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+                    
+                    do{
+                        try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+                        try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+                    } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
+                        NSLog("Could not save the history data due to database issue")
+                    } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
+                        NSLog("Fail to remove previous history data due to database issue")
+                    } catch {
+                        NSLog("Unexpected database issue")
+                    }
+                    
+                    let cpuUtilizationData = try jsonParser.getCPUUtilization()
                     
                     let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
                     ec2Result.cpuUtilizationData = cpuUtilizationData
@@ -129,10 +138,7 @@ class NewEC2WatchTableViewController: UITableViewController {
                     self.navigationController!.navigationBar.tintColor = UIColor.white
                     indicator.dismiss()
                     self.navigationController?.pushViewController(ec2Result, animated: true)
-                } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
-                    NSLog("Could not save the history data due to database issue")
-                } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
-                    NSLog("Fail to remove previous history data due to database issue")
+                    
                 } catch {
                     indicator.dismiss()
                     self.present(
