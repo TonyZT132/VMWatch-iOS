@@ -11,7 +11,7 @@ import UIKit
 class ValidationPageTableViewController: UITableViewController {
     
     let alert = VMWAlertView()
-    let inputParser = VMWInputParser()
+    let inputParser = VMWUserInfoInputParser()
     
     @IBOutlet weak var phoneNumberTextView: UITextField!
     @IBOutlet weak var validationCodeTextView: UITextField!
@@ -95,7 +95,7 @@ class ValidationPageTableViewController: UITableViewController {
                     )
                 }
             }
-        } catch VMWInputParserError.EmptyPhoneNumber {
+        } catch VMWUserDataInputParserError.EmptyPhoneNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -105,7 +105,7 @@ class ValidationPageTableViewController: UITableViewController {
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.InvalidDigitNumber {
+        } catch VMWUserDataInputParserError.InvalidDigitNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -195,7 +195,7 @@ class ValidationPageTableViewController: UITableViewController {
                     )
                 }
             }
-        } catch VMWInputParserError.EmptyPhoneNumber {
+        } catch VMWUserDataInputParserError.EmptyPhoneNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -205,7 +205,7 @@ class ValidationPageTableViewController: UITableViewController {
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.EmptyValidationCode {
+        } catch VMWUserDataInputParserError.EmptyValidationCode {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -215,7 +215,7 @@ class ValidationPageTableViewController: UITableViewController {
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.InvalidDigitNumber {
+        } catch VMWUserDataInputParserError.InvalidDigitNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",

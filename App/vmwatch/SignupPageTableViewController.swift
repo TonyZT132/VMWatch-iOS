@@ -10,7 +10,7 @@ import UIKit
 
 class SignupPageTableViewController: UITableViewController, RSKImageCropViewControllerDelegate {
 
-    let inputParser = VMWInputParser()
+    let inputParser = VMWUserInfoInputParser()
     let alert = VMWAlertView()
     var usernameInput:String?
     var croppedImage: UIImage!
@@ -108,7 +108,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
             optionMenu.addAction(cancelAction)
             self.present(optionMenu, animated: true, completion: nil)
             
-        } catch VMWInputParserError.EmptyNickname {
+        } catch VMWUserDataInputParserError.EmptyNickname {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -118,7 +118,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.InvalidNicknameLength {
+        } catch VMWUserDataInputParserError.InvalidNicknameLength {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -128,7 +128,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.EmptyPasswordInput {
+        } catch VMWUserDataInputParserError.EmptyPasswordInput {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -138,7 +138,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.InvalidPasswordLength {
+        } catch VMWUserDataInputParserError.InvalidPasswordLength {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -148,7 +148,7 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.PasswordDidNotMatch {
+        } catch VMWUserDataInputParserError.PasswordDidNotMatch {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",

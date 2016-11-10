@@ -8,31 +8,27 @@
 
 import Foundation
 
-internal class VMWInputParser{
-    
-    public init() {
-        print("New input parser initialized")
-    }
-    
+internal class VMWUserInfoInputParser {
+
     public func digitNumberParser(content:String?, length:Int) throws {
         if(content == nil || content == ""){
             if(length == 10){
-                throw VMWInputParserError.EmptyPhoneNumber
+                throw VMWUserDataInputParserError.EmptyPhoneNumber
             }else{
-                throw VMWInputParserError.EmptyValidationCode
+                throw VMWUserDataInputParserError.EmptyValidationCode
             }
         }
         
         let Pattern = "^\\d{\(length)}$"
         let matcher = VMWRegex(Pattern)
         if(matcher.match(input: content!) == false){
-            throw VMWInputParserError.InvalidDigitNumber
+            throw VMWUserDataInputParserError.InvalidDigitNumber
         }
     }
     
     public func nickNameInputParser(nickname:String?) throws {
         if(nickname == nil || nickname == ""){
-            throw VMWInputParserError.EmptyNickname
+            throw VMWUserDataInputParserError.EmptyNickname
         }
         
         /*setup the nickname*/
@@ -41,13 +37,13 @@ internal class VMWInputParser{
         
         /*Check the length of the nickname*/
         if(nicknameLength < 1 || nicknameLength > 20){
-            throw VMWInputParserError.InvalidNicknameLength
+            throw VMWUserDataInputParserError.InvalidNicknameLength
         }
     }
     
     public func passwordParser(password:String?, retypedPassword:String?) throws {
         if(password == nil || password == "" || retypedPassword == nil || retypedPassword == ""){
-            throw VMWInputParserError.EmptyPasswordInput
+            throw VMWUserDataInputParserError.EmptyPasswordInput
         }
 
         /*setup the password*/
@@ -56,12 +52,40 @@ internal class VMWInputParser{
         
         /*check the password length*/
         if(passwordNSStringLength < 7 || passwordNSStringLength > 18){
-            throw VMWInputParserError.InvalidPasswordLength
+            throw VMWUserDataInputParserError.InvalidPasswordLength
         }
         
         /*check password is match or not*/
         if(password! != retypedPassword!){
-            throw VMWInputParserError.PasswordDidNotMatch
+            throw VMWUserDataInputParserError.PasswordDidNotMatch
+        }
+    }
+}
+
+
+internal class VMWEC2InputParser {
+    
+    public func accessIDParser(input:String?) throws {
+        if(input == nil || input == ""){
+            throw VMWEC2InputParserError.EmptyAccessKey
+        }
+    }
+    
+    public func secretKeyParser(input:String?) throws {
+        if(input == nil || input == ""){
+            throw VMWEC2InputParserError.EmptySecretKey
+        }
+    }
+    
+    public func instanceIDParser(input:String?) throws {
+        if(input == nil || input == ""){
+            throw VMWEC2InputParserError.EmptyInstanceID
+        }
+    }
+    
+    public func regionParser(input:String?) throws {
+        if(input == nil || input == ""){
+            throw VMWEC2InputParserError.EmptyRegion
         }
     }
 }
@@ -89,7 +113,7 @@ private class VMWRegex {
     }
 }
 
-enum VMWInputParserError: Error {
+enum VMWUserDataInputParserError: Error {
     case EmptyPhoneNumber
     case EmptyValidationCode
     case InvalidDigitNumber
@@ -98,4 +122,12 @@ enum VMWInputParserError: Error {
     case EmptyPasswordInput
     case InvalidPasswordLength
     case PasswordDidNotMatch
+}
+
+enum VMWEC2InputParserError: Error{
+    case EmptyAccessKey
+    case EmptySecretKey
+    case EmptyInstanceID
+    case EmptyRegion
+    case InvalidAccessCredentialContent
 }

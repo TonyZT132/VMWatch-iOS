@@ -100,69 +100,127 @@ class NewEC2WatchTableViewController: UITableViewController {
     }
     
     @IBAction func doSubmit(_ sender: AnyObject) {
-        self.accessID = ec2AccessIDTextField.text!
-        self.accessKey = ec2AccessKeyTextField.text!
-        self.instanceID = instanceIDTextField.text!
         
-        let params = [
-            "accessid" as NSObject: self.accessID as AnyObject,
-            "accesskey" as NSObject: self.accessKey as AnyObject,
-            "instanceid" as NSObject: self.instanceID as AnyObject,
-            "region" as NSObject: self.region as AnyObject
-        ] as [NSObject:AnyObject]
-        
-        indicator.showWithMessage(context: "Getting Data")
-        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
-            if(ec2WatchError == nil){
-                let jsonParser = VMWEC2JSONParser(inputData: response)
-                do {
-                    //store history
-                    let history = VMWEC2HistoryStorage()
-                    
-                    do{
-                        try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
-                        try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
-                    } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
-                        NSLog("Could not save the history data due to database issue")
-                    } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
-                        NSLog("Fail to remove previous history data due to database issue")
+        do{
+            let parser = VMWEC2InputParser()
+            try parser.accessIDParser(input: ec2AccessIDTextField.text)
+            try parser.secretKeyParser(input: ec2AccessKeyTextField.text)
+            try parser.instanceIDParser(input: instanceIDTextField.text)
+            try parser.regionParser(input: self.region)
+            
+            self.accessID = ec2AccessIDTextField.text!
+            self.accessKey = ec2AccessKeyTextField.text!
+            self.instanceID = instanceIDTextField.text!
+            
+            let params = [
+                "accessid" as NSObject: self.accessID as AnyObject,
+                "accesskey" as NSObject: self.accessKey as AnyObject,
+                "instanceid" as NSObject: self.instanceID as AnyObject,
+                "region" as NSObject: self.region as AnyObject
+                ] as [NSObject:AnyObject]
+            
+            indicator.showWithMessage(context: "Getting Data")
+            PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
+                if(ec2WatchError == nil){
+                    let jsonParser = VMWEC2JSONParser(inputData: response)
+                    do {
+                        //store history
+                        let history = VMWEC2HistoryStorage()
+                        do{
+                            try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+                            try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+                        } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
+                            NSLog("Could not save the history data due to database issue")
+                        } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
+                            NSLog("Fail to remove previous history data due to database issue")
+                        } catch {
+                            NSLog("Unexpected database issue")
+                        }
+                        
+                        let cpuUtilizationData = try jsonParser.getCPUUtilization()
+                        
+                        let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+                        ec2Result.cpuUtilizationData = cpuUtilizationData
+                        ec2Result.hidesBottomBarWhenPushed = true
+                        self.navigationController!.navigationBar.tintColor = UIColor.white
+                        indicator.dismiss()
+                        self.navigationController?.pushViewController(ec2Result, animated: true)
+                        
                     } catch {
-                        NSLog("Unexpected database issue")
+                        indicator.dismiss()
+                        self.present(
+                            self.alert.showAlertWithOneButton(
+                                title: "Error",
+                                message: "Error occured while getting data",
+                                actionButton: "OK"
+                            ),
+                            animated: true,
+                            completion: nil
+                        )
                     }
-                    
-                    let cpuUtilizationData = try jsonParser.getCPUUtilization()
-                    
-                    let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
-                    ec2Result.cpuUtilizationData = cpuUtilizationData
-                    ec2Result.hidesBottomBarWhenPushed = true
-                    self.navigationController!.navigationBar.tintColor = UIColor.white
-                    indicator.dismiss()
-                    self.navigationController?.pushViewController(ec2Result, animated: true)
-                    
-                } catch {
+                }else{
                     indicator.dismiss()
                     self.present(
                         self.alert.showAlertWithOneButton(
                             title: "Error",
-                            message: "Error occured while getting data",
+                            message: "Server Error, please try again or contact customer service",
                             actionButton: "OK"
                         ),
                         animated: true,
                         completion: nil
                     )
                 }
-            }else{
-                indicator.dismiss()
-                self.present(
-                    self.alert.showAlertWithOneButton(
-                        title: "Error",
-                        message: "Server Error, please try again or contact customer service",
-                        actionButton: "OK"
-                    ),
-                    animated: true,
-                    completion: nil
-                )
             }
+        } catch VMWEC2InputParserError.EmptyAccessKey {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Access ID is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch VMWEC2InputParserError.EmptySecretKey {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Secret key is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch VMWEC2InputParserError.EmptyInstanceID {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Instance ID is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch VMWEC2InputParserError.EmptyRegion {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Please select a region",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Unexpected Error",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         }
     }
 }

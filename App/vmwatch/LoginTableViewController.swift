@@ -14,7 +14,7 @@ class LoginTableViewController: UITableViewController{
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    let inputParser = VMWInputParser()
+    let inputParser = VMWUserInfoInputParser()
     let alert = VMWAlertView()
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class LoginTableViewController: UITableViewController{
         do{
             try inputParser.digitNumberParser(content: phoneNumberTextField.text, length: 10)
             if(passwordTextField.text == nil || passwordTextField.text == ""){
-                throw VMWInputParserError.EmptyPasswordInput
+                throw VMWUserDataInputParserError.EmptyPasswordInput
             }
             
             indicator.showWithMessage(context: "Logging")
@@ -73,7 +73,7 @@ class LoginTableViewController: UITableViewController{
                     )
                 }
             })
-        } catch VMWInputParserError.EmptyPhoneNumber {
+        } catch VMWUserDataInputParserError.EmptyPhoneNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -83,7 +83,7 @@ class LoginTableViewController: UITableViewController{
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.InvalidDigitNumber {
+        } catch VMWUserDataInputParserError.InvalidDigitNumber {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -93,7 +93,7 @@ class LoginTableViewController: UITableViewController{
                 animated: true,
                 completion: nil
             )
-        } catch VMWInputParserError.EmptyPasswordInput {
+        } catch VMWUserDataInputParserError.EmptyPasswordInput {
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
