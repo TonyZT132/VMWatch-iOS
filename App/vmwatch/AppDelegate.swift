@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = "https://vmwatch.herokuapp.com/parse"
         }
         Parse.initialize(with: configuration)
+        UIApplication.shared.setStatusBarHidden(false, with: .slide)
+        UIApplication.shared.statusBarStyle = .lightContent
         
         /*Set up Navigation bar*/
         UINavigationBar.appearance().barTintColor = UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha:1.0)

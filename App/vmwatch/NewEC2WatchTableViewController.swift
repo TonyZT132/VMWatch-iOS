@@ -112,6 +112,18 @@ class NewEC2WatchTableViewController: UITableViewController {
             self.accessKey = ec2AccessKeyTextField.text!
             self.instanceID = instanceIDTextField.text!
             
+//            let testParams = [
+//                "accessid" as NSObject: self.accessID?.sha1() as AnyObject,
+//                "accesskey" as NSObject: self.accessKey as AnyObject,
+//                "instanceid" as NSObject: self.instanceID as AnyObject,
+//                "region" as NSObject: self.region as AnyObject
+//                ] as [NSObject:AnyObject]
+//            
+//            PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: testParams) { (response, ec2StoreError) in
+//                print("done")
+//            }
+            
+            
             let params = [
                 "accessid" as NSObject: self.accessID as AnyObject,
                 "accesskey" as NSObject: self.accessKey as AnyObject,
@@ -233,16 +245,6 @@ extension String {
             _ = CC_SHA1($0, CC_LONG(data.count), &digest)
         }
         let hexBytes = digest.map { String(format: "%02hhx", $0) }
-        return hexBytes.joined()
-    }
-    
-    func sha256() -> String {
-        let data = self.data(using: String.Encoding.utf8)!
-        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
-        data.withUnsafeBytes {
-            _ = CC_SHA256($0, CC_LONG(data.count), &hash)
-        }
-        let hexBytes = hash.map { String(format: "%02hhx", $0) }
         return hexBytes.joined()
     }
 }
