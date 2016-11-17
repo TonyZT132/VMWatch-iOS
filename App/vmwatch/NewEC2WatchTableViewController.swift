@@ -151,7 +151,7 @@ class NewEC2WatchTableViewController: UITableViewController {
                         
                         let cpuUtilizationData = try jsonParser.getCPUUtilization()
                         
-                        let ec2Result : EC2WatchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+                        let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
                         ec2Result.cpuUtilizationData = cpuUtilizationData
                         ec2Result.hidesBottomBarWhenPushed = true
                         self.navigationController!.navigationBar.tintColor = UIColor.white

@@ -58,7 +58,7 @@ class NewPageViewController: UIViewController {
     @objc private func buttonSelected (sender: UIButton!) {
         switch sender.tag {
             case 0:
-                let ec2Setup : NewEC2WatchTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "ec2setup") as! NewEC2WatchTableViewController
+                let ec2Setup : NewEC2WatchTableViewController = EC2View.instantiateViewController(withIdentifier: "ec2setup") as! NewEC2WatchTableViewController
                 ec2Setup.hidesBottomBarWhenPushed = true
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(ec2Setup, animated: true)

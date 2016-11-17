@@ -193,6 +193,8 @@
 		26DE7EEC1D81D7EE001E3571 /* VMWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EEB1D81D7EE001E3571 /* VMWatchUITests.swift */; };
 		26E040291DB0392D0068A184 /* NewEC2WatchNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E040281DB0392D0068A184 /* NewEC2WatchNavViewController.swift */; };
 		26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */; };
+		26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F789F41DDE4FDE006F4658 /* EC2.storyboard */; };
+		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
 		BCF91C9F749BAD0B5C201458 /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC2511275B0C57A6D87F426 /* libPods-VMWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -410,6 +412,8 @@
 		26DE7EED1D81D7EE001E3571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E040281DB0392D0068A184 /* NewEC2WatchNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewEC2WatchNavViewController.swift; path = vmwatch/NewEC2WatchNavViewController.swift; sourceTree = SOURCE_ROOT; };
 		26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewEC2WatchTableViewController.swift; path = vmwatch/NewEC2WatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		26F789F41DDE4FDE006F4658 /* EC2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EC2.storyboard; path = vmwatch/EC2.storyboard; sourceTree = SOURCE_ROOT; };
+		26F789F81DDE5176006F4658 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
 		291CB1B9CB60B7199B526F68 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		3FC2511275B0C57A6D87F426 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C309829348EB45D516CB4E56 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
@@ -833,6 +837,7 @@
 				26A622701D84FD09003DD48E /* Cloud.swift */,
 				26A6228E1D85DFA5003DD48E /* Timer.swift */,
 				2620E2261D98C51A003615D4 /* Variable.swift */,
+				26F789F81DDE5176006F4658 /* StoryboardView.swift */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 		26A6228C1D8586C1003DD48E /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				26F789FA1DDE51A1006F4658 /* VMProvider */,
 				26DE7ED41D81D7ED001E3571 /* LaunchScreen.storyboard */,
 				26DE7ECC1D81D7ED001E3571 /* Main.storyboard */,
 			);
@@ -1003,6 +1009,14 @@
 				26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */,
 			);
 			name = EC2;
+			sourceTree = "<group>";
+		};
+		26F789FA1DDE51A1006F4658 /* VMProvider */ = {
+			isa = PBXGroup;
+			children = (
+				26F789F41DDE4FDE006F4658 /* EC2.storyboard */,
+			);
+			name = VMProvider;
 			sourceTree = "<group>";
 		};
 		66F6DA37BE4CCF70F1BEDE11 /* Pods */ = {
@@ -1142,6 +1156,7 @@
 				267CCB2D1D99B44600347E4C /* DKCameraResource.bundle in Resources */,
 				267CCB321D99B44600347E4C /* DKImagePickerController.bundle in Resources */,
 				261E82341DB56092009A8FD9 /* Info.plist in Resources */,
+				26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,6 +1357,7 @@
 				261E81CE1DB56092009A8FD9 /* BubbleChartData.swift in Sources */,
 				267CCB361D99B44600347E4C /* DKPopoverViewController.swift in Sources */,
 				261E81BE1DB56092009A8FD9 /* ChartLimitLine.swift in Sources */,
+				26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */,
 				261E82161DB56092009A8FD9 /* HorizontalBarChartRenderer.swift in Sources */,
 				261E81F41DB56092009A8FD9 /* IAxisValueFormatter.swift in Sources */,
 				261E822B1DB56092009A8FD9 /* YAxisRendererHorizontalBarChart.swift in Sources */,
