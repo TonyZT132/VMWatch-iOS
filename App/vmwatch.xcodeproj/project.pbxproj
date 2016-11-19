@@ -769,6 +769,16 @@
 			name = "Info Page";
 			sourceTree = "<group>";
 		};
+		2671323C1DE0E8D20001E3B0 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				2622FA791DA7402100984EC7 /* EZLoadingActivity */,
+				26D9DD0B1D9AAE5C00A47416 /* DKImagePicker */,
+				261E81151DB56056009A8FD9 /* Charts */,
+			);
+			name = "3rd Party";
+			sourceTree = "<group>";
+		};
 		267CCB151D99B44600347E4C /* DKCamera */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,10 +922,8 @@
 		26A754871D9823E000FB7CC1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				261E81151DB56056009A8FD9 /* Charts */,
-				2622FA791DA7402100984EC7 /* EZLoadingActivity */,
 				26D9DD0C1D9AAE7700A47416 /* VMW Model */,
-				26D9DD0B1D9AAE5C00A47416 /* DKImagePicker */,
+				2671323C1DE0E8D20001E3B0 /* 3rd Party */,
 			);
 			name = Model;
 			sourceTree = "<group>";
