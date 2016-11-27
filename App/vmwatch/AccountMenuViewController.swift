@@ -14,8 +14,13 @@ class AccountMenuViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        signupButton.layer.borderWidth = 1
+        signupButton.layer.borderColor = UIColor.white.cgColor
         signupButton.layer.cornerRadius = 5
         signupButton.clipsToBounds = true
+        
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.cornerRadius = 5
         loginButton.clipsToBounds = true
 

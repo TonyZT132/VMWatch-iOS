@@ -12,20 +12,33 @@ class EC2WatchResultViewController: UIViewController {
 
     var cpuUtilizationData:Double!
     var pieChartView: PieChartView!
-    @IBOutlet weak var CPUUtilizationLabel: UILabel!
+    var scrollView: UIScrollView!
     
     let WIDTH = UIScreen.main.bounds.width
     let HEIGHT = UIScreen.main.bounds.height
+    let PIE_CHART_HEIGHT:CGFloat = 300
+    
+    var scrollViewHeight:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CPUUtilizationLabel.text = "CPUUtilization: " + String(cpuUtilizationData.roundTo(places: 1)) + " %"
-        pieChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
+        print("CPUUtilization: " + String(cpuUtilizationData.roundTo(places: 1)) + " %")
+        
+        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.layer.backgroundColor = UIColor.clear.cgColor
+        self.view.addSubview(scrollView)
+        
+        pieChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: PIE_CHART_HEIGHT))
+        pieChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         let results = ["Used", "Not Used"]
         let percentage = [cpuUtilizationData.roundTo(places: 0), (100.0 - cpuUtilizationData).roundTo(places: 0)]
         setChart(dataPoints: results, values: percentage)
-        self.view.addSubview(pieChartView)
+        self.scrollView.addSubview(pieChartView)
+        scrollViewHeight += PIE_CHART_HEIGHT
         
+        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
     
     /*Set up pie chart*/

@@ -148,7 +148,6 @@
 		264587D61D81DA23008B0B8D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587D51D81DA23008B0B8D /* TabBarViewController.swift */; };
 		264587DD1D81DAEF008B0B8D /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587DC1D81DAEF008B0B8D /* HomePageViewController.swift */; };
 		264587DF1D81DB03008B0B8D /* HomePageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587DE1D81DB03008B0B8D /* HomePageNavViewController.swift */; };
-		264587E21D81EFC1008B0B8D /* NewPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E11D81EFC1008B0B8D /* NewPageNavViewController.swift */; };
 		264587E41D81EFEA008B0B8D /* NewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E31D81EFEA008B0B8D /* NewPageViewController.swift */; };
 		264587E91D81F0B3008B0B8D /* InfoPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */; };
 		264771E11D986A98003F1998 /* VMWTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264771E01D986A98003F1998 /* VMWTimer.swift */; };
@@ -169,6 +168,7 @@
 		267CCB391D99B44600347E4C /* DKAssetGroupGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CCB291D99B44600347E4C /* DKAssetGroupGridLayout.swift */; };
 		267CCB3A1D99B44600347E4C /* DKAssetGroupListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CCB2A1D99B44600347E4C /* DKAssetGroupListVC.swift */; };
 		267CCB3B1D99B44600347E4C /* DKPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CCB2B1D99B44600347E4C /* DKPermissionView.swift */; };
+		26879F6C1DEB2513008EA698 /* NewPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26879F6B1DEB2513008EA698 /* NewPageNavViewController.swift */; };
 		26A622711D84FD09003DD48E /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622701D84FD09003DD48E /* Cloud.swift */; };
 		26A622751D8500DC003DD48E /* AccountMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622741D8500DC003DD48E /* AccountMenuViewController.swift */; };
 		26A622781D8506EA003DD48E /* LoginNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622771D8506EA003DD48E /* LoginNavViewController.swift */; };
@@ -182,7 +182,6 @@
 		26ADF1AF1DCF3026005ED225 /* VMWCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADF1AE1DCF3026005ED225 /* VMWCoreDataStorage.swift */; };
 		26AF3A9D1D84E9D9003B8389 /* InfoPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */; };
 		26B8DFFF1DB3E597009FC47D /* VMWEC2JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B8DFFE1DB3E597009FC47D /* VMWEC2JSONParser.swift */; };
-		26CA68DF1DB3D82C00D8EA3D /* EC2WatchResultNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA68DE1DB3D82C00D8EA3D /* EC2WatchResultNavViewController.swift */; };
 		26CA68E11DB3D84900D8EA3D /* EC2WatchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */; };
 		26DE7EC91D81D7ED001E3571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EC81D81D7ED001E3571 /* AppDelegate.swift */; };
 		26DE7ECE1D81D7ED001E3571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DE7ECC1D81D7ED001E3571 /* Main.storyboard */; };
@@ -191,7 +190,6 @@
 		26DE7ED61D81D7ED001E3571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DE7ED41D81D7ED001E3571 /* LaunchScreen.storyboard */; };
 		26DE7EE11D81D7ED001E3571 /* VMWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EE01D81D7ED001E3571 /* VMWatchTests.swift */; };
 		26DE7EEC1D81D7EE001E3571 /* VMWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EEB1D81D7EE001E3571 /* VMWatchUITests.swift */; };
-		26E040291DB0392D0068A184 /* NewEC2WatchNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E040281DB0392D0068A184 /* NewEC2WatchNavViewController.swift */; };
 		26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */; };
 		26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F789F41DDE4FDE006F4658 /* EC2.storyboard */; };
 		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
@@ -360,7 +358,6 @@
 		264587D71D81DA41008B0B8D /* VMWatch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VMWatch-Bridging-Header.h"; sourceTree = "<group>"; };
 		264587DC1D81DAEF008B0B8D /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		264587DE1D81DB03008B0B8D /* HomePageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNavViewController.swift; sourceTree = "<group>"; };
-		264587E11D81EFC1008B0B8D /* NewPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageNavViewController.swift; sourceTree = "<group>"; };
 		264587E31D81EFEA008B0B8D /* NewPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageViewController.swift; sourceTree = "<group>"; };
 		264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageNavViewController.swift; sourceTree = "<group>"; };
 		264771E01D986A98003F1998 /* VMWTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWTimer.swift; sourceTree = "<group>"; };
@@ -382,6 +379,7 @@
 		267CCB291D99B44600347E4C /* DKAssetGroupGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAssetGroupGridLayout.swift; sourceTree = "<group>"; };
 		267CCB2A1D99B44600347E4C /* DKAssetGroupListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAssetGroupListVC.swift; sourceTree = "<group>"; };
 		267CCB2B1D99B44600347E4C /* DKPermissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKPermissionView.swift; sourceTree = "<group>"; };
+		26879F6B1DEB2513008EA698 /* NewPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageNavViewController.swift; sourceTree = "<group>"; };
 		26A622701D84FD09003DD48E /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		26A622741D8500DC003DD48E /* AccountMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountMenuViewController.swift; sourceTree = "<group>"; };
 		26A622771D8506EA003DD48E /* LoginNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavViewController.swift; sourceTree = "<group>"; };
@@ -395,7 +393,6 @@
 		26ADF1AE1DCF3026005ED225 /* VMWCoreDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWCoreDataStorage.swift; sourceTree = "<group>"; };
 		26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageTableViewController.swift; sourceTree = "<group>"; };
 		26B8DFFE1DB3E597009FC47D /* VMWEC2JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWEC2JSONParser.swift; sourceTree = "<group>"; };
-		26CA68DE1DB3D82C00D8EA3D /* EC2WatchResultNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2WatchResultNavViewController.swift; path = vmwatch/EC2WatchResultNavViewController.swift; sourceTree = SOURCE_ROOT; };
 		26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2WatchResultViewController.swift; path = vmwatch/EC2WatchResultViewController.swift; sourceTree = SOURCE_ROOT; };
 		26DE7EC51D81D7ED001E3571 /* VMWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VMWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DE7EC81D81D7ED001E3571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -410,7 +407,6 @@
 		26DE7EE71D81D7EE001E3571 /* VMWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VMWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DE7EEB1D81D7EE001E3571 /* VMWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMWatchUITests.swift; sourceTree = "<group>"; };
 		26DE7EED1D81D7EE001E3571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26E040281DB0392D0068A184 /* NewEC2WatchNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewEC2WatchNavViewController.swift; path = vmwatch/NewEC2WatchNavViewController.swift; sourceTree = SOURCE_ROOT; };
 		26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewEC2WatchTableViewController.swift; path = vmwatch/NewEC2WatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		26F789F41DDE4FDE006F4658 /* EC2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EC2.storyboard; path = vmwatch/EC2.storyboard; sourceTree = SOURCE_ROOT; };
 		26F789F81DDE5176006F4658 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
@@ -753,8 +749,8 @@
 			isa = PBXGroup;
 			children = (
 				26E040271DB0390B0068A184 /* EC2 */,
-				264587E11D81EFC1008B0B8D /* NewPageNavViewController.swift */,
 				264587E31D81EFEA008B0B8D /* NewPageViewController.swift */,
+				26879F6B1DEB2513008EA698 /* NewPageNavViewController.swift */,
 			);
 			name = "New Page";
 			sourceTree = "<group>";
@@ -1011,9 +1007,7 @@
 		26E040271DB0390B0068A184 /* EC2 */ = {
 			isa = PBXGroup;
 			children = (
-				26E040281DB0392D0068A184 /* NewEC2WatchNavViewController.swift */,
 				26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */,
-				26CA68DE1DB3D82C00D8EA3D /* EC2WatchResultNavViewController.swift */,
 				26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */,
 			);
 			name = EC2;
@@ -1288,6 +1282,7 @@
 				261E81F71DB56092009A8FD9 /* BarHighlighter.swift in Sources */,
 				26AF3A9D1D84E9D9003B8389 /* InfoPageTableViewController.swift in Sources */,
 				261E81D51DB56092009A8FD9 /* ChartDataEntry.swift in Sources */,
+				26879F6C1DEB2513008EA698 /* NewPageNavViewController.swift in Sources */,
 				261E82201DB56092009A8FD9 /* CircleShapeRenderer.swift in Sources */,
 				261E82011DB56092009A8FD9 /* BarChartDataProvider.swift in Sources */,
 				267CCB2F1D99B44600347E4C /* DKAsset.swift in Sources */,
@@ -1373,7 +1368,6 @@
 				261E82281DB56092009A8FD9 /* XAxisRendererHorizontalBarChart.swift in Sources */,
 				261E81B31DB56092009A8FD9 /* BubbleChartView.swift in Sources */,
 				261E820A1DB56092009A8FD9 /* AnimatedViewPortJob.swift in Sources */,
-				26CA68DF1DB3D82C00D8EA3D /* EC2WatchResultNavViewController.swift in Sources */,
 				26A622711D84FD09003DD48E /* Cloud.swift in Sources */,
 				261E81CB1DB56092009A8FD9 /* BarChartDataSet.swift in Sources */,
 				261E81B41DB56092009A8FD9 /* CandleStickChartView.swift in Sources */,
@@ -1399,7 +1393,6 @@
 				261E82221DB56092009A8FD9 /* IShapeRenderer.swift in Sources */,
 				261E82291DB56092009A8FD9 /* XAxisRendererRadarChart.swift in Sources */,
 				261E81EC1DB56092009A8FD9 /* ILineScatterCandleRadarChartDataSet.swift in Sources */,
-				26E040291DB0392D0068A184 /* NewEC2WatchNavViewController.swift in Sources */,
 				261E81B51DB56092009A8FD9 /* ChartViewBase.swift in Sources */,
 				261E81BD1DB56092009A8FD9 /* AxisBase.swift in Sources */,
 				261E81EF1DB56092009A8FD9 /* IScatterChartDataSet.swift in Sources */,
@@ -1416,7 +1409,6 @@
 				267CCB2E1D99B44600347E4C /* DKGroupDataManager.swift in Sources */,
 				26DE7ED11D81D7ED001E3571 /* VMWatch.xcdatamodeld in Sources */,
 				261E81D91DB56092009A8FD9 /* LineChartData.swift in Sources */,
-				264587E21D81EFC1008B0B8D /* NewPageNavViewController.swift in Sources */,
 				267CCB391D99B44600347E4C /* DKAssetGroupGridLayout.swift in Sources */,
 				2620E2271D98C51A003615D4 /* Variable.swift in Sources */,
 				261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */,

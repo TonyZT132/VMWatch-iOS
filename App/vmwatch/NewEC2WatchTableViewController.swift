@@ -111,19 +111,7 @@ class NewEC2WatchTableViewController: UITableViewController {
             self.accessID = ec2AccessIDTextField.text!
             self.accessKey = ec2AccessKeyTextField.text!
             self.instanceID = instanceIDTextField.text!
-            
-//            let testParams = [
-//                "accessid" as NSObject: self.accessID?.sha1() as AnyObject,
-//                "accesskey" as NSObject: self.accessKey as AnyObject,
-//                "instanceid" as NSObject: self.instanceID as AnyObject,
-//                "region" as NSObject: self.region as AnyObject
-//                ] as [NSObject:AnyObject]
-//            
-//            PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: testParams) { (response, ec2StoreError) in
-//                print("done")
-//            }
-            
-            
+
             let params = [
                 "accessid" as NSObject: self.accessID as AnyObject,
                 "accesskey" as NSObject: self.accessKey as AnyObject,
@@ -132,23 +120,10 @@ class NewEC2WatchTableViewController: UITableViewController {
                 ] as [NSObject:AnyObject]
             
             indicator.showWithMessage(context: "Getting Data")
-            PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
+            PFCloud.callFunction(inBackground: "ec2WatchGetCPUUtilization", withParameters: params) { (response, ec2WatchError) in
                 if(ec2WatchError == nil){
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     do {
-                        //store history
-                        let history = VMWEC2HistoryStorage()
-                        do{
-                            try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
-                            try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
-                        } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
-                            NSLog("Could not save the history data due to database issue")
-                        } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
-                            NSLog("Fail to remove previous history data due to database issue")
-                        } catch {
-                            NSLog("Unexpected database issue")
-                        }
-                        
                         let cpuUtilizationData = try jsonParser.getCPUUtilization()
                         
                         let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
@@ -235,7 +210,37 @@ class NewEC2WatchTableViewController: UITableViewController {
             )
         }
     }
+    
+    func storeAccessCredential(){
+        let testParams = [
+            "accessid" as NSObject: self.accessID as AnyObject,
+            "accesskey" as NSObject: self.accessKey as AnyObject,
+            "instanceid" as NSObject: self.instanceID as AnyObject,
+            "region" as NSObject: self.region as AnyObject
+            ] as [NSObject:AnyObject]
+        
+        PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: testParams) { (response, ec2StoreError) in
+            print("done")
+        }
+    }
+    
+    func storeHistory(){
+        //store history
+        let history = VMWEC2HistoryStorage()
+        do{
+            try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+            try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+        } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
+            NSLog("Could not save the history data due to database issue")
+        } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
+            NSLog("Fail to remove previous history data due to database issue")
+        } catch {
+            NSLog("Unexpected database issue")
+        }
+    }
 }
+
+
 
 extension String {
     func sha1() -> String {

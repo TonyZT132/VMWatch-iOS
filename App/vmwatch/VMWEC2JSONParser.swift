@@ -15,11 +15,25 @@ internal class VMWEC2JSONParser {
         self.data = inputData
     }
     
+    public func printData() throws {
+        if let dict = self.data as? NSDictionary {
+            print(dict)
+        } else {
+            throw VMWEC2JSONParserError.InvalidEC2JSONDataError
+        }
+    }
+    
     public func getCPUUtilization() throws -> Double {
         if let dict = self.data as? NSDictionary {
-            if let datapointsArray = dict["Datapoints"] as? NSArray{
-                if let cpuData = datapointsArray[0] as? NSDictionary {
-                    return (cpuData["Average"]! as AnyObject).doubleValue
+            if let datapointsArray = dict["Datapoints"] as? NSArray {
+                if(datapointsArray.count > 0){
+                    var cpuValue:Double = 0
+                    for i in 0 ..< datapointsArray.count{
+                        if let cpuDataObj = datapointsArray[i] as? NSDictionary {
+                            cpuValue = cpuValue + (cpuDataObj["Average"]! as AnyObject).doubleValue
+                        }
+                    }
+                    return (cpuValue / Double(datapointsArray.count))
                 }
             }
         }
