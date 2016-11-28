@@ -24,6 +24,7 @@ internal class VMWEC2JSONParser {
     }
     
     public func getCPUUtilization() throws -> Double {
+        try self.printData()
         if let dict = self.data as? NSDictionary {
             if let datapointsArray = dict["Datapoints"] as? NSArray {
                 if(datapointsArray.count > 0){

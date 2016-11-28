@@ -116,11 +116,13 @@ class NewEC2WatchTableViewController: UITableViewController {
                 "accessid" as NSObject: self.accessID as AnyObject,
                 "accesskey" as NSObject: self.accessKey as AnyObject,
                 "instanceid" as NSObject: self.instanceID as AnyObject,
-                "region" as NSObject: self.region as AnyObject
+                "region" as NSObject: self.region as AnyObject,
+                "metrics" as NSObject: "CPUUtilization" as AnyObject,
+                "range" as NSObject: 20 as AnyObject
                 ] as [NSObject:AnyObject]
             
             indicator.showWithMessage(context: "Getting Data")
-            PFCloud.callFunction(inBackground: "ec2WatchGetCPUUtilization", withParameters: params) { (response, ec2WatchError) in
+            PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
                 if(ec2WatchError == nil){
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     do {
