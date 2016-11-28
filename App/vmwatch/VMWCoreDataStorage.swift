@@ -28,7 +28,7 @@ internal class VMWEC2HistoryStorage {
         do {
             try context.save()
             NSLog("Save success")
-        } catch let error as NSError  {
+        } catch let error as NSError {
             NSLog("Could not save \(error), \(error.userInfo)")
             throw VMWEC2CoreDataStorageError.DatabaseStoreError
         }
@@ -41,7 +41,7 @@ internal class VMWEC2HistoryStorage {
             let searchResults = try self.context.fetch(fetchRequest)
             NSLog("Fetch success")
             return searchResults
-        } catch {
+        } catch let error as NSError {
             NSLog("Error with request: \(error)")
             throw VMWEC2CoreDataStorageError.DatabaseFetchError
         }

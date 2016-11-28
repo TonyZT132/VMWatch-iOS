@@ -111,55 +111,26 @@ class NewEC2WatchTableViewController: UITableViewController {
             self.accessID = ec2AccessIDTextField.text!
             self.accessKey = ec2AccessKeyTextField.text!
             self.instanceID = instanceIDTextField.text!
-
-            let params = [
-                "accessid" as NSObject: self.accessID as AnyObject,
-                "accesskey" as NSObject: self.accessKey as AnyObject,
-                "instanceid" as NSObject: self.instanceID as AnyObject,
-                "region" as NSObject: self.region as AnyObject,
-                "metrics" as NSObject: "CPUUtilization" as AnyObject,
-                "range" as NSObject: 20 as AnyObject
-                ] as [NSObject:AnyObject]
             
             indicator.showWithMessage(context: "Getting Data")
-            PFCloud.callFunction(inBackground: "ec2Watch", withParameters: params) { (response, ec2WatchError) in
-                if(ec2WatchError == nil){
-                    let jsonParser = VMWEC2JSONParser(inputData: response)
-                    do {
-                        let cpuUtilizationData = try jsonParser.getCPUUtilization()
-                        
-                        let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
-                        ec2Result.cpuUtilizationData = cpuUtilizationData
-                        ec2Result.hidesBottomBarWhenPushed = true
-                        self.navigationController!.navigationBar.tintColor = UIColor.white
-                        indicator.dismiss()
-                        self.navigationController?.pushViewController(ec2Result, animated: true)
-                        
-                    } catch {
-                        indicator.dismiss()
-                        self.present(
-                            self.alert.showAlertWithOneButton(
-                                title: "Error",
-                                message: "Error occured while getting data",
-                                actionButton: "OK"
-                            ),
-                            animated: true,
-                            completion: nil
-                        )
-                    }
-                }else{
-                    indicator.dismiss()
-                    self.present(
-                        self.alert.showAlertWithOneButton(
-                            title: "Error",
-                            message: "Server Error, please try again or contact customer service",
-                            actionButton: "OK"
-                        ),
-                        animated: true,
-                        completion: nil
-                    )
-                }
-            }
+            
+            let cpuUtilization = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 20))
+            let networkIn = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60))
+            let networkOut = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60))
+            let diskReadBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60))
+            let diskWriteBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60))
+            
+            
+            let jsonParser = VMWEC2JSONParser(inputData: cpuUtilization)
+            try jsonParser.printData()
+            let cpuUtilizationData = try jsonParser.getCPUUtilization()
+            
+            let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+            ec2Result.cpuUtilizationData = cpuUtilizationData
+            ec2Result.hidesBottomBarWhenPushed = true
+            self.navigationController!.navigationBar.tintColor = UIColor.white
+            indicator.dismiss()
+            self.navigationController?.pushViewController(ec2Result, animated: true)
         } catch VMWEC2InputParserError.EmptyAccessKey {
             self.present(
                 self.alert.showAlertWithOneButton(
@@ -200,7 +171,8 @@ class NewEC2WatchTableViewController: UITableViewController {
                 animated: true,
                 completion: nil
             )
-        } catch {
+        } catch let error as NSError {
+            NSLog("Error with request: \(error)")
             self.present(
                 self.alert.showAlertWithOneButton(
                     title: "Error",
@@ -211,6 +183,17 @@ class NewEC2WatchTableViewController: UITableViewController {
                 completion: nil
             )
         }
+    }
+    
+    func getParams(metrics:String, range:Int) -> [NSObject:AnyObject] {
+        return [
+            "accessid" as NSObject: self.accessID as AnyObject,
+            "accesskey" as NSObject: self.accessKey as AnyObject,
+            "instanceid" as NSObject: self.instanceID as AnyObject,
+            "region" as NSObject: self.region as AnyObject,
+            "metrics" as NSObject: metrics as AnyObject,
+            "range" as NSObject: range as AnyObject
+        ] as [NSObject:AnyObject]
     }
     
     func storeAccessCredential(){
@@ -241,8 +224,6 @@ class NewEC2WatchTableViewController: UITableViewController {
         }
     }
 }
-
-
 
 extension String {
     func sha1() -> String {
