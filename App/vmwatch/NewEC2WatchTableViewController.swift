@@ -100,7 +100,6 @@ class NewEC2WatchTableViewController: UITableViewController {
     }
     
     @IBAction func doSubmit(_ sender: AnyObject) {
-        
         do{
             let parser = VMWEC2InputParser()
             try parser.accessIDParser(input: ec2AccessIDTextField.text)
@@ -108,28 +107,13 @@ class NewEC2WatchTableViewController: UITableViewController {
             try parser.instanceIDParser(input: instanceIDTextField.text)
             try parser.regionParser(input: self.region)
             
-            self.accessID = ec2AccessIDTextField.text!
-            self.accessKey = ec2AccessKeyTextField.text!
-            self.instanceID = instanceIDTextField.text!
-            
-            indicator.showWithMessage(context: "Getting Data")
-            
-            let cpuUtilization = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 20))
-            let networkIn = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60))
-            let networkOut = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60))
-            let diskReadBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60))
-            let diskWriteBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60))
-            
-            
-            let jsonParser = VMWEC2JSONParser(inputData: cpuUtilization)
-            try jsonParser.printData()
-            let cpuUtilizationData = try jsonParser.getCPUUtilization()
-            
             let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
-            ec2Result.cpuUtilizationData = cpuUtilizationData
+            ec2Result.accessID = ec2AccessIDTextField.text!
+            ec2Result.accessKey = ec2AccessKeyTextField.text!
+            ec2Result.instanceID = instanceIDTextField.text!
+            ec2Result.region = self.region
             ec2Result.hidesBottomBarWhenPushed = true
             self.navigationController!.navigationBar.tintColor = UIColor.white
-            indicator.dismiss()
             self.navigationController?.pushViewController(ec2Result, animated: true)
         } catch VMWEC2InputParserError.EmptyAccessKey {
             self.present(
@@ -185,29 +169,18 @@ class NewEC2WatchTableViewController: UITableViewController {
         }
     }
     
-    func getParams(metrics:String, range:Int) -> [NSObject:AnyObject] {
-        return [
-            "accessid" as NSObject: self.accessID as AnyObject,
-            "accesskey" as NSObject: self.accessKey as AnyObject,
-            "instanceid" as NSObject: self.instanceID as AnyObject,
-            "region" as NSObject: self.region as AnyObject,
-            "metrics" as NSObject: metrics as AnyObject,
-            "range" as NSObject: range as AnyObject
-        ] as [NSObject:AnyObject]
-    }
-    
-    func storeAccessCredential(){
-        let testParams = [
-            "accessid" as NSObject: self.accessID as AnyObject,
-            "accesskey" as NSObject: self.accessKey as AnyObject,
-            "instanceid" as NSObject: self.instanceID as AnyObject,
-            "region" as NSObject: self.region as AnyObject
-            ] as [NSObject:AnyObject]
-        
-        PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: testParams) { (response, ec2StoreError) in
-            print("done")
-        }
-    }
+//    func storeAccessCredential(){
+//        let testParams = [
+//            "accessid" as NSObject: self.accessID as AnyObject,
+//            "accesskey" as NSObject: self.accessKey as AnyObject,
+//            "instanceid" as NSObject: self.instanceID as AnyObject,
+//            "region" as NSObject: self.region as AnyObject
+//            ] as [NSObject:AnyObject]
+//        
+//        PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: testParams) { (response, ec2StoreError) in
+//            print("done")
+//        }
+//    }
     
     func storeHistory(){
         //store history

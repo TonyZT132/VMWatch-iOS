@@ -9,8 +9,19 @@
 import UIKit
 
 class EC2WatchResultViewController: UIViewController {
+    
+    var region:String?
+    var accessID:String?
+    var accessKey:String?
+    var instanceID:String?
+    let alert = VMWAlertView()
 
     var cpuUtilizationData:Double!
+    var networkInData = NSMutableArray()
+    var networkOutData = NSMutableArray()
+    var diskReadData = NSMutableArray()
+    var diskWriteData = NSMutableArray()
+    
     var pieChartView: PieChartView!
     var scrollView: UIScrollView!
     
@@ -22,6 +33,60 @@ class EC2WatchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getData()
+        self.setView()
+    }
+    
+    private func getData() {
+        do{
+            let cpuUtilization = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 20))
+            let networkIn = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60))
+            let networkOut = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60))
+            let diskReadBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60))
+            let diskWriteBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60))
+            
+            
+            let jsonParser = VMWEC2JSONParser(inputData: cpuUtilization)
+            try jsonParser.printData()
+            self.cpuUtilizationData = try jsonParser.getAverageData(category: EC2_AVERAGE)
+            jsonParser.setData(inputData: networkIn)
+            try jsonParser.printData()
+            self.networkInData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+            jsonParser.setData(inputData: networkOut)
+            self.networkOutData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+            jsonParser.setData(inputData: diskReadBytes)
+            self.diskReadData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+            jsonParser.setData(inputData: diskWriteBytes)
+            self.diskWriteData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+            
+        } catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Error while parsing the JSON data",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch let error as NSError {
+            NSLog("Error with request: \(error)")
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Unexpected Error",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        }
+    }
+    
+    private func setView(){
+        if(cpuUtilizationData < 1){
+            cpuUtilizationData = 1
+        }
         print("CPUUtilization: " + String(cpuUtilizationData.roundTo(places: 1)) + " %")
         
         scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
@@ -58,7 +123,7 @@ class EC2WatchResultViewController: UIViewController {
         
         let colors: [UIColor] = [
             UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha: 1.0),
-            UIColor(red: 255.0/255.0, green: 69.0/255.0, blue: 98.0/255.0, alpha: 1.0)
+            UIColor.white
         ]
         pieChartDataSet.colors = colors
     }
@@ -66,6 +131,17 @@ class EC2WatchResultViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getParams(metrics:String, range:Int) -> [NSObject:AnyObject] {
+        return [
+            "accessid" as NSObject: self.accessID as AnyObject,
+            "accesskey" as NSObject: self.accessKey as AnyObject,
+            "instanceid" as NSObject: self.instanceID as AnyObject,
+            "region" as NSObject: self.region as AnyObject,
+            "metrics" as NSObject: metrics as AnyObject,
+            "range" as NSObject: range as AnyObject
+            ] as [NSObject:AnyObject]
     }
 }
 
