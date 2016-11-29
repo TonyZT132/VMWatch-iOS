@@ -111,7 +111,6 @@ class EC2WatchResultViewController: UIViewController {
         cpuUtilizationChartView.centerText = "CPUUtilization"
         cpuUtilizationChartView.holeColor = UIColor.white
         
-        
         self.scrollView.addSubview(cpuUtilizationChartView)
         scrollViewHeight += PIE_CHART_HEIGHT
         
@@ -185,14 +184,12 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     func setLineChart(label:String, data:NSMutableArray) -> LineChartData {
-        // 1 - creating an array of data entries
         var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
         for i in 0 ..< data.count {
             let dict = data[i] as! NSDictionary
             yVals1.append(ChartDataEntry(x: Double(i),y: dict["data"] as! Double))
         }
-        
-        // 2 - create a data set with our array
+
         let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: label)
         set1.axisDependency = .left // Line will correlate with left axis values
         set1.setColor(UIColor.red.withAlphaComponent(0.5)) // our line's opacity is 50%
@@ -204,11 +201,9 @@ class EC2WatchResultViewController: UIViewController {
         set1.highlightColor = UIColor.green
         set1.drawCircleHoleEnabled = true
         
-        //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(set1)
-        
-        //4 - pass our months in for our x-axis label value along with our dataSets
+
         let data: LineChartData = LineChartData(dataSets: dataSets)
         data.setValueTextColor(UIColor.red)
         return data
