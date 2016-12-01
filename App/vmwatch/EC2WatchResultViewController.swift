@@ -31,20 +31,18 @@ class EC2WatchResultViewController: UIViewController {
     
     let WIDTH = UIScreen.main.bounds.width
     let HEIGHT = UIScreen.main.bounds.height
-    let PIE_CHART_HEIGHT:CGFloat = 300
+    let CHART_HEIGHT:CGFloat = 300
     
     var scrollViewHeight:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getData()
         self.setView()
-        
     }
     
     private func getData() {
         do{
-            let cpuUtilization = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 20))
+            let cpuUtilization = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 10))
             let networkIn = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60))
             let networkOut = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60))
             let diskReadBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60))
@@ -90,6 +88,7 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     private func setView(){
+        self.getData()
         if(cpuUtilizationData < 1){
             cpuUtilizationData = 1
         }
@@ -102,7 +101,7 @@ class EC2WatchResultViewController: UIViewController {
         self.view.addSubview(scrollView)
         
         
-        cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: PIE_CHART_HEIGHT))
+        cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: CHART_HEIGHT))
         cpuUtilizationChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         let results = ["Used", "Not Used"]
         let percentage = [cpuUtilizationData.roundTo(places: 0), (100.0 - cpuUtilizationData).roundTo(places: 0)]
@@ -112,10 +111,10 @@ class EC2WatchResultViewController: UIViewController {
         cpuUtilizationChartView.holeColor = UIColor.white
         
         self.scrollView.addSubview(cpuUtilizationChartView)
-        scrollViewHeight += PIE_CHART_HEIGHT
+        scrollViewHeight += CHART_HEIGHT
         
         
-        networkInChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: PIE_CHART_HEIGHT))
+        networkInChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         networkInChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.networkInChartView.chartDescription?.text = "Tap node for details"
         self.networkInChartView.chartDescription?.textColor = UIColor.black
@@ -124,10 +123,10 @@ class EC2WatchResultViewController: UIViewController {
         self.networkInChartView.data = setLineChart(label: "NetworkIn", data: self.networkInData)
         
         self.scrollView.addSubview(networkInChartView)
-        scrollViewHeight += PIE_CHART_HEIGHT
+        scrollViewHeight += CHART_HEIGHT
         
         
-        networkOutChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: PIE_CHART_HEIGHT))
+        networkOutChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         networkOutChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.networkOutChartView.chartDescription?.text = "Tap node for details"
         self.networkOutChartView.chartDescription?.textColor = UIColor.black
@@ -136,10 +135,10 @@ class EC2WatchResultViewController: UIViewController {
         self.networkOutChartView.data = setLineChart(label: "NetworkOut", data: self.networkOutData)
         
         self.scrollView.addSubview(networkOutChartView)
-        scrollViewHeight += PIE_CHART_HEIGHT
+        scrollViewHeight += CHART_HEIGHT
         
         
-        diskReadChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: PIE_CHART_HEIGHT))
+        diskReadChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         diskReadChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.diskReadChartView.chartDescription?.text = "Tap node for details"
         self.diskReadChartView.chartDescription?.textColor = UIColor.black
@@ -148,10 +147,10 @@ class EC2WatchResultViewController: UIViewController {
         self.diskReadChartView.data = setLineChart(label: "DiskRead", data: self.diskReadData)
         
         self.scrollView.addSubview(diskReadChartView)
-        scrollViewHeight += PIE_CHART_HEIGHT
+        scrollViewHeight += CHART_HEIGHT
         
         
-        diskWriteChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: PIE_CHART_HEIGHT))
+        diskWriteChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         diskWriteChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.diskWriteChartView.chartDescription?.text = "Tap node for details"
         self.diskWriteChartView.chartDescription?.textColor = UIColor.black
@@ -160,7 +159,7 @@ class EC2WatchResultViewController: UIViewController {
         self.diskWriteChartView.data = setLineChart(label: "DiskWrite", data: self.diskWriteData)
         
         self.scrollView.addSubview(diskWriteChartView)
-        scrollViewHeight += PIE_CHART_HEIGHT
+        scrollViewHeight += CHART_HEIGHT
         
         scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
@@ -224,6 +223,7 @@ class EC2WatchResultViewController: UIViewController {
             "range" as NSObject: range as AnyObject
             ] as [NSObject:AnyObject]
     }
+    
 }
 
 extension Double {
