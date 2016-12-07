@@ -62,6 +62,7 @@ class NewPageViewController: UIViewController {
                 ec2Setup.hidesBottomBarWhenPushed = true
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(ec2Setup, animated: true)
+            
             default:
                 self.present(
                     self.alert.showAlertWithOneButton(

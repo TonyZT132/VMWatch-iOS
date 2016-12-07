@@ -28,7 +28,7 @@ class TabBarViewController: CYLTabBarController {
         var tabBarItemsAttributes: [[AnyHashable:Any]] = []
         let viewControllers:[UIViewController] = [home,new,info]
         
-        for i in 0 ... tabTitle.count - 1 {
+        for i in 0 ..< tabTitle.count {
             let dict: [NSObject : AnyObject] = [
                 CYLTabBarItemTitle as NSObject: tabTitle[i] as AnyObject,
                 CYLTabBarItemImage as NSObject: image[i] as AnyObject,

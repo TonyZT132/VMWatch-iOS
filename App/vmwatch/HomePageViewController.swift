@@ -18,6 +18,10 @@ class HomePageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
+    }
+    
+    func printHistoryData(){
         let history = VMWEC2HistoryStorage()
         do{
             self.historydata = try history.getEC2History()
