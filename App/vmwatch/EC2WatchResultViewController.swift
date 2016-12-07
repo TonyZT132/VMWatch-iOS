@@ -224,6 +224,9 @@ class EC2WatchResultViewController: UIViewController {
             ] as [NSObject:AnyObject]
     }
     
+    func setChartView(){
+    
+    }
 }
 
 extension Double {
