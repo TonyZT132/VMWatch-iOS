@@ -183,6 +183,7 @@
 		26AF3A9D1D84E9D9003B8389 /* InfoPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */; };
 		26B8DFFF1DB3E597009FC47D /* VMWEC2JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B8DFFE1DB3E597009FC47D /* VMWEC2JSONParser.swift */; };
 		26CA68E11DB3D84900D8EA3D /* EC2WatchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */; };
+		26DD163E1DFB04120010E5FC /* VMWEC2InputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD163D1DFB04120010E5FC /* VMWEC2InputParser.swift */; };
 		26DE7EC91D81D7ED001E3571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EC81D81D7ED001E3571 /* AppDelegate.swift */; };
 		26DE7ECE1D81D7ED001E3571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DE7ECC1D81D7ED001E3571 /* Main.storyboard */; };
 		26DE7ED11D81D7ED001E3571 /* VMWatch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7ECF1D81D7ED001E3571 /* VMWatch.xcdatamodeld */; };
@@ -394,6 +395,7 @@
 		26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageTableViewController.swift; sourceTree = "<group>"; };
 		26B8DFFE1DB3E597009FC47D /* VMWEC2JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWEC2JSONParser.swift; sourceTree = "<group>"; };
 		26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2WatchResultViewController.swift; path = vmwatch/EC2WatchResultViewController.swift; sourceTree = SOURCE_ROOT; };
+		26DD163D1DFB04120010E5FC /* VMWEC2InputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VMWEC2InputParser.swift; path = vmwatch/VMWEC2InputParser.swift; sourceTree = SOURCE_ROOT; };
 		26DE7EC51D81D7ED001E3571 /* VMWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VMWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DE7EC81D81D7ED001E3571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26DE7ECD1D81D7ED001E3571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1017,6 +1019,7 @@
 			children = (
 				26ADF1AE1DCF3026005ED225 /* VMWEC2HistoryStorage.swift */,
 				26B8DFFE1DB3E597009FC47D /* VMWEC2JSONParser.swift */,
+				26DD163D1DFB04120010E5FC /* VMWEC2InputParser.swift */,
 			);
 			name = EC2;
 			sourceTree = "<group>";
@@ -1270,6 +1273,7 @@
 				261E820F1DB56092009A8FD9 /* AxisRendererBase.swift in Sources */,
 				261E82181DB56092009A8FD9 /* LineChartRenderer.swift in Sources */,
 				261E81E51DB56092009A8FD9 /* IBarChartDataSet.swift in Sources */,
+				26DD163E1DFB04120010E5FC /* VMWEC2InputParser.swift in Sources */,
 				261E81C01DB56092009A8FD9 /* Description.swift in Sources */,
 				261E81FE1DB56092009A8FD9 /* PieRadarHighlighter.swift in Sources */,
 				261E82041DB56092009A8FD9 /* CandleChartDataProvider.swift in Sources */,

@@ -62,34 +62,6 @@ internal class VMWUserInfoInputParser {
     }
 }
 
-
-internal class VMWEC2InputParser {
-    
-    public func accessIDParser(input:String?) throws {
-        if(input == nil || input == ""){
-            throw VMWEC2InputParserError.EmptyAccessKey
-        }
-    }
-    
-    public func secretKeyParser(input:String?) throws {
-        if(input == nil || input == ""){
-            throw VMWEC2InputParserError.EmptySecretKey
-        }
-    }
-    
-    public func instanceIDParser(input:String?) throws {
-        if(input == nil || input == ""){
-            throw VMWEC2InputParserError.EmptyInstanceID
-        }
-    }
-    
-    public func regionParser(input:String?) throws {
-        if(input == nil || input == ""){
-            throw VMWEC2InputParserError.EmptyRegion
-        }
-    }
-}
-
 private class VMWRegex {
     private let regex: NSRegularExpression?
     
@@ -122,12 +94,4 @@ enum VMWUserDataInputParserError: Error {
     case EmptyPasswordInput
     case InvalidPasswordLength
     case PasswordDidNotMatch
-}
-
-enum VMWEC2InputParserError: Error{
-    case EmptyAccessKey
-    case EmptySecretKey
-    case EmptyInstanceID
-    case EmptyRegion
-    case InvalidAccessCredentialContent
 }
