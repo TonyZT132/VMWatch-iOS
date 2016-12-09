@@ -146,8 +146,6 @@
 		2622FA781DA73E4F00984EC7 /* VMWIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622FA771DA73E4F00984EC7 /* VMWIndicator.swift */; };
 		2622FA7B1DA7403300984EC7 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622FA7A1DA7403300984EC7 /* EZLoadingActivity.swift */; };
 		264587D61D81DA23008B0B8D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587D51D81DA23008B0B8D /* TabBarViewController.swift */; };
-		264587DD1D81DAEF008B0B8D /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587DC1D81DAEF008B0B8D /* HomePageViewController.swift */; };
-		264587DF1D81DB03008B0B8D /* HomePageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587DE1D81DB03008B0B8D /* HomePageNavViewController.swift */; };
 		264587E41D81EFEA008B0B8D /* NewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E31D81EFEA008B0B8D /* NewPageViewController.swift */; };
 		264587E91D81F0B3008B0B8D /* InfoPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */; };
 		264771E11D986A98003F1998 /* VMWTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264771E01D986A98003F1998 /* VMWTimer.swift */; };
@@ -357,8 +355,6 @@
 		2622FA7A1DA7403300984EC7 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
 		264587D51D81DA23008B0B8D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		264587D71D81DA41008B0B8D /* VMWatch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VMWatch-Bridging-Header.h"; sourceTree = "<group>"; };
-		264587DC1D81DAEF008B0B8D /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
-		264587DE1D81DB03008B0B8D /* HomePageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNavViewController.swift; sourceTree = "<group>"; };
 		264587E31D81EFEA008B0B8D /* NewPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageViewController.swift; sourceTree = "<group>"; };
 		264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageNavViewController.swift; sourceTree = "<group>"; };
 		264771E01D986A98003F1998 /* VMWTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWTimer.swift; sourceTree = "<group>"; };
@@ -738,15 +734,6 @@
 			name = "Tab Bar";
 			sourceTree = "<group>";
 		};
-		264587DB1D81DAD4008B0B8D /* Home Page */ = {
-			isa = PBXGroup;
-			children = (
-				264587DC1D81DAEF008B0B8D /* HomePageViewController.swift */,
-				264587DE1D81DB03008B0B8D /* HomePageNavViewController.swift */,
-			);
-			name = "Home Page";
-			sourceTree = "<group>";
-		};
 		264587E01D81EF85008B0B8D /* New Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -910,7 +897,6 @@
 			isa = PBXGroup;
 			children = (
 				264587DA1D81DAAF008B0B8D /* Tab Bar */,
-				264587DB1D81DAD4008B0B8D /* Home Page */,
 				264587E01D81EF85008B0B8D /* New Page */,
 				264587E51D81F073008B0B8D /* Info Page */,
 			);
@@ -1312,7 +1298,6 @@
 				261E822E1DB56092009A8FD9 /* ChartUtils.swift in Sources */,
 				267CCB351D99B44600347E4C /* DKImageResource.swift in Sources */,
 				261E81F61DB56092009A8FD9 /* IValueFormatter.swift in Sources */,
-				264587DD1D81DAEF008B0B8D /* HomePageViewController.swift in Sources */,
 				261E81F81DB56092009A8FD9 /* ChartHighlighter.swift in Sources */,
 				261E81F91DB56092009A8FD9 /* CombinedHighlighter.swift in Sources */,
 				267CCB331D99B44600347E4C /* DKImagePickerController.swift in Sources */,
@@ -1367,7 +1352,6 @@
 				261E81D71DB56092009A8FD9 /* ChartDataSet.swift in Sources */,
 				261E81C11DB56092009A8FD9 /* IMarker.swift in Sources */,
 				261E82151DB56092009A8FD9 /* CombinedChartRenderer.swift in Sources */,
-				264587DF1D81DB03008B0B8D /* HomePageNavViewController.swift in Sources */,
 				261E81AF1DB56092009A8FD9 /* Animator.swift in Sources */,
 				261E81CE1DB56092009A8FD9 /* BubbleChartData.swift in Sources */,
 				267CCB361D99B44600347E4C /* DKPopoverViewController.swift in Sources */,
