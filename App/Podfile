@@ -3,4 +3,5 @@ target ‘VMWatch’ do
     pod 'CYLTabBarController'
     pod 'RSKImageCropper'
     pod 'SVProgressHUD'
+    pod 'LLSimpleCamera'
 end

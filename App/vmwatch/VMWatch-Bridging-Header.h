@@ -10,3 +10,4 @@
 #import "CYLPlusButton.h"
 #import "RSKImageCropViewController.h"
 #import "SVProgressHUD.h"
+#import "LLSimpleCamera.h"

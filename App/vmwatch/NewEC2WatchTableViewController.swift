@@ -196,6 +196,10 @@ class NewEC2WatchTableViewController: UITableViewController {
             NSLog("Unexpected database issue")
         }
     }
+    
+    @IBAction func startOCR(_ sender: Any) {
+        
+    }
 }
 
 extension String {

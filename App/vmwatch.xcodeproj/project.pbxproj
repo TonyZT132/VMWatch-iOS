@@ -150,6 +150,7 @@
 		264587E91D81F0B3008B0B8D /* InfoPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */; };
 		264771E11D986A98003F1998 /* VMWTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264771E01D986A98003F1998 /* VMWTimer.swift */; };
 		264771E31D986AB4003F1998 /* VMWUserInfoInputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264771E21D986AB4003F1998 /* VMWUserInfoInputParser.swift */; };
+		266E129C1E00A076005836F0 /* OCRCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E129B1E00A076005836F0 /* OCRCameraViewController.swift */; };
 		267CCB2C1D99B44600347E4C /* DKCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CCB161D99B44600347E4C /* DKCamera.swift */; };
 		267CCB2D1D99B44600347E4C /* DKCameraResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 267CCB171D99B44600347E4C /* DKCameraResource.bundle */; };
 		267CCB2E1D99B44600347E4C /* DKGroupDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CCB1A1D99B44600347E4C /* DKGroupDataManager.swift */; };
@@ -192,7 +193,7 @@
 		26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */; };
 		26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F789F41DDE4FDE006F4658 /* EC2.storyboard */; };
 		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
-		BCF91C9F749BAD0B5C201458 /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC2511275B0C57A6D87F426 /* libPods-VMWatch.a */; };
+		FC8D09AAA63ECB9676E04AAE /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE3424657854244CF007638 /* libPods-VMWatch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		261E81181DB56092009A8FD9 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		261E81191DB56092009A8FD9 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		261E811B1DB56092009A8FD9 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 		264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageNavViewController.swift; sourceTree = "<group>"; };
 		264771E01D986A98003F1998 /* VMWTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWTimer.swift; sourceTree = "<group>"; };
 		264771E21D986AB4003F1998 /* VMWUserInfoInputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWUserInfoInputParser.swift; sourceTree = "<group>"; };
+		266E129B1E00A076005836F0 /* OCRCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OCRCameraViewController.swift; path = vmwatch/OCRCameraViewController.swift; sourceTree = SOURCE_ROOT; };
 		267CCB161D99B44600347E4C /* DKCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKCamera.swift; sourceTree = "<group>"; };
 		267CCB171D99B44600347E4C /* DKCameraResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DKCameraResource.bundle; sourceTree = "<group>"; };
 		267CCB1A1D99B44600347E4C /* DKGroupDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKGroupDataManager.swift; sourceTree = "<group>"; };
@@ -408,9 +411,8 @@
 		26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewEC2WatchTableViewController.swift; path = vmwatch/NewEC2WatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		26F789F41DDE4FDE006F4658 /* EC2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EC2.storyboard; path = vmwatch/EC2.storyboard; sourceTree = SOURCE_ROOT; };
 		26F789F81DDE5176006F4658 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
-		291CB1B9CB60B7199B526F68 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
-		3FC2511275B0C57A6D87F426 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C309829348EB45D516CB4E56 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
+		4AE3424657854244CF007638 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,7 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCF91C9F749BAD0B5C201458 /* libPods-VMWatch.a in Frameworks */,
+				FC8D09AAA63ECB9676E04AAE /* libPods-VMWatch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +756,14 @@
 			name = "Info Page";
 			sourceTree = "<group>";
 		};
+		266E129A1E009FF1005836F0 /* OCR Camera */ = {
+			isa = PBXGroup;
+			children = (
+				266E129B1E00A076005836F0 /* OCRCameraViewController.swift */,
+			);
+			name = "OCR Camera";
+			sourceTree = "<group>";
+		};
 		2671323C1DE0E8D20001E3B0 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +906,7 @@
 		26A6228D1D8586D3003DD48E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				266E129A1E009FF1005836F0 /* OCR Camera */,
 				264587DA1D81DAAF008B0B8D /* Tab Bar */,
 				264587E01D81EF85008B0B8D /* New Page */,
 				264587E51D81F073008B0B8D /* Info Page */,
@@ -942,8 +953,8 @@
 				26DE7EDF1D81D7ED001E3571 /* VMWatchTests */,
 				26DE7EEA1D81D7EE001E3571 /* VMWatchUITests */,
 				26DE7EC61D81D7ED001E3571 /* Products */,
-				66F6DA37BE4CCF70F1BEDE11 /* Pods */,
-				9DDEECDE201A59F52007A4B2 /* Frameworks */,
+				6EA96764209B242E02490800 /* Pods */,
+				AAB158F3C2FBCFF00A9E96DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1018,19 +1029,19 @@
 			name = VMProvider;
 			sourceTree = "<group>";
 		};
-		66F6DA37BE4CCF70F1BEDE11 /* Pods */ = {
+		6EA96764209B242E02490800 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				291CB1B9CB60B7199B526F68 /* Pods-VMWatch.debug.xcconfig */,
-				C309829348EB45D516CB4E56 /* Pods-VMWatch.release.xcconfig */,
+				17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */,
+				F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9DDEECDE201A59F52007A4B2 /* Frameworks */ = {
+		AAB158F3C2FBCFF00A9E96DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3FC2511275B0C57A6D87F426 /* libPods-VMWatch.a */,
+				4AE3424657854244CF007638 /* libPods-VMWatch.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1042,13 +1053,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26DE7EF01D81D7EE001E3571 /* Build configuration list for PBXNativeTarget "VMWatch" */;
 			buildPhases = (
-				ABA09F37D372263AA7582922 /* 📦 Check Pods Manifest.lock */,
+				6383B219F90039B6273DC3C3 /* 📦 Check Pods Manifest.lock */,
 				26DE7EC11D81D7ED001E3571 /* Sources */,
 				26DE7EC21D81D7ED001E3571 /* Frameworks */,
 				26DE7EC31D81D7ED001E3571 /* Resources */,
-				BDBC03FEB83170F42ACF119E /* 📦 Embed Pods Frameworks */,
-				84B3A0A08CF0B5C35B879A49 /* 📦 Copy Pods Resources */,
-				83CE92726F0F9CFFEE7E29BE /* Embed Pods Frameworks */,
+				8F37EBC15189CF912F3B5E10 /* 📦 Embed Pods Frameworks */,
+				C4A43A4AE2C961DFF591BD44 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1176,37 +1186,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		83CE92726F0F9CFFEE7E29BE /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		84B3A0A08CF0B5C35B879A49 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ABA09F37D372263AA7582922 /* 📦 Check Pods Manifest.lock */ = {
+		6383B219F90039B6273DC3C3 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1221,7 +1201,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BDBC03FEB83170F42ACF119E /* 📦 Embed Pods Frameworks */ = {
+		8F37EBC15189CF912F3B5E10 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1234,6 +1214,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4A43A4AE2C961DFF591BD44 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1311,6 +1306,7 @@
 				264587D61D81DA23008B0B8D /* TabBarViewController.swift in Sources */,
 				261E81BC1DB56092009A8FD9 /* ScatterChartView.swift in Sources */,
 				261E81D11DB56092009A8FD9 /* CandleChartData.swift in Sources */,
+				266E129C1E00A076005836F0 /* OCRCameraViewController.swift in Sources */,
 				26B8DFFF1DB3E597009FC47D /* VMWEC2JSONParser.swift in Sources */,
 				261E81DA1DB56092009A8FD9 /* LineChartDataSet.swift in Sources */,
 				261E81DF1DB56092009A8FD9 /* PieChartDataSet.swift in Sources */,
@@ -1565,7 +1561,7 @@
 		};
 		26DE7EF11D81D7EE001E3571 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 291CB1B9CB60B7199B526F68 /* Pods-VMWatch.debug.xcconfig */;
+			baseConfigurationReference = 17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1587,7 +1583,7 @@
 		};
 		26DE7EF21D81D7EE001E3571 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C309829348EB45D516CB4E56 /* Pods-VMWatch.release.xcconfig */;
+			baseConfigurationReference = F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
