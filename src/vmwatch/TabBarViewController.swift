@@ -20,7 +20,6 @@ class TabBarViewController: CYLTabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         /*Set up View Controllers*/
-//        let home : HomePageNavViewController = storyboard.instantiateViewController(withIdentifier: "homeNav") as! HomePageNavViewController
         let new : NewPageNavViewController = storyboard.instantiateViewController(withIdentifier: "newNav") as! NewPageNavViewController
         let info : InfoPageNavViewController = storyboard.instantiateViewController(withIdentifier: "infoNav") as! InfoPageNavViewController
         

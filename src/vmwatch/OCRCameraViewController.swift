@@ -37,7 +37,7 @@ class OCRCameraViewController: UIViewController, G8TesseractDelegate {
         }
     }
     
-    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
+    func shouldCancelImageRecognition(for tesseract: G8Tesseract!) -> Bool {
         return false
     }
     

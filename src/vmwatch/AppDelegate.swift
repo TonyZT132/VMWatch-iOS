@@ -16,18 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         let configuration = ParseClientConfiguration {
             $0.applicationId = "wfefwqfw421343gfd"
             $0.clientKey = "wdsafcsak312412"
             $0.server = "https://vmwatch.herokuapp.com/parse"
         }
         Parse.initialize(with: configuration)
+        
         UIApplication.shared.setStatusBarHidden(false, with: .slide)
         UIApplication.shared.statusBarStyle = .lightContent
         
         /*Set up Navigation bar*/
-//        UINavigationBar.appearance().barTintColor = UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha:1.0)
         UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0, green: 104.0/255.0, blue: 139.0/255.0, alpha:1.0)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
