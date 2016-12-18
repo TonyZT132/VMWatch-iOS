@@ -11,3 +11,4 @@
 #import "RSKImageCropViewController.h"
 #import "SVProgressHUD.h"
 #import "LLSimpleCamera.h"
+#import "TesseractOCRiOS/TesseractOCR.h"

@@ -8,19 +8,36 @@
 
 import UIKit
 
-class OCRCameraViewController: UIViewController {
+class OCRCameraViewController: UIViewController, G8TesseractDelegate {
 
     var camera = LLSimpleCamera()
+    var tesseract:G8Tesseract!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func initializeOCR(){
+        tesseract = G8Tesseract(language:"eng");
+        tesseract.delegate = self;
+        tesseract.charWhitelist = "01234567890";
+    }
+    
+    func recongnizeImage(name:String){
+        tesseract.image = UIImage(named: name);
+        tesseract.recognize();
+        
+        NSLog("%@", tesseract.recognizedText);
+    }
+    
+    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
+        return false
     }
     
 }
