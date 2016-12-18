@@ -4,4 +4,5 @@ target ‘VMWatch’ do
     pod 'RSKImageCropper'
     pod 'SVProgressHUD'
     pod 'LLSimpleCamera'
+    pod 'TesseractOCRiOS'
 end
