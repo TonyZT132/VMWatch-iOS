@@ -122,14 +122,61 @@ class InfoPageTableViewController: UITableViewController, RSKImageCropViewContro
                     self.present(optionMenu, animated: true, completion: nil)
                 }
             }
+        } else if(indexPath.section == 1){
+            if(indexPath.row == 0){
+                self.present(
+                    alert.showAlertWithTwoButton(
+                        title: "Notice",
+                        message: "Do you want to clear the database?",
+                        actionButtonOne: "Yes",
+                        actionButtonTwo: "No",
+                        handlerOne: {() -> Void in
+                            do{
+                                try VMWEC2HistoryStorage().clearHistory()
+                                self.present(
+                                    self.alert.showAlertWithOneButton(
+                                        title: "Success",
+                                        message: "Data cleared",
+                                        actionButton: "OK"
+                                    ),
+                                    animated: true,
+                                    completion: nil
+                                )
+                            } catch {
+                                NSLog("Error ocuured when clear the database")
+                            }
+                        },
+                        handlerTwo: {() -> Void in
+                            return
+                    }
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
         }
     }
     
     @IBAction func doLogout(_ sender: AnyObject) {
-        PFUser.logOut()
-        logoutButtonView.isHidden = true
-        let accountMenu : AccountMenuViewController = self.storyboard?.instantiateViewController(withIdentifier: "accountMenu") as! AccountMenuViewController
-        self.present(accountMenu, animated: true, completion: nil)
+        self.present(
+            alert.showAlertWithTwoButton(
+                title: "Notice",
+                message: "Do you want to log out?",
+                actionButtonOne: "Yes",
+                actionButtonTwo: "No",
+                handlerOne: {() -> Void in
+                    PFUser.logOut()
+                    self.logoutButtonView.isHidden = true
+                    let accountMenu : AccountMenuViewController = self.storyboard?.instantiateViewController(withIdentifier: "accountMenu") as! AccountMenuViewController
+                    self.present(accountMenu, animated: true, completion: nil)
+                },
+                handlerTwo: {() -> Void in
+                    return
+                }
+            ),
+            animated: true,
+            completion: nil
+        )
     }
     
     private func pictureUpdate(){

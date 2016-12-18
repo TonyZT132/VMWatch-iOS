@@ -34,13 +34,21 @@ internal class VMWEC2HistoryStorage {
         }
     }
     
-    public func getEC2History() throws -> [History_EC2] {
+    public func getEC2History() throws -> NSMutableArray {
         let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
-        
+        let resultArr = NSMutableArray()
         do {
             let searchResults = try self.context.fetch(fetchRequest)
             NSLog("Fetch success")
-            return searchResults
+            for trans in searchResults as [NSManagedObject]{
+                var dict = [String : Any]()
+                dict["access_id"] = trans.value(forKey: "access_id") as! String
+                dict["access_key"] = trans.value(forKey: "access_key") as! String
+                dict["instance_id"] = trans.value(forKey: "instance_id") as! String
+                dict["date"] = trans.value(forKey: "access_id") as! Date                
+                resultArr.add(dict)
+            }
+            return resultArr
         } catch let error as NSError {
             NSLog("Error with request: \(error)")
             throw VMWEC2CoreDataStorageError.DatabaseFetchError
@@ -75,7 +83,7 @@ internal class VMWEC2HistoryStorage {
         }
     }
     
-    public func clearHistory(entity: String) throws {
+    public func clearHistory() throws {
         let fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
         
@@ -88,7 +96,7 @@ internal class VMWEC2HistoryStorage {
             }
             NSLog("Database clear success")
         } catch let error as NSError {
-            NSLog("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+            NSLog("Error : \(error) \(error.userInfo)")
             throw VMWEC2CoreDataStorageError.DatabaseDeleteError
         }
     }

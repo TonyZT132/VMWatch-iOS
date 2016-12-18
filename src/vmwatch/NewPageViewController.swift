@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import CoreData
 
 class NewPageViewController: UIViewController {
     
     let alert = VMWAlertView()
-    private var historydata:[History_EC2]! = []
+    private var historydata:NSMutableArray!
     
     let WIDTH = UIScreen.main.bounds.width
     let HEIGHT = UIScreen.main.bounds.height
@@ -88,12 +87,12 @@ class NewPageViewController: UIViewController {
             self.historydata = try history.getEC2History()
             
             if(historydata.count > 0){
-                for trans in historydata as [NSManagedObject] {
-                    let accessID = trans.value(forKey: "access_id") as! String
-                    let accessKey = trans.value(forKey: "access_key") as! String
-                    let instanceID = trans.value(forKey: "instance_id") as! String
-                    let region = trans.value(forKey: "region") as! String
-                    let date = trans.value(forKey: "date") as! Date
+                for trans in historydata{
+                    let accessID = (trans as AnyObject).value(forKey: "access_id") as! String
+                    let accessKey = (trans as AnyObject).value(forKey: "access_key") as! String
+                    let instanceID = (trans as AnyObject).value(forKey: "instance_id") as! String
+                    let region = (trans as AnyObject).value(forKey: "region") as! String
+                    let date = (trans as AnyObject).value(forKey: "date") as! Date
                     
                     let accessIDLast4 = accessID.substring(from:accessID.index(accessID.endIndex, offsetBy: -4))
                     let accessKeyLast4 = accessKey.substring(from:accessKey.index(accessKey.endIndex, offsetBy: -4))
