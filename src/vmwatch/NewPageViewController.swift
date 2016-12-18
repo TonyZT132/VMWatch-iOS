@@ -25,13 +25,8 @@ class NewPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SELECTION_BUTTON_HEIGHT = WIDTH / LOGO_SIZE_FACTOR
-        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.layer.backgroundColor = UIColor.clear.cgColor
-        self.view.addSubview(scrollView)
-        self.startLoadView()
+        self.initializeScrollView()
+        self.loadSubView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +34,16 @@ class NewPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func startLoadView(){
+    private func initializeScrollView(){
+        SELECTION_BUTTON_HEIGHT = WIDTH / LOGO_SIZE_FACTOR
+        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.layer.backgroundColor = UIColor.clear.cgColor
+        self.view.addSubview(scrollView)
+    }
+    
+    private func loadSubView(){
         for i in 0 ... (SERVICE.count - 1) {
             let selectionButton = UIButton(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: SELECTION_BUTTON_HEIGHT))
             selectionButton.tag = i

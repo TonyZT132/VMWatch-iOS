@@ -172,79 +172,91 @@ class SignupPageTableViewController: UITableViewController, RSKImageCropViewCont
     }
     
     private func doSignup(){
-        let user:PFUser = PFUser()
-        user.username = registeredUser?.getUsername()
-        user.password = passwordInputView.text!
-        user["nickname"] = nickNameInputVIew.text!
-        
-        /*Resize the image*/
-        let imageData = UIImageJPEGRepresentation(self.croppedImage, 0.2)
-        let imageFile = PFFile (data:imageData!)
-        user["profileImage"] = imageFile
-        
-        indicator.showWithMessage(context: "Signing up")
-        user.signUpInBackground { (success, signinError) in
-            if(signinError == nil){
-                registeredUser?.setRegisterStatus(status: true)
-                
-                PFCloud.callFunction(inBackground: "deleteValidationRecord", withParameters: ["number": user.username!]) { (response, error) in
-                    if(error == nil){
-                        let isDeleted = response as! Bool
-                        if(isDeleted == true){
-                            indicator.dismiss()
-                            indicator.showWithMessage(context: "Logging in")
-                            PFUser.logInWithUsername(inBackground: user.username!, password: user.password!, block: {
-                                (loggedUser, loggingError) in
-                                
-                                if(loggingError == nil){
-                                    print("Log in Success")
-                                    self.dismiss(animated: true, completion: nil)
-                                }else{
-                                    self.present(
-                                        self.alert.showAlertWithOneButton(
-                                            title: "Error",
-                                            message: "Login Failed, please try again or contact customer service",
-                                            actionButton: "OK"
-                                        ),
-                                        animated: true,
-                                        completion: nil
-                                    )
-                                }
-                            })
-                        } else {
+        do{
+            let user:PFUser = PFUser()
+            user.username = try registeredUser?.getUsername()
+            user.password = passwordInputView.text!
+            user["nickname"] = nickNameInputVIew.text!
+            
+            /*Resize the image*/
+            let imageData = UIImageJPEGRepresentation(self.croppedImage, 0.2)
+            let imageFile = PFFile (data:imageData!)
+            user["profileImage"] = imageFile
+            
+            indicator.showWithMessage(context: "Signing up")
+            user.signUpInBackground { (success, signinError) in
+                if(signinError == nil){
+                    registeredUser?.setRegisterStatus(status: true)
+                    
+                    PFCloud.callFunction(inBackground: "deleteValidationRecord", withParameters: ["number": user.username!]) { (response, error) in
+                        if(error == nil){
+                            let isDeleted = response as! Bool
+                            if(isDeleted == true){
+                                indicator.dismiss()
+                                indicator.showWithMessage(context: "Logging in")
+                                PFUser.logInWithUsername(inBackground: user.username!, password: user.password!, block: {
+                                    (loggedUser, loggingError) in
+                                    
+                                    if(loggingError == nil){
+                                        print("Log in Success")
+                                        self.dismiss(animated: true, completion: nil)
+                                    }else{
+                                        self.present(
+                                            self.alert.showAlertWithOneButton(
+                                                title: "Error",
+                                                message: "Login Failed, please try again or contact customer service",
+                                                actionButton: "OK"
+                                            ),
+                                            animated: true,
+                                            completion: nil
+                                        )
+                                    }
+                                })
+                            } else {
+                                self.present(
+                                    self.alert.showAlertWithOneButton(
+                                        title: "Error",
+                                        message: "Backend error, please try again or contact customer service",
+                                        actionButton: "OK"
+                                    ),
+                                    animated: true,
+                                    completion: nil
+                                )
+                            }
+                        }else{
                             self.present(
                                 self.alert.showAlertWithOneButton(
                                     title: "Error",
-                                    message: "Backend error, please try again or contact customer service",
+                                    message: "Sign up Failed, please try again or contact customer service",
                                     actionButton: "OK"
                                 ),
                                 animated: true,
                                 completion: nil
                             )
                         }
-                    }else{
-                        self.present(
-                            self.alert.showAlertWithOneButton(
-                                title: "Error",
-                                message: "Sign up Failed, please try again or contact customer service",
-                                actionButton: "OK"
-                            ),
-                            animated: true,
-                            completion: nil
-                        )
                     }
+                }else{
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Error",
+                            message: signinError.debugDescription,
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
                 }
-            }else{
-                self.present(
-                    self.alert.showAlertWithOneButton(
-                        title: "Error",
-                        message: signinError.debugDescription,
-                        actionButton: "OK"
-                    ),
-                    animated: true,
-                    completion: nil
-                )
             }
+        } catch {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Error occured while getting user info",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         }
     }
     

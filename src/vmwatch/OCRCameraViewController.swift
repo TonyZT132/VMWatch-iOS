@@ -24,16 +24,17 @@ class OCRCameraViewController: UIViewController, G8TesseractDelegate {
     }
     
     func initializeOCR(){
-        tesseract = G8Tesseract(language:"eng");
-        tesseract.delegate = self;
-        tesseract.charWhitelist = "01234567890";
+        tesseract = G8Tesseract(language:"eng")
+        tesseract.delegate = self
+        tesseract.charWhitelist = "01234567890"
     }
     
     func recongnizeImage(name:String){
-        tesseract.image = UIImage(named: name);
-        tesseract.recognize();
+        tesseract.image = UIImage(named: name)
         
-        NSLog("%@", tesseract.recognizedText);
+        if(tesseract.recognize()){
+            NSLog("%@", tesseract.recognizedText)
+        }
     }
     
     func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {

@@ -14,7 +14,7 @@ internal class VMWRegisteredUser {
     private var isLogin:Bool = false
     private var isCanceled:Bool = false
     
-    public init (usernameInput:String){
+    public init (usernameInput:String?){
         self.username = usernameInput
     }
     
@@ -22,8 +22,11 @@ internal class VMWRegisteredUser {
         self.username = unsernameInput
     }
     
-    public func getUsername() -> String {
-        return self.username!
+    public func getUsername() throws -> String {
+        if(self.username != nil){
+            return self.username!
+        }
+        throw VMWRegisteredUserError.InvalidUserInfo
     }
     
     public func setRegisterStatus(status:Bool){
@@ -49,4 +52,16 @@ internal class VMWRegisteredUser {
     public func isUserCanceled() -> Bool {
         return self.isCanceled
     }
+    
+    public func clear(){
+        self.username = nil
+        self.isCanceled = false
+        self.isLogin = false
+        self.isRegisred = false
+    }
+}
+
+enum VMWRegisteredUserError: Error {
+    case InvalidUserInfo
+    case InvalidUserStatus
 }

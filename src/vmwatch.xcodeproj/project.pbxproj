@@ -145,6 +145,7 @@
 		2620E2271D98C51A003615D4 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620E2261D98C51A003615D4 /* Variable.swift */; };
 		2622FA781DA73E4F00984EC7 /* VMWIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622FA771DA73E4F00984EC7 /* VMWIndicator.swift */; };
 		2622FA7B1DA7403300984EC7 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622FA7A1DA7403300984EC7 /* EZLoadingActivity.swift */; };
+		262C436F1E06EC8C004765EE /* VMWRecognitionTextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C436E1E06EC8C004765EE /* VMWRecognitionTextStore.swift */; };
 		264587D61D81DA23008B0B8D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587D51D81DA23008B0B8D /* TabBarViewController.swift */; };
 		264587E41D81EFEA008B0B8D /* NewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E31D81EFEA008B0B8D /* NewPageViewController.swift */; };
 		264587E91D81F0B3008B0B8D /* InfoPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */; };
@@ -355,6 +356,7 @@
 		2620E2261D98C51A003615D4 /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
 		2622FA771DA73E4F00984EC7 /* VMWIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VMWIndicator.swift; sourceTree = "<group>"; };
 		2622FA7A1DA7403300984EC7 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
+		262C436E1E06EC8C004765EE /* VMWRecognitionTextStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VMWRecognitionTextStore.swift; path = vmwatch/VMWRecognitionTextStore.swift; sourceTree = SOURCE_ROOT; };
 		264587D51D81DA23008B0B8D /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		264587D71D81DA41008B0B8D /* VMWatch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VMWatch-Bridging-Header.h"; sourceTree = "<group>"; };
 		264587E31D81EFEA008B0B8D /* NewPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageViewController.swift; sourceTree = "<group>"; };
@@ -728,6 +730,15 @@
 			name = EZLoadingActivity;
 			sourceTree = "<group>";
 		};
+		262C436D1E06EC59004765EE /* UserInfoTemp */ = {
+			isa = PBXGroup;
+			children = (
+				2620E2241D98C3FE003615D4 /* VMWRegisteredUser.swift */,
+				262C436E1E06EC8C004765EE /* VMWRecognitionTextStore.swift */,
+			);
+			name = UserInfoTemp;
+			sourceTree = "<group>";
+		};
 		264587DA1D81DAAF008B0B8D /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,11 +947,11 @@
 		26D9DD0C1D9AAE7700A47416 /* VMW Model */ = {
 			isa = PBXGroup;
 			children = (
+				262C436D1E06EC59004765EE /* UserInfoTemp */,
 				26F507671DF86C080000D8F8 /* EC2 */,
 				26A754881D9823F500FB7CC1 /* VMWAlert.swift */,
 				264771E01D986A98003F1998 /* VMWTimer.swift */,
 				264771E21D986AB4003F1998 /* VMWUserInfoInputParser.swift */,
-				2620E2241D98C3FE003615D4 /* VMWRegisteredUser.swift */,
 				2622FA771DA73E4F00984EC7 /* VMWIndicator.swift */,
 			);
 			name = "VMW Model";
@@ -1404,6 +1415,7 @@
 				267CCB391D99B44600347E4C /* DKAssetGroupGridLayout.swift in Sources */,
 				2620E2271D98C51A003615D4 /* Variable.swift in Sources */,
 				261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */,
+				262C436F1E06EC8C004765EE /* VMWRecognitionTextStore.swift in Sources */,
 				261E81D61DB56092009A8FD9 /* ChartDataEntryBase.swift in Sources */,
 				26A6228F1D85DFA5003DD48E /* Timer.swift in Sources */,
 				261E81C81DB56092009A8FD9 /* ChartBaseDataSet.swift in Sources */,
