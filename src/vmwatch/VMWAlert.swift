@@ -19,19 +19,18 @@ internal class VMWAlertView {
     }
     
     public func showAlertWithTwoButton(title:String,
-                message: String, actionButtonOne:String, actionButtonTwo: String,
-                handlerOne: @escaping() -> Void, handlerTwo: @escaping() -> Void) -> UIAlertController
-    {
+                                       message: String,
+                                       actionButtonOne:String,
+                                       actionButtonTwo: String,
+                                       handlerOne: @escaping() -> Void,
+                                       handlerTwo: @escaping() -> Void)-> UIAlertController {
+        
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let action_reselect = UIAlertAction(title: actionButtonOne, style: UIAlertActionStyle.default, handler:
-        {
-            (alert: UIAlertAction!) in
+        let action_reselect = UIAlertAction(title: actionButtonOne, style:UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
             handlerOne()
         })
         alert.addAction(action_reselect)
-        let action_cancel = UIAlertAction(title: actionButtonTwo, style: UIAlertActionStyle.default, handler:
-        {
-            (alert: UIAlertAction!) in
+        let action_cancel = UIAlertAction(title: actionButtonTwo, style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
             handlerTwo()
         })
         alert.addAction(action_cancel)
