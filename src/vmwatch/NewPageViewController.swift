@@ -24,9 +24,7 @@ class NewPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getServiceAvaliability()
-        self.initializeScrollView()
-        self.loadSubView()
+        self.loadPage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,21 +32,23 @@ class NewPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func getServiceAvaliability(){
-        PFCloud.callFunction(inBackground: "serviceRequest", withParameters: [:]) { (response, error) in
-            if(error == nil){
-                print(response!)
-            }else{
-                self.present(
-                    self.alert.showAlertWithOneButton(
-                        title: "Failed",
-                        message: (error?.localizedDescription)!,
-                        actionButton: "OK"
-                    ),
-                    animated: true,
-                    completion: nil
-                )
-            }
+    private func loadPage(){
+        do{
+            let serviceRequest = try PFCloud.callFunction("serviceRequest", withParameters: [:])
+            let jsonParser = VMWServiceJSONParser(inputData: serviceRequest)
+            SERVICE =  try jsonParser.parse()
+            self.initializeScrollView()
+            self.loadSubView()
+        } catch {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Failed",
+                    message: "Could not get service",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         }
     }
     
@@ -62,12 +62,12 @@ class NewPageViewController: UIViewController {
     }
     
     private func loadSubView(){
-        for i in 0 ... (SERVICE.count - 1) {
+        for i in 0 ..< SERVICE.count {
             let selectionButton = UIButton(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: SELECTION_BUTTON_HEIGHT))
-            selectionButton.tag = i
+            let dict = SERVICE[i] as NSDictionary
+            selectionButton.tag = dict["id"] as! Int
             selectionButton.addTarget(self, action: #selector(self.buttonSelected(sender:)), for: .touchUpInside)
             selectionButton.clipsToBounds = true
-            let dict = SERVICE[i] as Dictionary
             let logo = UIImage(named: dict["icon"] as! String)
             let logoView = UIImageView(frame: CGRect(x:0, y:0, width: selectionButton.layer.frame.width, height: selectionButton.layer.frame.height))
             logoView.image = logo

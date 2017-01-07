@@ -39,53 +39,6 @@ class EC2WatchResultViewController: UIViewController {
         self.setView()
     }
     
-    private func getData() {
-        do{
-            let cpuUtilization = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 10))
-            let networkIn = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60))
-            let networkOut = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60))
-            let diskReadBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60))
-            let diskWriteBytes = try PFCloud.callFunction("ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60))
-            
-            let jsonParser = VMWEC2JSONParser(inputData: cpuUtilization)
-            self.cpuUtilizationData = try jsonParser.getAverageData(category: EC2_AVERAGE)
-            
-            jsonParser.setData(inputData: networkIn)
-            self.networkInData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-            
-            jsonParser.setData(inputData: networkOut)
-            self.networkOutData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-            
-            jsonParser.setData(inputData: diskReadBytes)
-            self.diskReadData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-            
-            jsonParser.setData(inputData: diskWriteBytes)
-            self.diskWriteData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-
-        } catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
-            self.present(
-                self.alert.showAlertWithOneButton(
-                    title: "Error",
-                    message: "Error while parsing the data",
-                    actionButton: "OK"
-                ),
-                animated: true,
-                completion: nil
-            )
-        } catch let error as NSError {
-            NSLog("Error with request: \(error)")
-            self.present(
-                self.alert.showAlertWithOneButton(
-                    title: "Error",
-                    message: "Unexpected Error",
-                    actionButton: "OK"
-                ),
-                animated: true,
-                completion: nil
-            )
-        }
-    }
-    
     private func setView(){
         scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
         scrollView.showsVerticalScrollIndicator = false
