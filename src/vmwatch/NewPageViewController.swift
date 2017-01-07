@@ -65,7 +65,7 @@ class NewPageViewController: UIViewController {
         for i in 0 ..< SERVICE.count {
             let selectionButton = UIButton(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: SELECTION_BUTTON_HEIGHT))
             let dict = SERVICE[i] as NSDictionary
-            selectionButton.tag = dict["id"] as! Int
+            selectionButton.tag = i
             selectionButton.addTarget(self, action: #selector(self.buttonSelected(sender:)), for: .touchUpInside)
             selectionButton.clipsToBounds = true
             let logo = UIImage(named: dict["icon"] as! String)
@@ -80,23 +80,37 @@ class NewPageViewController: UIViewController {
     }
     
     @objc private func buttonSelected (sender: UIButton!) {
-        switch sender.tag {
+        let dict = SERVICE[sender.tag] as NSDictionary
+        let avaliability = dict["avaliable"] as! Bool
+        if(avaliability == true){
+            switch sender.tag {
             case 0:
                 let ec2Setup : NewEC2WatchTableViewController = EC2View.instantiateViewController(withIdentifier: "ec2setup") as! NewEC2WatchTableViewController
                 ec2Setup.hidesBottomBarWhenPushed = true
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(ec2Setup, animated: true)
-            
+                
             default:
                 self.present(
                     self.alert.showAlertWithOneButton(
-                        title: "Opps",
-                        message: "This service is not avaliable yet",
+                        title: "Error",
+                        message: "Unknown Serivce",
                         actionButton: "OK"
                     ),
                     animated: true,
                     completion: nil
                 )
+            }
+        }else{
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Opps",
+                    message: "This service is not avaliable yet",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         }
     }
     
