@@ -7,5 +7,6 @@
 //
 
 import Foundation
+
 var registeredUser:VMWRegisteredUser?
 var indicator = VMWIndicator()

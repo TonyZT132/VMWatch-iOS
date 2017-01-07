@@ -9,9 +9,9 @@
 import Foundation
 
 internal class VMWEC2JSONParser {
-    var data:Any?
+    private var data:Any?
     
-    public init(inputData:Any?){
+    public init(inputData:Any?) {
         self.data = inputData
     }
     

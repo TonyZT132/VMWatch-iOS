@@ -42,6 +42,29 @@ let SERVICE = [
     ]
 ]
 
+let EC2_METRICS = [
+    [
+        "name":"CPUUtilization",
+        "index": 0
+    ],
+    [
+        "name":"NetworkIn",
+        "index": 1
+    ],
+    [
+        "name":"NetworkOut",
+        "index": 2
+    ],
+    [
+        "name":"DiskReadBytes",
+        "index": 3
+    ],
+    [
+        "name":"DiskWriteBytes",
+        "index": 4
+    ]
+]
+
 let EC2_AVERAGE = "Average"
 let EC2_MAXIMUM = "Maximum"
 let EC2_MINIMUM = "Minimum"

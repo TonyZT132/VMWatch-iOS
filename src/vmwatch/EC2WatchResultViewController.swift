@@ -5,7 +5,6 @@
 //  Created by Tuo Zhang on 2016-10-16.
 //  Copyright © 2016 ECE496. All rights reserved.
 //
-
 import UIKit
 
 class EC2WatchResultViewController: UIViewController {
@@ -15,7 +14,7 @@ class EC2WatchResultViewController: UIViewController {
     var accessKey:String?
     var instanceID:String?
     let alert = VMWAlertView()
-
+    
     var cpuUtilizationData:Double!
     var networkInData = NSMutableArray()
     var networkOutData = NSMutableArray()
@@ -62,7 +61,7 @@ class EC2WatchResultViewController: UIViewController {
             
             jsonParser.setData(inputData: diskWriteBytes)
             self.diskWriteData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-            
+
         } catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
             self.present(
                 self.alert.showAlertWithOneButton(
@@ -88,84 +87,161 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     private func setView(){
-        self.getData()
-        if(cpuUtilizationData < 1){
-            cpuUtilizationData = 1
-        }
-        print("CPUUtilization: " + String(cpuUtilizationData.roundTo(places: 1)) + " %")
-        
         scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.layer.backgroundColor = UIColor.clear.cgColor
         self.view.addSubview(scrollView)
-        
-        
+        self.drawCPUUtilizationChart()
+        self.drawNetworkInChart()
+        self.drawNetworkOutChart()
+        self.drawDiskReadBytesChart()
+        self.drawDiskWriteBytesChart()
+        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
+    }
+    
+    
+    func drawCPUUtilizationChart(){
         cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: CHART_HEIGHT))
         cpuUtilizationChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         let results = ["Used", "Not Used"]
-        let percentage = [cpuUtilizationData.roundTo(places: 0), (100.0 - cpuUtilizationData).roundTo(places: 0)]
+        cpuUtilizationChartView.noDataText = "Loading Data"
         
-        cpuUtilizationChartView.data = setPieChart(dataPoints: results, values: percentage)
+        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 10)) { (response, error) in
+            if(error == nil){
+                do {
+                    let jsonParser = VMWEC2JSONParser(inputData: response)
+                    self.cpuUtilizationData = try jsonParser.getAverageData(category: EC2_AVERAGE)
+                    
+                    if(self.cpuUtilizationData < 1){
+                        self.cpuUtilizationData = 1
+                    }
+                    
+                    let percentage = [self.cpuUtilizationData.roundTo(places: 0), (100.0 - self.cpuUtilizationData).roundTo(places: 0)]
+                    
+                    self.cpuUtilizationChartView.data = self.setPieChart(label: "CPU Utilization(Percentage)", dataPoints: results, values: percentage)
+                } catch {
+                    self.cpuUtilizationChartView.noDataText = "Parsing issue, please retry"
+                }
+            }else{
+                self.cpuUtilizationChartView.noDataText = "Connection issue, please retry"
+            }
+        }
+
         cpuUtilizationChartView.centerText = "CPUUtilization"
         cpuUtilizationChartView.holeColor = UIColor.white
         
         self.scrollView.addSubview(cpuUtilizationChartView)
         scrollViewHeight += CHART_HEIGHT
-        
-        
+    }
+    
+    func drawNetworkInChart(){
         networkInChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         networkInChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.networkInChartView.chartDescription?.text = "Tap node for details"
         self.networkInChartView.chartDescription?.textColor = UIColor.black
         self.networkInChartView.gridBackgroundColor = UIColor.darkGray
-        self.networkInChartView.noDataText = "No data provided"
-        self.networkInChartView.data = setLineChart(label: "NetworkIn", data: self.networkInData)
+        self.networkInChartView.noDataText = "Loading data"
+        
+        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60)) { (response, error) in
+            if(error == nil){
+                do {
+                    let jsonParser = VMWEC2JSONParser(inputData: response)
+                    self.networkInData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+                    self.networkInChartView.data = self.setLineChart(label: "Network In(Byte)", data: self.networkInData)
+                } catch {
+                    self.networkInChartView.noDataText = "Paring issue, please retry"
+                }
+            }else{
+                self.networkInChartView.noDataText = "Connection issue, please retry"
+            }
+        }
         
         self.scrollView.addSubview(networkInChartView)
         scrollViewHeight += CHART_HEIGHT
-        
-        
+    }
+    
+    func drawNetworkOutChart(){
         networkOutChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         networkOutChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.networkOutChartView.chartDescription?.text = "Tap node for details"
         self.networkOutChartView.chartDescription?.textColor = UIColor.black
         self.networkOutChartView.gridBackgroundColor = UIColor.darkGray
-        self.networkOutChartView.noDataText = "No data provided"
-        self.networkOutChartView.data = setLineChart(label: "NetworkOut", data: self.networkOutData)
+        self.networkOutChartView.noDataText = "Loading data"
+        
+        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60)) { (response, error) in
+            if(error == nil){
+                do {
+                    let jsonParser = VMWEC2JSONParser(inputData: response)
+                    self.networkOutData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+                    self.networkOutChartView.data = self.setLineChart(label: "Network Out(Byte)", data: self.networkOutData)
+                } catch {
+                    self.networkOutChartView.noDataText = "Paring issue, please retry"
+                }
+            }else{
+                self.networkOutChartView.noDataText = "Connection issue, please retry"
+            }
+        }
         
         self.scrollView.addSubview(networkOutChartView)
         scrollViewHeight += CHART_HEIGHT
         
-        
+    }
+    
+    func drawDiskReadBytesChart(){
         diskReadChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         diskReadChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.diskReadChartView.chartDescription?.text = "Tap node for details"
         self.diskReadChartView.chartDescription?.textColor = UIColor.black
         self.diskReadChartView.gridBackgroundColor = UIColor.darkGray
-        self.diskReadChartView.noDataText = "No data provided"
-        self.diskReadChartView.data = setLineChart(label: "DiskRead", data: self.diskReadData)
+        self.diskReadChartView.noDataText = "Loading data"
+        
+        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60)) { (response, error) in
+            if(error == nil){
+                do {
+                    let jsonParser = VMWEC2JSONParser(inputData: response)
+                    self.diskReadData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+                    self.diskReadChartView.data = self.setLineChart(label: "Disk Read(Byte)", data: self.diskReadData)
+                } catch {
+                    self.diskReadChartView.noDataText = "Parsing issue, please retry"
+                }
+            }else{
+                self.diskReadChartView.noDataText = "Connection issue, please retry"
+            }
+        }
         
         self.scrollView.addSubview(diskReadChartView)
         scrollViewHeight += CHART_HEIGHT
-        
-        
+    }
+    
+    func drawDiskWriteBytesChart(){
         diskWriteChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
         diskWriteChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
         self.diskWriteChartView.chartDescription?.text = "Tap node for details"
         self.diskWriteChartView.chartDescription?.textColor = UIColor.black
         self.diskWriteChartView.gridBackgroundColor = UIColor.darkGray
-        self.diskWriteChartView.noDataText = "No data provided"
-        self.diskWriteChartView.data = setLineChart(label: "DiskWrite", data: self.diskWriteData)
+        self.diskWriteChartView.noDataText = "Loading Data"
+        
+        PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60)) { (response, error) in
+            if(error == nil){
+                do {
+                    let jsonParser = VMWEC2JSONParser(inputData: response)
+                    self.diskWriteData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
+                    self.diskWriteChartView.data = self.setLineChart(label: "Disk Write(Byte)", data: self.diskWriteData)
+                } catch {
+                    self.diskWriteChartView.noDataText = "Parsing issue, please retry"
+                }
+            }else{
+                self.diskWriteChartView.noDataText = "Connection issue, please retry"
+            }
+        }
         
         self.scrollView.addSubview(diskWriteChartView)
         scrollViewHeight += CHART_HEIGHT
-        
-        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
     
     /*Set up pie chart*/
-    func setPieChart(dataPoints: [String], values: [Double]) -> PieChartData {
+    func setPieChart(label:String, dataPoints: [String], values: [Double]) -> PieChartData {
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
@@ -173,7 +249,7 @@ class EC2WatchResultViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "CPUUtilization Percentage")
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: label)
         let colors: [UIColor] = [
             UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha: 1.0),
             UIColor.white
@@ -182,19 +258,20 @@ class EC2WatchResultViewController: UIViewController {
         return PieChartData(dataSet: pieChartDataSet)
     }
     
+    /*Set up line chart*/
     func setLineChart(label:String, data:NSMutableArray) -> LineChartData {
         var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
         for i in 0 ..< data.count {
             let dict = data[i] as! NSDictionary
             yVals1.append(ChartDataEntry(x: Double(i),y: dict["data"] as! Double))
         }
-
+        
         let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: label)
-        set1.axisDependency = .left // Line will correlate with left axis values
-        set1.setColor(UIColor.red.withAlphaComponent(0.5)) // our line's opacity is 50%
-        set1.setCircleColor(UIColor.red) // our circle will be dark red
+        set1.axisDependency = .left
+        set1.setColor(UIColor.red.withAlphaComponent(0.5))
+        set1.setCircleColor(UIColor.red)
         set1.lineWidth = 2.0
-        set1.circleRadius = 6.0 // the radius of the node circle
+        set1.circleRadius = 6.0
         set1.fillAlpha = 65 / 255.0
         set1.fillColor = UIColor.yellow
         set1.highlightColor = UIColor.green
@@ -202,12 +279,12 @@ class EC2WatchResultViewController: UIViewController {
         
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(set1)
-
+        
         let data: LineChartData = LineChartData(dataSets: dataSets)
         data.setValueTextColor(UIColor.red)
         return data
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -225,7 +302,7 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     func setChartView(){
-    
+        
     }
 }
 

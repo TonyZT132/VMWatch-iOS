@@ -24,6 +24,7 @@ class NewPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getServiceAvaliability()
         self.initializeScrollView()
         self.loadSubView()
     }
@@ -31,6 +32,24 @@ class NewPageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func getServiceAvaliability(){
+        PFCloud.callFunction(inBackground: "serviceRequest", withParameters: [:]) { (response, error) in
+            if(error == nil){
+                print(response!)
+            }else{
+                self.present(
+                    self.alert.showAlertWithOneButton(
+                        title: "Failed",
+                        message: (error?.localizedDescription)!,
+                        actionButton: "OK"
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
+        }
     }
     
     private func initializeScrollView(){
