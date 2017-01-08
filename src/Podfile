@@ -1,4 +1,4 @@
-target ‘VMWatch’ do
+target 'VMWatch' do
     pod 'Parse'
     pod 'CYLTabBarController'
     pod 'RSKImageCropper'
