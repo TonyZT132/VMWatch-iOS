@@ -10,3 +10,4 @@ import Foundation
 
 let mainView: UIStoryboard! = UIStoryboard(name: "main", bundle: nil)
 let EC2View: UIStoryboard! = UIStoryboard(name: "EC2", bundle: nil)
+let GoogleView: UIStoryboard! = UIStoryboard(name: "Google", bundle: nil)
