@@ -447,12 +447,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		113D7F181E220A7D009A2801 /* google */ = {
+		113D7F181E220A7D009A2801 /* Google */ = {
 			isa = PBXGroup;
 			children = (
 				113D7F191E220B48009A2801 /* GoogleTableViewController.swift */,
 			);
-			name = google;
+			name = Google;
 			sourceTree = "<group>";
 		};
 		261E81151DB56056009A8FD9 /* Charts */ = {
@@ -762,7 +762,8 @@
 		264587E01D81EF85008B0B8D /* New Page */ = {
 			isa = PBXGroup;
 			children = (
-				113D7F181E220A7D009A2801 /* google */,
+				26820C701E2C0B640042A5EE /* Azure */,
+				113D7F181E220A7D009A2801 /* Google */,
 				26E040271DB0390B0068A184 /* EC2 */,
 				264587E31D81EFEA008B0B8D /* NewPageViewController.swift */,
 				26879F6B1DEB2513008EA698 /* NewPageNavViewController.swift */,
@@ -858,6 +859,13 @@
 				267CCB2B1D99B44600347E4C /* DKPermissionView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		26820C701E2C0B640042A5EE /* Azure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Azure;
 			sourceTree = "<group>";
 		};
 		26A622721D84FFE4003DD48E /* Global */ = {
@@ -1078,12 +1086,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26DE7EF01D81D7EE001E3571 /* Build configuration list for PBXNativeTarget "VMWatch" */;
 			buildPhases = (
+				CCD6A384E8A40E0740704CDD /* 📦 Check Pods Manifest.lock */,
 				6383B219F90039B6273DC3C3 /* [CP] Check Pods Manifest.lock */,
 				26DE7EC11D81D7ED001E3571 /* Sources */,
 				26DE7EC21D81D7ED001E3571 /* Frameworks */,
 				26DE7EC31D81D7ED001E3571 /* Resources */,
 				8F37EBC15189CF912F3B5E10 /* [CP] Embed Pods Frameworks */,
 				C4A43A4AE2C961DFF591BD44 /* [CP] Copy Pods Resources */,
+				570DA12204BB093BA34B69F7 /* 📦 Embed Pods Frameworks */,
+				C6E5CB581B48BBB88193A7B7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1212,6 +1223,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		570DA12204BB093BA34B69F7 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6383B219F90039B6273DC3C3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1255,6 +1281,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6E5CB581B48BBB88193A7B7 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCD6A384E8A40E0740704CDD /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
