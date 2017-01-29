@@ -95,7 +95,6 @@ class NewPageViewController: UIViewController {
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(GoogleSetup, animated: true)
                 
-                
             default:
                 self.present(
                     self.alert.showAlertWithOneButton(

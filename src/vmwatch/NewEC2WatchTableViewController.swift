@@ -107,14 +107,32 @@ class NewEC2WatchTableViewController: UITableViewController {
             try parser.instanceIDParser(input: instanceIDTextField.text)
             try parser.regionParser(input: self.region)
             
-            let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
-            ec2Result.accessID = ec2AccessIDTextField.text!
-            ec2Result.accessKey = ec2AccessKeyTextField.text!
-            ec2Result.instanceID = instanceIDTextField.text!
-            ec2Result.region = self.region
-            ec2Result.hidesBottomBarWhenPushed = true
-            self.navigationController!.navigationBar.tintColor = UIColor.white
-            self.navigationController?.pushViewController(ec2Result, animated: true)
+            indicator.showWithMessage(context: "Verifying")
+            PFCloud.callFunction(inBackground: "ec2UserVerification", withParameters: ["accessid": ec2AccessIDTextField.text!, "accesskey":ec2AccessKeyTextField.text!]) { (response, error) in
+                
+                indicator.dismiss()
+                if(error == nil){
+                    let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+                    ec2Result.accessID = self.ec2AccessIDTextField.text!
+                    ec2Result.accessKey = self.ec2AccessKeyTextField.text!
+                    ec2Result.instanceID = self.instanceIDTextField.text!
+                    ec2Result.region = self.region
+                    ec2Result.hidesBottomBarWhenPushed = true
+                    self.navigationController!.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.pushViewController(ec2Result, animated: true)
+                }else{
+                    print(error)
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Error",
+                            message: "Invalid Access Credentials",
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
+                }
+            }
         } catch VMWEC2InputParserError.EmptyAccessKey {
             self.present(
                 self.alert.showAlertWithOneButton(
