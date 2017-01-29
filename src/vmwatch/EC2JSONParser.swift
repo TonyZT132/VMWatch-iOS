@@ -63,6 +63,8 @@ internal class VMWEC2JSONParser {
                             }
                         }
                         return dataArr
+                    }else{
+                        throw VMWEC2JSONParserError.InvalidInstanceIdOrRegionError
                     }
                 }
             }
@@ -73,4 +75,5 @@ internal class VMWEC2JSONParser {
 
 enum VMWEC2JSONParserError: Error {
     case InvalidEC2JSONDataError
+    case InvalidInstanceIdOrRegionError
 }

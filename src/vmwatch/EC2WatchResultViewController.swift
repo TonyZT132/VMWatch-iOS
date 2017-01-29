@@ -34,6 +34,8 @@ class EC2WatchResultViewController: UIViewController {
     
     var scrollViewHeight:CGFloat = 0
     
+    var invalidInstanceIdOrRegion:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setView()
@@ -51,6 +53,18 @@ class EC2WatchResultViewController: UIViewController {
         self.drawDiskReadBytesChart()
         self.drawDiskWriteBytesChart()
         scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
+        
+        if(self.invalidInstanceIdOrRegion == true){
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Invalid Instance ID or Region, please return to the previous page",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        }
     }
     
     
@@ -73,8 +87,13 @@ class EC2WatchResultViewController: UIViewController {
                     let percentage = [self.cpuUtilizationData.roundTo(places: 0), (100.0 - self.cpuUtilizationData).roundTo(places: 0)]
                     
                     self.cpuUtilizationChartView.data = self.setPieChart(label: "CPU Utilization(Percentage)", dataPoints: results, values: percentage)
+                }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
+                    self.networkInChartView.noDataText = "Paring issue, please retry"
+                } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
+                    self.networkInChartView.noDataText = "Invalid Instance ID or Region"
+                    self.invalidInstanceIdOrRegion = true
                 } catch {
-                    self.cpuUtilizationChartView.noDataText = "Parsing issue, please retry"
+                    self.networkInChartView.noDataText = "Unexpected Error"
                 }
             }else{
                 self.cpuUtilizationChartView.noDataText = "Connection issue, please retry"
@@ -102,8 +121,13 @@ class EC2WatchResultViewController: UIViewController {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.networkInData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
                     self.networkInChartView.data = self.setLineChart(label: "Network In(Byte)", data: self.networkInData)
-                } catch {
+                } catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
+                } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
+                        self.networkInChartView.noDataText = "Invalid Instance ID or Region"
+                        self.invalidInstanceIdOrRegion = true
+                } catch {
+                    self.networkInChartView.noDataText = "Unexpected Error"
                 }
             }else{
                 self.networkInChartView.noDataText = "Connection issue, please retry"
@@ -128,8 +152,13 @@ class EC2WatchResultViewController: UIViewController {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.networkOutData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
                     self.networkOutChartView.data = self.setLineChart(label: "Network Out(Byte)", data: self.networkOutData)
+                }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
+                    self.networkInChartView.noDataText = "Paring issue, please retry"
+                } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
+                    self.networkInChartView.noDataText = "Invalid Instance ID or Region"
+                    self.invalidInstanceIdOrRegion = true
                 } catch {
-                    self.networkOutChartView.noDataText = "Paring issue, please retry"
+                    self.networkInChartView.noDataText = "Unexpected Error"
                 }
             }else{
                 self.networkOutChartView.noDataText = "Connection issue, please retry"
@@ -155,8 +184,13 @@ class EC2WatchResultViewController: UIViewController {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.diskReadData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
                     self.diskReadChartView.data = self.setLineChart(label: "Disk Read(Byte)", data: self.diskReadData)
+                }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
+                    self.networkInChartView.noDataText = "Paring issue, please retry"
+                } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
+                    self.networkInChartView.noDataText = "Invalid Instance ID or Region"
+                    self.invalidInstanceIdOrRegion = true
                 } catch {
-                    self.diskReadChartView.noDataText = "Parsing issue, please retry"
+                    self.networkInChartView.noDataText = "Unexpected Error"
                 }
             }else{
                 self.diskReadChartView.noDataText = "Connection issue, please retry"
@@ -181,8 +215,13 @@ class EC2WatchResultViewController: UIViewController {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.diskWriteData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
                     self.diskWriteChartView.data = self.setLineChart(label: "Disk Write(Byte)", data: self.diskWriteData)
+                }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
+                    self.networkInChartView.noDataText = "Paring issue, please retry"
+                } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
+                    self.networkInChartView.noDataText = "Invalid Instance ID or Region"
+                    self.invalidInstanceIdOrRegion = true
                 } catch {
-                    self.diskWriteChartView.noDataText = "Parsing issue, please retry"
+                    self.networkInChartView.noDataText = "Unexpected Error"
                 }
             }else{
                 self.diskWriteChartView.noDataText = "Connection issue, please retry"
