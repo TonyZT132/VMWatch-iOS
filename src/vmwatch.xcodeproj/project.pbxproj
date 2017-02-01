@@ -762,7 +762,6 @@
 		264587E01D81EF85008B0B8D /* New Page */ = {
 			isa = PBXGroup;
 			children = (
-				26820C701E2C0B640042A5EE /* Azure */,
 				113D7F181E220A7D009A2801 /* Google */,
 				26E040271DB0390B0068A184 /* EC2 */,
 				264587E31D81EFEA008B0B8D /* NewPageViewController.swift */,
@@ -859,13 +858,6 @@
 				267CCB2B1D99B44600347E4C /* DKPermissionView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		26820C701E2C0B640042A5EE /* Azure */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Azure;
 			sourceTree = "<group>";
 		};
 		26A622721D84FFE4003DD48E /* Global */ = {
