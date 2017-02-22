@@ -55,6 +55,18 @@ class GoogleTableViewController: UITableViewController {
             return 0
         }
     }
+    
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
 
     @IBAction func doSubmit(_ sender: AnyObject) {
         do{
@@ -66,12 +78,18 @@ class GoogleTableViewController: UITableViewController {
             try parser.clientEmailParser(input: GoogleClientEmail.text)
             try parser.instanceIDParser(input: GoogleInstanceID.text)
             
+            
             PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" : GooglePrivateKeyID.text!, "privatekey" : GooglePrivateKey.text!, "clientid" : GoogleClientID.text!, "clientemail" : GoogleClientEmail.text!, "instanceid" : GoogleInstanceID.text!, "projectid" : GoogleProjectID.text!]){ (response, error) in
                 
                 if(error == nil){
+                    let GoogleResult : GoogleResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleResultViewController
+                    GoogleResult.hidesBottomBarWhenPushed = true
+                    self.navigationController!.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.pushViewController(GoogleResult, animated: true)
                     
+                    GoogleResult.response = response
                     
-                }else{                    
+                }else{
                     /* authentication failed no info recieved, error msg*/
                     self.present(
                         self.alert.showAlertWithOneButton(
@@ -85,10 +103,7 @@ class GoogleTableViewController: UITableViewController {
                 }
 
             }
-            
-            
-            
-            
+
         } catch GoogleInputParserError.EmptyPrivateKeyID {
             self.present(
                 self.alert.showAlertWithOneButton(
