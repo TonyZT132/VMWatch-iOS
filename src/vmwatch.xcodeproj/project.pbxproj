@@ -196,6 +196,9 @@
 		26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */; };
 		26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F789F41DDE4FDE006F4658 /* EC2.storyboard */; };
 		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
+		D62346DA1E5D479D00D70D26 /* GoogleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */; };
+		D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */; };
+		D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */; };
 		FC8D09AAA63ECB9676E04AAE /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE3424657854244CF007638 /* libPods-VMWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -418,6 +421,9 @@
 		26F789F41DDE4FDE006F4658 /* EC2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EC2.storyboard; path = vmwatch/EC2.storyboard; sourceTree = SOURCE_ROOT; };
 		26F789F81DDE5176006F4658 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
 		4AE3424657854244CF007638 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleResultViewController.swift; path = VMWatch/GoogleResultViewController.swift; sourceTree = SOURCE_ROOT; };
+		D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputParser.swift; sourceTree = "<group>"; };
+		D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleJSONParser.swift; sourceTree = "<group>"; };
 		F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -451,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				113D7F191E220B48009A2801 /* GoogleTableViewController.swift */,
+				D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */,
 			);
 			name = Google;
 			sourceTree = "<group>";
@@ -960,6 +967,7 @@
 		26D9DD0C1D9AAE7700A47416 /* VMW Model */ = {
 			isa = PBXGroup;
 			children = (
+				D62346DB1E5D4AAF00D70D26 /* Google */,
 				262C436D1E06EC59004765EE /* UserInfoTemp */,
 				26F507671DF86C080000D8F8 /* EC2 */,
 				26A754881D9823F500FB7CC1 /* Alert.swift */,
@@ -1069,6 +1077,15 @@
 				4AE3424657854244CF007638 /* libPods-VMWatch.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D62346DB1E5D4AAF00D70D26 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */,
+				D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */,
+			);
+			name = Google;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1316,6 +1333,7 @@
 				261E81F01DB56092009A8FD9 /* DataApproximator.swift in Sources */,
 				261E81C61DB56092009A8FD9 /* XAxis.swift in Sources */,
 				261E82191DB56092009A8FD9 /* LineRadarRenderer.swift in Sources */,
+				D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */,
 				261E822A1DB56092009A8FD9 /* YAxisRenderer.swift in Sources */,
 				261E81EB1DB56092009A8FD9 /* ILineRadarChartDataSet.swift in Sources */,
 				261E81B91DB56092009A8FD9 /* PieChartView.swift in Sources */,
@@ -1477,12 +1495,14 @@
 				261E81D91DB56092009A8FD9 /* LineChartData.swift in Sources */,
 				267CCB391D99B44600347E4C /* DKAssetGroupGridLayout.swift in Sources */,
 				2620E2271D98C51A003615D4 /* Variable.swift in Sources */,
+				D62346DA1E5D479D00D70D26 /* GoogleResultViewController.swift in Sources */,
 				261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */,
 				262C436F1E06EC8C004765EE /* VMWRecognitionTextStore.swift in Sources */,
 				261E81D61DB56092009A8FD9 /* ChartDataEntryBase.swift in Sources */,
 				2680FA681E219AE30077E865 /* ServiceJSONParser.swift in Sources */,
 				26A6228F1D85DFA5003DD48E /* Timer.swift in Sources */,
 				261E81C81DB56092009A8FD9 /* ChartBaseDataSet.swift in Sources */,
+				D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */,
 				261E81FA1DB56092009A8FD9 /* Highlight.swift in Sources */,
 				261E82031DB56092009A8FD9 /* BubbleChartDataProvider.swift in Sources */,
 				26DE7EC91D81D7ED001E3571 /* AppDelegate.swift in Sources */,
