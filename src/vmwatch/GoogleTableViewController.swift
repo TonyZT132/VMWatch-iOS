@@ -20,14 +20,20 @@ class GoogleTableViewController: UITableViewController {
     @IBOutlet weak var GoogleClientEmail: UITextField!
     @IBOutlet weak var GoogleSubmitButton: UIButton!
     
+    /*variable for storing google credentials*/
+    var google_credentials: [String: String]!
+    var google_history_credentials: NSMutableArray!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        /* testing to see core data stored
+        self.getGoogleHistory()
+        print ("num of results = \(google_history_credentials.count)")
+        for trans in google_history_credentials as NSMutableArray {
+            //get the Key Value pairs (although there may be a better way to do that...
+            print(trans)
+        }
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +73,32 @@ class GoogleTableViewController: UITableViewController {
         }
         return nil
     }
+    
+    func storeGoogleHistory(){
+        let history = GoogleHistoryStorage()
+        do{
+            try history.deleteHistoryRecord(privateKeyID: self.GooglePrivateKeyID.text!, privateKey: self.GooglePrivateKey.text! , clientID: self.GoogleClientID.text!, clientEmail: self.GoogleClientEmail.text!, projectID: self.GoogleProjectID.text!, instanceID: self.GoogleInstanceID.text!)
+            try history.storeGoogleHistory(privateKeyID: self.GooglePrivateKeyID.text!, privateKey: self.GooglePrivateKey.text! , clientID: self.GoogleClientID.text!, clientEmail: self.GoogleClientEmail.text!, projectID: self.GoogleProjectID.text!, instanceID: self.GoogleInstanceID.text!)
+        } catch GoogleCoreDataStorageError.DatabaseStoreError {
+            NSLog("Could not save the history data due to database issue")
+        } catch GoogleCoreDataStorageError.DatabaseDeleteError {
+            NSLog("Fail to remove previous history data due to database issue")
+        } catch {
+            NSLog("Unexpected database issue")
+        }
+    }
+    
+    func getGoogleHistory(){
+        let history = GoogleHistoryStorage()
+        do{
+            try google_history_credentials = history.getGoogleHistory()
+        } catch GoogleCoreDataStorageError.DatabaseFetchError {
+            NSLog("Could not get the history data due to database issue")
+        } catch {
+            NSLog("Unexpected database issue")
+        }
+        
+    }
 
     @IBAction func doSubmit(_ sender: AnyObject) {
         do{
@@ -80,8 +112,9 @@ class GoogleTableViewController: UITableViewController {
             
             
             PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" : GooglePrivateKeyID.text!, "privatekey" : GooglePrivateKey.text!, "clientid" : GoogleClientID.text!, "clientemail" : GoogleClientEmail.text!, "instanceid" : GoogleInstanceID.text!, "projectid" : GoogleProjectID.text!]){ (response, error) in
-                
                 if(error == nil){
+                    /*if can successfully access gcc, store credentials in core data*/
+                    self.storeGoogleHistory()
                     let GoogleResult : GoogleResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleResultViewController
                     GoogleResult.hidesBottomBarWhenPushed = true
                     self.navigationController!.navigationBar.tintColor = UIColor.white
@@ -178,6 +211,7 @@ class GoogleTableViewController: UITableViewController {
         }
 
     }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

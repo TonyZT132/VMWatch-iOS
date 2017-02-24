@@ -199,6 +199,7 @@
 		D62346DA1E5D479D00D70D26 /* GoogleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */; };
 		D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */; };
 		D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */; };
+		D6498D621E601CB3007CB6A7 /* GoogleHistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */; };
 		FC8D09AAA63ECB9676E04AAE /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE3424657854244CF007638 /* libPods-VMWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -424,6 +425,7 @@
 		D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleResultViewController.swift; path = VMWatch/GoogleResultViewController.swift; sourceTree = SOURCE_ROOT; };
 		D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputParser.swift; sourceTree = "<group>"; };
 		D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleJSONParser.swift; sourceTree = "<group>"; };
+		D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleHistoryStorage.swift; sourceTree = "<group>"; };
 		F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1083,6 +1085,7 @@
 			isa = PBXGroup;
 			children = (
 				D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */,
+				D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */,
 				D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */,
 			);
 			name = Google;
@@ -1095,7 +1098,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26DE7EF01D81D7EE001E3571 /* Build configuration list for PBXNativeTarget "VMWatch" */;
 			buildPhases = (
-				CCD6A384E8A40E0740704CDD /* 📦 Check Pods Manifest.lock */,
+				CCD6A384E8A40E0740704CDD /* [CP] Check Pods Manifest.lock */,
 				6383B219F90039B6273DC3C3 /* [CP] Check Pods Manifest.lock */,
 				26DE7EC11D81D7ED001E3571 /* Sources */,
 				26DE7EC21D81D7ED001E3571 /* Frameworks */,
@@ -1307,19 +1310,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CCD6A384E8A40E0740704CDD /* 📦 Check Pods Manifest.lock */ = {
+		CCD6A384E8A40E0740704CDD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1342,6 +1345,7 @@
 				261E82301DB56092009A8FD9 /* Platform.swift in Sources */,
 				261E821A1DB56092009A8FD9 /* LineScatterCandleRadarRenderer.swift in Sources */,
 				261E81C91DB56092009A8FD9 /* BarChartData.swift in Sources */,
+				D6498D621E601CB3007CB6A7 /* GoogleHistoryStorage.swift in Sources */,
 				261E81ED1DB56092009A8FD9 /* IPieChartDataSet.swift in Sources */,
 				261E820F1DB56092009A8FD9 /* AxisRendererBase.swift in Sources */,
 				261E82181DB56092009A8FD9 /* LineChartRenderer.swift in Sources */,
