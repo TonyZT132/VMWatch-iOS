@@ -115,8 +115,6 @@ public class LoginViewController: UIViewController {
     func setupPhoneField() {
         txtPhoneNumber = UITextField(frame: CGRect(x: 0 , y: 0, width: loginView.frame.width, height: 30))
         txtPhoneNumber.returnKeyType = .next
-        txtPhoneNumber.autocapitalizationType = .none
-        txtPhoneNumber.autocorrectionType = .no
         txtPhoneNumber.textColor = UIColor.white
         txtPhoneNumber.keyboardType = .phonePad
         txtPhoneNumber.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: [NSForegroundColorAttributeName: UIColor(red: 196, green: 195, blue: 212, alpha: 1)])
