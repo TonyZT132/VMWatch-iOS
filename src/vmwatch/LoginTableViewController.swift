@@ -1,3 +1,4 @@
+
 //
 //  LoginTableViewController.swift
 //  VMWatch
@@ -27,6 +28,12 @@ class LoginTableViewController: UITableViewController{
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+        
+   
+        var imageView   = UIImageView(frame: self.view.bounds);
+        imageView.image = UIImage(named: "background.png")!
+        self.view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,4 +126,5 @@ class LoginTableViewController: UITableViewController{
     @IBAction func dismissPage(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
+    
 }

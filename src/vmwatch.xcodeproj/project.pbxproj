@@ -174,7 +174,6 @@
 		26A622711D84FD09003DD48E /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622701D84FD09003DD48E /* Cloud.swift */; };
 		26A622751D8500DC003DD48E /* AccountMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622741D8500DC003DD48E /* AccountMenuViewController.swift */; };
 		26A622781D8506EA003DD48E /* LoginNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622771D8506EA003DD48E /* LoginNavViewController.swift */; };
-		26A6227C1D85072F003DD48E /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6227B1D85072F003DD48E /* LoginTableViewController.swift */; };
 		26A622801D858163003DD48E /* ValidationPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6227F1D858163003DD48E /* ValidationPageTableViewController.swift */; };
 		26A622841D858199003DD48E /* ValidationPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622831D858199003DD48E /* ValidationPageNavViewController.swift */; };
 		26A622871D858648003DD48E /* SignupPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622861D858648003DD48E /* SignupPageNavViewController.swift */; };
@@ -200,6 +199,7 @@
 		D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */; };
 		D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */; };
 		D6498D621E601CB3007CB6A7 /* GoogleHistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */; };
+		D66271FF1E6FF15E001F4EF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66271FE1E6FF15E001F4EF1 /* LoginViewController.swift */; };
 		FC8D09AAA63ECB9676E04AAE /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE3424657854244CF007638 /* libPods-VMWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -393,7 +393,6 @@
 		26A622701D84FD09003DD48E /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		26A622741D8500DC003DD48E /* AccountMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountMenuViewController.swift; sourceTree = "<group>"; };
 		26A622771D8506EA003DD48E /* LoginNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavViewController.swift; sourceTree = "<group>"; };
-		26A6227B1D85072F003DD48E /* LoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
 		26A6227F1D858163003DD48E /* ValidationPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPageTableViewController.swift; sourceTree = "<group>"; };
 		26A622831D858199003DD48E /* ValidationPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPageNavViewController.swift; sourceTree = "<group>"; };
 		26A622861D858648003DD48E /* SignupPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPageNavViewController.swift; sourceTree = "<group>"; };
@@ -426,6 +425,7 @@
 		D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputParser.swift; sourceTree = "<group>"; };
 		D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleJSONParser.swift; sourceTree = "<group>"; };
 		D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleHistoryStorage.swift; sourceTree = "<group>"; };
+		D66271FE1E6FF15E001F4EF1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -894,7 +894,7 @@
 			isa = PBXGroup;
 			children = (
 				26A622771D8506EA003DD48E /* LoginNavViewController.swift */,
-				26A6227B1D85072F003DD48E /* LoginTableViewController.swift */,
+				D66271FE1E6FF15E001F4EF1 /* LoginViewController.swift */,
 			);
 			name = "Login Page";
 			sourceTree = "<group>";
@@ -1356,6 +1356,7 @@
 				261E82041DB56092009A8FD9 /* CandleChartDataProvider.swift in Sources */,
 				261E81CA1DB56092009A8FD9 /* BarChartDataEntry.swift in Sources */,
 				261E81B11DB56092009A8FD9 /* BarChartView.swift in Sources */,
+				D66271FF1E6FF15E001F4EF1 /* LoginViewController.swift in Sources */,
 				261E81F31DB56092009A8FD9 /* DefaultValueFormatter.swift in Sources */,
 				26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */,
 				261E821E1DB56092009A8FD9 /* ChevronDownShapeRenderer.swift in Sources */,
@@ -1411,7 +1412,6 @@
 				261E81CD1DB56092009A8FD9 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				261E821B1DB56092009A8FD9 /* PieChartRenderer.swift in Sources */,
 				261E81B21DB56092009A8FD9 /* BarLineChartViewBase.swift in Sources */,
-				26A6227C1D85072F003DD48E /* LoginTableViewController.swift in Sources */,
 				261E81D31DB56092009A8FD9 /* CandleChartDataSet.swift in Sources */,
 				261E81E81DB56092009A8FD9 /* ICandleChartDataSet.swift in Sources */,
 				261E81B61DB56092009A8FD9 /* CombinedChartView.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 
 class AccountMenuViewController: UIViewController {
-
+    
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
@@ -23,7 +23,8 @@ class AccountMenuViewController: UIViewController {
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.cornerRadius = 5
         loginButton.clipsToBounds = true
-
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -47,7 +48,12 @@ class AccountMenuViewController: UIViewController {
     }
     
     @IBAction func doLogin(_ sender: AnyObject) {
-        let login : LoginNavViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginNav") as! LoginNavViewController
+        let login : LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginPage") as! LoginViewController
+        
+        //login.hidesBottomBarWhenPushed = true
+        //self.navigationController!.navigationBar.tintColor = UIColor.white
+        //self.navigationController?.pushViewController(login, animated: true)
+ 
         self.present(login, animated: true, completion: nil)
     }
     
