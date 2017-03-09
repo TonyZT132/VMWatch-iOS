@@ -18,17 +18,34 @@ class AccountMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let signupButton = UIButton(frame: CGRect(x: view.frame.width*0.1 , y: view.frame.height*0.7, width: view.frame.width*0.8, height: 40))
+        signupButton.setTitle("Signup", for: .normal)
+        signupButton.addTarget(self,action: #selector(doSignup), for: .touchUpInside)
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8).cgColor
         signupButton.layer.backgroundColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8).cgColor
         signupButton.layer.cornerRadius = signupButton.frame.size.height / 2
         signupButton.clipsToBounds = true
+        view.addSubview(signupButton)
         
+        
+        let loginButton = UIButton(frame: CGRect(x: view.frame.width*0.1 , y: signupButton.frame.maxY+10, width: view.frame.width*0.8, height: 40))
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.addTarget(self, action: #selector(doLogin), for: .touchUpInside)
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8).cgColor
         loginButton.layer.backgroundColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8).cgColor
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2 
         loginButton.clipsToBounds = true
+        view.addSubview(loginButton)
+        
+        let butDismiss = UIButton(frame: CGRect(x: view.frame.width*0.1, y: loginButton.frame.maxY, width: view.frame.width*0.8, height: 40))
+        let font = UIFont(name: "HelveticaNeue-Medium", size: 12)!
+        let titleString = NSAttributedString(string: "Back", attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor(red: 196, green: 195, blue: 212, alpha: 1)])
+        butDismiss.setAttributedTitle(titleString, for: .normal)
+        butDismiss.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
+        view.addSubview(butDismiss)
+        
         
         let imageView   = UIImageView(frame: self.view.bounds);
         imageView.image = UIImage(named: "background")!
@@ -98,7 +115,7 @@ class AccountMenuViewController: UIViewController {
         self.present(login, animated: true, completion: nil)
     }
     
-    @IBAction func backToInfoPage(_ sender: AnyObject) {
+    func dismissTapped(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
 

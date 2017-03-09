@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rck-EK-1xM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rck-EK-1xM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="gER-RH-SU6">
-                            <rect key="frame" x="0.0" y="320.5" width="375" height="85"/>
+                            <rect key="frame" x="0.0" y="256.5" width="375" height="85"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQB-IX-WGf">
@@ -173,64 +173,9 @@
                     <view key="view" contentMode="scaleToFill" id="0jp-kf-gEa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez2-9N-d4R">
-                                <rect key="frame" x="16" y="508" width="343" height="41"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="doLogin:" destination="wcm-B6-r7t" eventType="touchUpInside" id="ajH-yO-6CP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfm-qv-Kwh">
-                                <rect key="frame" x="16" y="557" width="343" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="XeS-fs-iIv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backToInfoPage:" destination="wcm-B6-r7t" eventType="touchUpInside" id="Mbn-Ju-2WO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXN-bB-CjL">
-                                <rect key="frame" x="16" y="459" width="343" height="41"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cXN-bB-CjL" secondAttribute="height" multiplier="343:41" id="N6u-2w-ENF"/>
-                                    <constraint firstAttribute="height" constant="41" id="Qbv-ps-Dsk"/>
-                                </constraints>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="doSignup:" destination="wcm-B6-r7t" eventType="touchUpInside" id="CX7-CE-rug"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="cXN-bB-CjL" firstAttribute="trailing" secondItem="0jp-kf-gEa" secondAttribute="trailingMargin" id="8wD-Ls-40o"/>
-                            <constraint firstItem="ez2-9N-d4R" firstAttribute="top" secondItem="cXN-bB-CjL" secondAttribute="bottom" constant="8" symbolic="YES" id="HEd-tV-6BO"/>
-                            <constraint firstItem="Gfm-qv-Kwh" firstAttribute="top" secondItem="ez2-9N-d4R" secondAttribute="bottom" constant="8" symbolic="YES" id="PO4-0b-hSx"/>
-                            <constraint firstItem="cXN-bB-CjL" firstAttribute="leading" secondItem="0jp-kf-gEa" secondAttribute="leadingMargin" id="bGF-hA-Nhq"/>
-                            <constraint firstItem="cXN-bB-CjL" firstAttribute="top" secondItem="dO2-b4-dmd" secondAttribute="bottom" constant="439" id="bcX-c0-0AJ"/>
-                            <constraint firstItem="M81-vF-igS" firstAttribute="top" secondItem="Gfm-qv-Kwh" secondAttribute="bottom" constant="92" id="c1V-pD-tzp"/>
-                            <constraint firstItem="ez2-9N-d4R" firstAttribute="leading" secondItem="Gfm-qv-Kwh" secondAttribute="leading" id="cRo-KC-yLx"/>
-                            <constraint firstItem="cXN-bB-CjL" firstAttribute="trailing" secondItem="ez2-9N-d4R" secondAttribute="trailing" id="meH-Gv-atN"/>
-                            <constraint firstItem="ez2-9N-d4R" firstAttribute="trailing" secondItem="Gfm-qv-Kwh" secondAttribute="trailing" id="og7-tv-TA0"/>
-                            <constraint firstItem="cXN-bB-CjL" firstAttribute="leading" secondItem="ez2-9N-d4R" secondAttribute="leading" id="pc3-dN-gKj"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vne-CB-gC4"/>
-                    <connections>
-                        <outlet property="loginButton" destination="ez2-9N-d4R" id="rSs-Uj-EYF"/>
-                        <outlet property="signupButton" destination="cXN-bB-CjL" id="FSJ-lw-Yo2"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcr-xD-uYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
