@@ -174,10 +174,8 @@
 		26A622711D84FD09003DD48E /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622701D84FD09003DD48E /* Cloud.swift */; };
 		26A622751D8500DC003DD48E /* AccountMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622741D8500DC003DD48E /* AccountMenuViewController.swift */; };
 		26A622781D8506EA003DD48E /* LoginNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622771D8506EA003DD48E /* LoginNavViewController.swift */; };
-		26A622801D858163003DD48E /* ValidationPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6227F1D858163003DD48E /* ValidationPageTableViewController.swift */; };
 		26A622841D858199003DD48E /* ValidationPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622831D858199003DD48E /* ValidationPageNavViewController.swift */; };
 		26A622871D858648003DD48E /* SignupPageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A622861D858648003DD48E /* SignupPageNavViewController.swift */; };
-		26A6228B1D85868A003DD48E /* SignupPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6228A1D85868A003DD48E /* SignupPageTableViewController.swift */; };
 		26A6228F1D85DFA5003DD48E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6228E1D85DFA5003DD48E /* Timer.swift */; };
 		26A754891D9823F500FB7CC1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A754881D9823F500FB7CC1 /* Alert.swift */; };
 		26ADF1AF1DCF3026005ED225 /* EC2HistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADF1AE1DCF3026005ED225 /* EC2HistoryStorage.swift */; };
@@ -200,6 +198,8 @@
 		D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */; };
 		D6498D621E601CB3007CB6A7 /* GoogleHistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */; };
 		D66271FF1E6FF15E001F4EF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66271FE1E6FF15E001F4EF1 /* LoginViewController.swift */; };
+		D66272011E7106C0001F4EF1 /* ValidationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66272001E7106C0001F4EF1 /* ValidationPageViewController.swift */; };
+		D66272031E7119B2001F4EF1 /* SignupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66272021E7119B2001F4EF1 /* SignupPageViewController.swift */; };
 		FC8D09AAA63ECB9676E04AAE /* libPods-VMWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE3424657854244CF007638 /* libPods-VMWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -393,10 +393,8 @@
 		26A622701D84FD09003DD48E /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		26A622741D8500DC003DD48E /* AccountMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountMenuViewController.swift; sourceTree = "<group>"; };
 		26A622771D8506EA003DD48E /* LoginNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavViewController.swift; sourceTree = "<group>"; };
-		26A6227F1D858163003DD48E /* ValidationPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPageTableViewController.swift; sourceTree = "<group>"; };
 		26A622831D858199003DD48E /* ValidationPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPageNavViewController.swift; sourceTree = "<group>"; };
 		26A622861D858648003DD48E /* SignupPageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPageNavViewController.swift; sourceTree = "<group>"; };
-		26A6228A1D85868A003DD48E /* SignupPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPageTableViewController.swift; sourceTree = "<group>"; };
 		26A6228E1D85DFA5003DD48E /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		26A754881D9823F500FB7CC1 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = vmwatch/Alert.swift; sourceTree = SOURCE_ROOT; };
 		26ADF1AE1DCF3026005ED225 /* EC2HistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC2HistoryStorage.swift; sourceTree = "<group>"; };
@@ -426,6 +424,8 @@
 		D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleJSONParser.swift; sourceTree = "<group>"; };
 		D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleHistoryStorage.swift; sourceTree = "<group>"; };
 		D66271FE1E6FF15E001F4EF1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D66272001E7106C0001F4EF1 /* ValidationPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPageViewController.swift; sourceTree = "<group>"; };
+		D66272021E7119B2001F4EF1 /* SignupPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPageViewController.swift; sourceTree = "<group>"; };
 		F28A58291E0A116BC8D24A50 /* Pods-VMWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -911,7 +911,7 @@
 		26A6227E1D858144003DD48E /* Validation Page */ = {
 			isa = PBXGroup;
 			children = (
-				26A6227F1D858163003DD48E /* ValidationPageTableViewController.swift */,
+				D66272001E7106C0001F4EF1 /* ValidationPageViewController.swift */,
 				26A622831D858199003DD48E /* ValidationPageNavViewController.swift */,
 			);
 			name = "Validation Page";
@@ -921,7 +921,7 @@
 			isa = PBXGroup;
 			children = (
 				26A622861D858648003DD48E /* SignupPageNavViewController.swift */,
-				26A6228A1D85868A003DD48E /* SignupPageTableViewController.swift */,
+				D66272021E7119B2001F4EF1 /* SignupPageViewController.swift */,
 			);
 			name = "Finish Signup";
 			sourceTree = "<group>";
@@ -1335,6 +1335,7 @@
 				261E81BA1DB56092009A8FD9 /* PieRadarChartViewBase.swift in Sources */,
 				261E81F01DB56092009A8FD9 /* DataApproximator.swift in Sources */,
 				261E81C61DB56092009A8FD9 /* XAxis.swift in Sources */,
+				D66272031E7119B2001F4EF1 /* SignupPageViewController.swift in Sources */,
 				261E82191DB56092009A8FD9 /* LineRadarRenderer.swift in Sources */,
 				D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */,
 				261E822A1DB56092009A8FD9 /* YAxisRenderer.swift in Sources */,
@@ -1373,6 +1374,7 @@
 				26AF3A9D1D84E9D9003B8389 /* InfoPageTableViewController.swift in Sources */,
 				261E81D51DB56092009A8FD9 /* ChartDataEntry.swift in Sources */,
 				26879F6C1DEB2513008EA698 /* NewPageNavViewController.swift in Sources */,
+				D66272011E7106C0001F4EF1 /* ValidationPageViewController.swift in Sources */,
 				261E82201DB56092009A8FD9 /* CircleShapeRenderer.swift in Sources */,
 				261E82011DB56092009A8FD9 /* BarChartDataProvider.swift in Sources */,
 				267CCB2F1D99B44600347E4C /* DKAsset.swift in Sources */,
@@ -1452,7 +1454,6 @@
 				261E82161DB56092009A8FD9 /* HorizontalBarChartRenderer.swift in Sources */,
 				261E81F41DB56092009A8FD9 /* IAxisValueFormatter.swift in Sources */,
 				261E822B1DB56092009A8FD9 /* YAxisRendererHorizontalBarChart.swift in Sources */,
-				26A6228B1D85868A003DD48E /* SignupPageTableViewController.swift in Sources */,
 				261E82281DB56092009A8FD9 /* XAxisRendererHorizontalBarChart.swift in Sources */,
 				261E81B31DB56092009A8FD9 /* BubbleChartView.swift in Sources */,
 				261E820A1DB56092009A8FD9 /* AnimatedViewPortJob.swift in Sources */,
@@ -1487,7 +1488,6 @@
 				261E82001DB56092009A8FD9 /* Range.swift in Sources */,
 				261E81E21DB56092009A8FD9 /* RadarChartDataSet.swift in Sources */,
 				267CCB3B1D99B44600347E4C /* DKPermissionView.swift in Sources */,
-				26A622801D858163003DD48E /* ValidationPageTableViewController.swift in Sources */,
 				267CCB311D99B44600347E4C /* DKImageManager.swift in Sources */,
 				261E81B81DB56092009A8FD9 /* LineChartView.swift in Sources */,
 				113D7F1A1E220B48009A2801 /* GoogleTableViewController.swift in Sources */,

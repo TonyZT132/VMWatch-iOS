@@ -235,6 +235,18 @@ public class LoginViewController: UIViewController {
     func dismissTapped(){
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+//hide keyboard when touching anywhere outside
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     //move view up by keyboardSize.height when keyboard is visible
     func keyboardWillShow(notification: NSNotification) {
@@ -254,17 +266,5 @@ public class LoginViewController: UIViewController {
             }
         }
     }
-    
-}
 
-//hide keyboard when touching anywhere outside
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
