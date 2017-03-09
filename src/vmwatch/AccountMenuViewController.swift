@@ -24,6 +24,11 @@ class AccountMenuViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         loginButton.clipsToBounds = true
         
+        let imageView   = UIImageView(frame: self.view.bounds);
+        imageView.image = UIImage(named: "background")!
+        self.view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+        
         
         // Do any additional setup after loading the view.
     }
