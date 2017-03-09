@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,40 +23,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="mLP-Z6-tnX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="mLP-Z6-tnX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2016 University of Toronto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOm-uv-Yfm">
-                                <rect key="frame" x="16" y="638" width="343" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="9Ir-Ot-0FH">
+                                <rect key="frame" x="112" y="104" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="rsd-Dz-wda"/>
+                                    <constraint firstAttribute="width" constant="150" id="EvH-F5-eSe"/>
+                                    <constraint firstAttribute="width" secondItem="9Ir-Ot-0FH" secondAttribute="height" multiplier="1:1" id="ocy-kp-V5v"/>
+                                    <constraint firstAttribute="height" constant="150" id="vf4-8B-tMy"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2016 University of Toronto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOm-uv-Yfm">
+                                <rect key="frame" x="68" y="638" width="239" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="9J3-sE-GmD"/>
+                                    <constraint firstAttribute="width" secondItem="WOm-uv-Yfm" secondAttribute="height" multiplier="239:21" id="Dsl-SE-yWL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VMWatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e41-oY-cUf">
-                                <rect key="frame" x="78" y="112" width="218" height="57"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="9cr-oA-ZH0"/>
-                                    <constraint firstAttribute="width" secondItem="e41-oY-cUf" secondAttribute="height" multiplier="218:57" id="jmd-gn-acw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="e41-oY-cUf" firstAttribute="centerX" secondItem="WOm-uv-Yfm" secondAttribute="centerX" id="4CR-s6-6Dn"/>
-                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="centerX" secondItem="e41-oY-cUf" secondAttribute="centerX" id="6gB-MD-SIZ"/>
-                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="7ck-hc-Otm"/>
-                            <constraint firstItem="e41-oY-cUf" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="92" id="QmM-sX-DJy"/>
-                            <constraint firstItem="e41-oY-cUf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="62" id="UcQ-nC-imy"/>
-                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="grp-zj-Vtd"/>
-                            <constraint firstAttribute="trailing" secondItem="mLP-Z6-tnX" secondAttribute="trailing" id="n2c-Lc-Qa1"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="WOm-uv-Yfm" secondAttribute="bottom" constant="8" symbolic="YES" id="nVV-px-0JN"/>
-                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="ojV-jS-Q5T"/>
-                            <constraint firstItem="WOm-uv-Yfm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="tXs-Wp-i1c"/>
+                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="0QG-yT-kr0"/>
+                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="DMP-zz-u6R"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="WOm-uv-Yfm" secondAttribute="bottom" constant="8" symbolic="YES" id="EKF-ti-LqK"/>
+                            <constraint firstItem="9Ir-Ot-0FH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="96" id="MWa-qQ-Nb1"/>
+                            <constraint firstItem="WOm-uv-Yfm" firstAttribute="centerX" secondItem="9Ir-Ot-0FH" secondAttribute="centerX" id="WUD-oS-kvA"/>
+                            <constraint firstAttribute="trailing" secondItem="mLP-Z6-tnX" secondAttribute="trailing" id="YKY-BH-Dt0"/>
+                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="centerX" secondItem="9Ir-Ot-0FH" secondAttribute="centerX" id="eT8-Wc-dZQ"/>
+                            <constraint firstItem="9Ir-Ot-0FH" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="84" id="gCY-vM-Ajn"/>
+                            <constraint firstItem="mLP-Z6-tnX" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="hNQ-ey-e2L"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -66,6 +64,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_screen" width="3131" height="4696"/>
+        <image name="background" width="1242" height="2208"/>
+        <image name="icon" width="2000" height="2000"/>
     </resources>
 </document>
