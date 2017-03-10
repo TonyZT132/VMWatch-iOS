@@ -1,3 +1,4 @@
+
 //
 //  NewPageViewController.swift
 //  VMWatch
@@ -21,12 +22,12 @@ class NewPageViewController: UIViewController {
     
     var scrollViewHeight:CGFloat = 0
     var buttonArr = NSMutableArray()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadPage()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,8 +38,7 @@ class NewPageViewController: UIViewController {
             let serviceRequest = try PFCloud.callFunction("serviceRequest", withParameters: [:])
             let jsonParser = VMWServiceJSONParser(inputData: serviceRequest)
             SERVICE =  try jsonParser.parse()
-            self.initializeScrollView()
-            self.loadSubView()
+            self.set_view()
         } catch {
             self.present(
                 self.alert.showAlertWithOneButton(
@@ -51,32 +51,43 @@ class NewPageViewController: UIViewController {
             )
         }
     }
-    
-    private func initializeScrollView(){
-        SELECTION_BUTTON_HEIGHT = WIDTH / LOGO_SIZE_FACTOR
-        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.layer.backgroundColor = UIColor.clear.cgColor
-        self.view.addSubview(scrollView)
-    }
-    
-    private func loadSubView(){
+    private func set_view(){
+        //set background
+        let imageView   = UIImageView(frame: self.view.bounds);
+        imageView.image = UIImage(named: "background")!
+        self.view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+        let top_y:CGFloat = self.navigationController!.navigationBar.frame.maxY;
+        let bottom_y:CGFloat = self.tabBarController!.tabBar.frame.minY;
+        let x = view.bounds.width * 0.05
+        let width = view.bounds.width * 0.9
+        //add title to the view
+        let title = UILabel(frame: CGRect(x: x, y: top_y + 10, width: width, height: 20) )
+        title.text = " Supported Service Providers"
+        title.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        title.font = title.font.withSize(12)
+        title.textColor = .white
+        view.addSubview(title)
+        //add button for each service provider
+        let height: CGFloat = (bottom_y - top_y)/5
+        var but_y :CGFloat = title.frame.maxY + 5
         for i in 0 ..< SERVICE.count {
-            let selectionButton = UIButton(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: SELECTION_BUTTON_HEIGHT))
+            let selectionButton = UIButton(frame: CGRect(x: x, y: but_y, width: width, height: height))
+            selectionButton.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
             let dict = SERVICE[i] as NSDictionary
             selectionButton.tag = i
             selectionButton.addTarget(self, action: #selector(self.buttonSelected(sender:)), for: .touchUpInside)
             selectionButton.clipsToBounds = true
             let logo = UIImage(named: dict["icon"] as! String)
-            let logoView = UIImageView(frame: CGRect(x:0, y:0, width: selectionButton.layer.frame.width, height: selectionButton.layer.frame.height))
+            let logoView = UIImageView(frame: selectionButton.bounds)
             logoView.image = logo
+            logoView.contentMode = UIViewContentMode.scaleAspectFit
             selectionButton.addSubview(logoView)
-            scrollView.addSubview(selectionButton)
+            view.addSubview(selectionButton)
             buttonArr.add(selectionButton)
-            scrollViewHeight += SELECTION_BUTTON_HEIGHT
+            but_y = selectionButton.frame.maxY + 5
         }
-        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
+        
     }
     
     @objc private func buttonSelected (sender: UIButton!) {
@@ -89,7 +100,7 @@ class NewPageViewController: UIViewController {
                 ec2Setup.hidesBottomBarWhenPushed = true
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(ec2Setup, animated: true)
-            case 2:
+            case 1:
                 let GoogleSetup : GoogleTableViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleSetup") as! GoogleTableViewController
                 GoogleSetup.hidesBottomBarWhenPushed = true
                 self.navigationController!.navigationBar.tintColor = UIColor.white
