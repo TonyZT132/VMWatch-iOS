@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		113D7F171E220A45009A2801 /* Google.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113D7F161E220A45009A2801 /* Google.storyboard */; };
-		113D7F1A1E220B48009A2801 /* GoogleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113D7F191E220B48009A2801 /* GoogleTableViewController.swift */; };
 		261E81AF1DB56092009A8FD9 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E81181DB56092009A8FD9 /* Animator.swift */; };
 		261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E81191DB56092009A8FD9 /* ChartAnimationEasing.swift */; };
 		261E81B11DB56092009A8FD9 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E811B1DB56092009A8FD9 /* BarChartView.swift */; };
@@ -224,7 +223,6 @@
 
 /* Begin PBXFileReference section */
 		113D7F161E220A45009A2801 /* Google.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Google.storyboard; path = vmwatch/Google.storyboard; sourceTree = SOURCE_ROOT; };
-		113D7F191E220B48009A2801 /* GoogleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleTableViewController.swift; path = vmwatch/GoogleTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		261E81181DB56092009A8FD9 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		261E81191DB56092009A8FD9 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 		113D7F181E220A7D009A2801 /* Google */ = {
 			isa = PBXGroup;
 			children = (
-				113D7F191E220B48009A2801 /* GoogleTableViewController.swift */,
 				D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */,
 				D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */,
 				D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */,
@@ -1514,7 +1511,6 @@
 				267CCB3B1D99B44600347E4C /* DKPermissionView.swift in Sources */,
 				267CCB311D99B44600347E4C /* DKImageManager.swift in Sources */,
 				261E81B81DB56092009A8FD9 /* LineChartView.swift in Sources */,
-				113D7F1A1E220B48009A2801 /* GoogleTableViewController.swift in Sources */,
 				261E822D1DB56092009A8FD9 /* ChartColorTemplates.swift in Sources */,
 				26ADF1AF1DCF3026005ED225 /* EC2HistoryStorage.swift in Sources */,
 				261E82331DB56092009A8FD9 /* ViewPortHandler.swift in Sources */,

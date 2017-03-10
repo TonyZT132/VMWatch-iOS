@@ -41,8 +41,8 @@ public class GoogleInputViewController: UIViewController {
         //hide keyboard when tapped around
         self.hideKeyboardWhenTappedAround()
         //move view up/down when keyboard is shown/hidden
-        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GooglekeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GooglekeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -278,6 +278,25 @@ public class GoogleInputViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    //move view up by keyboardSize.height when keyboard is visible
+    func GooglekeyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= logoView.frame.maxY
+            }
+        }
+        
+    }
+    
+    func GooglekeyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += logoView.frame.maxY
+            }
+        }
+    }
+
     
 }
 
