@@ -193,6 +193,8 @@
 		26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */; };
 		26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F789F41DDE4FDE006F4658 /* EC2.storyboard */; };
 		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
+		D61AFE931E7263A6002AB1F6 /* GoogleInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */; };
+		D61AFE951E72738B002AB1F6 /* GoogleNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */; };
 		D62346DA1E5D479D00D70D26 /* GoogleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */; };
 		D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */; };
 		D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */; };
@@ -419,6 +421,8 @@
 		26F789F41DDE4FDE006F4658 /* EC2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EC2.storyboard; path = vmwatch/EC2.storyboard; sourceTree = SOURCE_ROOT; };
 		26F789F81DDE5176006F4658 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
 		4AE3424657854244CF007638 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputViewController.swift; sourceTree = "<group>"; };
+		D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleNavViewController.swift; sourceTree = "<group>"; };
 		D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleResultViewController.swift; path = VMWatch/GoogleResultViewController.swift; sourceTree = SOURCE_ROOT; };
 		D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputParser.swift; sourceTree = "<group>"; };
 		D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleJSONParser.swift; sourceTree = "<group>"; };
@@ -459,6 +463,8 @@
 			isa = PBXGroup;
 			children = (
 				113D7F191E220B48009A2801 /* GoogleTableViewController.swift */,
+				D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */,
+				D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */,
 				D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */,
 			);
 			name = Google;
@@ -1373,6 +1379,7 @@
 				261E82041DB56092009A8FD9 /* CandleChartDataProvider.swift in Sources */,
 				261E81CA1DB56092009A8FD9 /* BarChartDataEntry.swift in Sources */,
 				261E81B11DB56092009A8FD9 /* BarChartView.swift in Sources */,
+				D61AFE951E72738B002AB1F6 /* GoogleNavViewController.swift in Sources */,
 				D66271FF1E6FF15E001F4EF1 /* LoginViewController.swift in Sources */,
 				261E81F31DB56092009A8FD9 /* DefaultValueFormatter.swift in Sources */,
 				26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */,
@@ -1500,6 +1507,7 @@
 				261E81B51DB56092009A8FD9 /* ChartViewBase.swift in Sources */,
 				261E81BD1DB56092009A8FD9 /* AxisBase.swift in Sources */,
 				261E81EF1DB56092009A8FD9 /* IScatterChartDataSet.swift in Sources */,
+				D61AFE931E7263A6002AB1F6 /* GoogleInputViewController.swift in Sources */,
 				261E82051DB56092009A8FD9 /* ChartDataProvider.swift in Sources */,
 				261E82001DB56092009A8FD9 /* Range.swift in Sources */,
 				261E81E21DB56092009A8FD9 /* RadarChartDataSet.swift in Sources */,

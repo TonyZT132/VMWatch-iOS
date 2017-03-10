@@ -12,13 +12,13 @@
         <!--Google Cloud Watch-->
         <scene sceneID="alJ-IV-ZsB">
             <objects>
-                <tableViewController storyboardIdentifier="GoogleSetup" id="UkT-1j-f6a" customClass="GoogleTableViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="UkT-1j-f6a" customClass="GoogleTableViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="y0C-ND-6aZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="o8A-HT-IEA">
-                            <rect key="frame" x="0.0" y="516" width="375" height="77"/>
+                            <rect key="frame" x="0.0" y="452" width="375" height="77"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dX4-bc-lAV">
@@ -169,7 +169,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kzu-W7-QJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8.8000000000000007" y="44.527736131934034"/>
+            <point key="canvasLocation" x="36" y="45"/>
+        </scene>
+        <!--Google Input View Controller-->
+        <scene sceneID="TAf-kb-Wpq">
+            <objects>
+                <viewController id="Gft-J1-txK" customClass="GoogleInputViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sPN-1I-Bue"/>
+                        <viewControllerLayoutGuide type="bottom" id="7gf-zN-obE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZaZ-6A-uKc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rJz-Nn-t4T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="scF-D4-oBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="763"/>
         </scene>
         <!--Result-->
         <scene sceneID="zem-kh-imD">
@@ -206,16 +225,16 @@
             </objects>
             <point key="canvasLocation" x="873" y="66"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Google Nav View Controller-->
         <scene sceneID="A0D-SG-Zoi">
             <objects>
-                <navigationController id="D1D-jR-dbB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GoogleSetup" id="D1D-jR-dbB" customClass="GoogleNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Isl-Mf-pNn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="UkT-1j-f6a" kind="relationship" relationship="rootViewController" id="pTg-8w-dQW"/>
+                        <segue destination="Gft-J1-txK" kind="relationship" relationship="rootViewController" id="fj1-Ky-LF3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oip-UI-0bA" userLabel="First Responder" sceneMemberID="firstResponder"/>

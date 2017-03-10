@@ -101,10 +101,8 @@ class NewPageViewController: UIViewController {
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(ec2Setup, animated: true)
             case 1:
-                let GoogleSetup : GoogleTableViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleSetup") as! GoogleTableViewController
-                GoogleSetup.hidesBottomBarWhenPushed = true
-                self.navigationController!.navigationBar.tintColor = UIColor.white
-                self.navigationController?.pushViewController(GoogleSetup, animated: true)
+                let GoogleSetup : GoogleNavViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleSetup") as! GoogleNavViewController
+                self.present(GoogleSetup, animated: true, completion: nil)
                 
             default:
                 self.present(
