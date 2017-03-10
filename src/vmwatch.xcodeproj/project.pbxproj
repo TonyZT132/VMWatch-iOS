@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1100E3A31E72901E003B62B2 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100E3A21E72901E003B62B2 /* InfoPageViewController.swift */; };
 		113D7F171E220A45009A2801 /* Google.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113D7F161E220A45009A2801 /* Google.storyboard */; };
 		261E81AF1DB56092009A8FD9 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E81181DB56092009A8FD9 /* Animator.swift */; };
 		261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E81191DB56092009A8FD9 /* ChartAnimationEasing.swift */; };
@@ -178,7 +179,6 @@
 		26A6228F1D85DFA5003DD48E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6228E1D85DFA5003DD48E /* Timer.swift */; };
 		26A754891D9823F500FB7CC1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A754881D9823F500FB7CC1 /* Alert.swift */; };
 		26ADF1AF1DCF3026005ED225 /* EC2HistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADF1AE1DCF3026005ED225 /* EC2HistoryStorage.swift */; };
-		26AF3A9D1D84E9D9003B8389 /* InfoPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */; };
 		26B8DFFF1DB3E597009FC47D /* EC2JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B8DFFE1DB3E597009FC47D /* EC2JSONParser.swift */; };
 		26CA68E11DB3D84900D8EA3D /* EC2WatchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */; };
 		26DD163E1DFB04120010E5FC /* EC2InputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD163D1DFB04120010E5FC /* EC2InputParser.swift */; };
@@ -222,6 +222,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1100E3A21E72901E003B62B2 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		113D7F161E220A45009A2801 /* Google.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Google.storyboard; path = ../vmwatch/Google.storyboard; sourceTree = "<group>"; };
 		17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		261E81181DB56092009A8FD9 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -398,7 +399,6 @@
 		26A6228E1D85DFA5003DD48E /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		26A754881D9823F500FB7CC1 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = vmwatch/Alert.swift; sourceTree = SOURCE_ROOT; };
 		26ADF1AE1DCF3026005ED225 /* EC2HistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC2HistoryStorage.swift; sourceTree = "<group>"; };
-		26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageTableViewController.swift; sourceTree = "<group>"; };
 		26B8DFFE1DB3E597009FC47D /* EC2JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC2JSONParser.swift; sourceTree = "<group>"; };
 		26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2WatchResultViewController.swift; path = vmwatch/EC2WatchResultViewController.swift; sourceTree = SOURCE_ROOT; };
 		26DD163D1DFB04120010E5FC /* EC2InputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2InputParser.swift; path = vmwatch/EC2InputParser.swift; sourceTree = SOURCE_ROOT; };
@@ -787,7 +787,7 @@
 			children = (
 				26A622731D8500B6003DD48E /* Account Menu */,
 				264587E81D81F0B3008B0B8D /* InfoPageNavViewController.swift */,
-				26AF3A9C1D84E9D9003B8389 /* InfoPageTableViewController.swift */,
+				1100E3A21E72901E003B62B2 /* InfoPageViewController.swift */,
 			);
 			name = "Info Page";
 			sourceTree = "<group>";
@@ -1382,6 +1382,7 @@
 				26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */,
 				261E821E1DB56092009A8FD9 /* ChevronDownShapeRenderer.swift in Sources */,
 				267CCB341D99B44600347E4C /* DKImagePickerControllerDefaultUIDelegate.swift in Sources */,
+				1100E3A31E72901E003B62B2 /* InfoPageViewController.swift in Sources */,
 				261E82021DB56092009A8FD9 /* BarLineScatterCandleBubbleChartDataProvider.swift in Sources */,
 				261E81FB1DB56092009A8FD9 /* HorizontalBarHighlighter.swift in Sources */,
 				261E81C71DB56092009A8FD9 /* YAxis.swift in Sources */,
@@ -1391,7 +1392,6 @@
 				267CCB2C1D99B44600347E4C /* DKCamera.swift in Sources */,
 				261E81DE1DB56092009A8FD9 /* PieChartDataEntry.swift in Sources */,
 				261E81F71DB56092009A8FD9 /* BarHighlighter.swift in Sources */,
-				26AF3A9D1D84E9D9003B8389 /* InfoPageTableViewController.swift in Sources */,
 				261E81D51DB56092009A8FD9 /* ChartDataEntry.swift in Sources */,
 				26879F6C1DEB2513008EA698 /* NewPageNavViewController.swift in Sources */,
 				D66272011E7106C0001F4EF1 /* ValidationPageViewController.swift in Sources */,
