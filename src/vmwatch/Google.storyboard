@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Google Input View Controller-->
+        <!--Google Cloud Compute-->
         <scene sceneID="TAf-kb-Wpq">
             <objects>
                 <viewController id="Gft-J1-txK" customClass="GoogleInputViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rJz-Nn-t4T"/>
+                    <navigationItem key="navigationItem" title="Google Cloud Compute" id="rJz-Nn-t4T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scF-D4-oBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

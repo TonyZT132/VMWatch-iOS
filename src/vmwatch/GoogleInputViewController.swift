@@ -63,6 +63,7 @@ public class GoogleInputViewController: UIViewController {
     }
     
     private func set_view() {
+        self.navigationController?.navigationBar.clipsToBounds = true
         let imageView   = UIImageView(frame: self.view.bounds);
         imageView.image = UIImage(named: "background")!
         self.view.addSubview(imageView)

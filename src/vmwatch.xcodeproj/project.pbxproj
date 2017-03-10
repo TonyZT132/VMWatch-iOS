@@ -222,7 +222,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		113D7F161E220A45009A2801 /* Google.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Google.storyboard; path = vmwatch/Google.storyboard; sourceTree = SOURCE_ROOT; };
+		113D7F161E220A45009A2801 /* Google.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Google.storyboard; path = ../vmwatch/Google.storyboard; sourceTree = "<group>"; };
 		17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		261E81181DB56092009A8FD9 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		261E81191DB56092009A8FD9 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
