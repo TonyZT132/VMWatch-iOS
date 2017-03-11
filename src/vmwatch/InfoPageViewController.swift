@@ -137,7 +137,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     
     func setupClearHistoryButton() {
         butLogin = UIButton(frame: CGRect(x: 0, y: loginView.bounds.height*0.6, width: loginView.frame.width, height: 40))
-        butLogin.backgroundColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8)
+        butLogin.backgroundColor = UIColor(red: 0 / 255, green: 146 / 255, blue: 206 / 255, alpha: 0.8)
         butLogin.setTitle("Clear History", for: .normal)
         butLogin.addTarget(self, action: #selector(doDeleteHistory), for: .touchUpInside)
         butLogin.layer.cornerRadius = butLogin.frame.height * 0.5
@@ -148,7 +148,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     
     func setupLogoutButton() {
         butLogout = UIButton(frame: CGRect(x: 0, y: butLogin.frame.maxY+20, width: loginView.frame.width, height: 40))
-        butLogout.backgroundColor = UIColor.red
+        butLogout.backgroundColor = UIColor(red: 220 / 255, green: 60 / 255, blue: 34 / 255, alpha: 0.8)
         butLogout.setTitle("Log Out", for: .normal)
         butLogout.addTarget(self, action: #selector(doLogout), for: .touchUpInside)
         butLogout.layer.cornerRadius = butLogout.frame.height * 0.5
@@ -160,7 +160,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     func setupName(name: String){
         let name_y : CGFloat = self.view.bounds.height * 0.05 + self.view.bounds.width * 0.3 + 10
         userName = UILabel(frame: CGRect(x: 0 , y: name_y, width: self.view.bounds.width, height: 30))
-        userName.textColor = UIColor.white
+        userName.textColor =  UIColor(red: 239 / 255, green: 239 / 255, blue: 245 / 255, alpha: 0.8)
         userName.attributedText = NSAttributedString(string: name)
         userName.textAlignment = NSTextAlignment.center
         view.addSubview(userName)
@@ -168,18 +168,18 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     
     func setupPhoneNumber(phone: String){
         phoneNumber = UILabel(frame:CGRect(x: 0 , y: 0, width: loginView.bounds.width, height: 30))
-        phoneNumber.textColor = UIColor.white
+        phoneNumber.textColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         phoneNumber.attributedText = NSAttributedString(string: "Phone Number:")
         loginView.addSubview(phoneNumber)
         //add buttom boarder for text field
         bottomTxtPhoneView = UIView(frame: CGRect(x: phoneNumber.frame.minX, y: phoneNumber.frame.maxY + 5, width: loginView.frame.width, height: 1))
-        bottomTxtPhoneView.backgroundColor = .white
+        bottomTxtPhoneView.backgroundColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         bottomTxtPhoneView.alpha = 0.5
         loginView.addSubview(bottomTxtPhoneView)
         //add number to the right hand side
         phoneNumberRightHand = UILabel(frame:CGRect(x: 0 , y: 0, width: loginView.bounds.width, height: 30))
         phoneNumberRightHand.textAlignment = NSTextAlignment.right
-        phoneNumberRightHand.textColor = UIColor.white
+        phoneNumberRightHand.textColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 245 / 255, alpha: 0.8)
         phoneNumberRightHand.attributedText = NSAttributedString(string: phone)
         loginView.addSubview(phoneNumberRightHand)
         
@@ -187,36 +187,36 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     
     func setupLocalVM(){
         localVM = UILabel(frame:CGRect(x: 0 , y: 40, width: loginView.bounds.width, height: 30))
-        localVM.textColor = UIColor.white
+        localVM.textColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         localVM.attributedText = NSAttributedString(string: "Number of VM on Local:")
         loginView.addSubview(localVM)
         //add buttom boarder for text field
         bottomVMView = UIView(frame: CGRect(x: localVM.frame.minX, y: localVM.frame.maxY + 5, width: loginView.frame.width, height: 1))
-        bottomVMView.backgroundColor = .white
+        bottomVMView.backgroundColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         bottomVMView.alpha = 0.5
         loginView.addSubview(bottomVMView)
         //add number to the right hand side
         localVMNumber = UILabel(frame:CGRect(x: 0 , y: 40, width: loginView.bounds.width, height: 30))
         localVMNumber.textAlignment = NSTextAlignment.right
-        localVMNumber.textColor = UIColor.white
+        localVMNumber.textColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 245 / 255, alpha: 0.8)
         localVMNumber.attributedText = NSAttributedString(string: "3")
         loginView.addSubview(localVMNumber)
     }
     
     func setupServerVM(){
         serverVM = UILabel(frame:CGRect(x: 0 , y: localVM.frame.maxY + 10, width: loginView.bounds.width, height: 30))
-        serverVM.textColor = UIColor.white
+        serverVM.textColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         serverVM.attributedText = NSAttributedString(string: "Number of VM on Server:")
         loginView.addSubview(serverVM)
         //add buttom boarder for text field
         bottomVMServerView = UIView(frame: CGRect(x: serverVM.frame.minX, y: serverVM.frame.maxY + 5, width: loginView.frame.width, height: 1))
-        bottomVMServerView.backgroundColor = .white
+        bottomVMServerView.backgroundColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         bottomVMServerView.alpha = 0.5
         loginView.addSubview(bottomVMServerView)
         //add number to the right hand side
         serverVMNumber = UILabel(frame:CGRect(x: 0 , y: localVM.frame.maxY + 10, width: loginView.bounds.width, height: 30))
         serverVMNumber.textAlignment = NSTextAlignment.right
-        serverVMNumber.textColor = UIColor.white
+        serverVMNumber.textColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 245 / 255, alpha: 0.8)
         serverVMNumber.attributedText = NSAttributedString(string: "1")
         loginView.addSubview(serverVMNumber)
     }

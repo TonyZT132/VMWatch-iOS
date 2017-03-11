@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         
         /*Set up Navigation bar*/
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0, green: 104.0/255.0, blue: 139.0/255.0, alpha:1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 39/255, green: 57/255, blue: 74/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.window?.makeKeyAndVisible()
