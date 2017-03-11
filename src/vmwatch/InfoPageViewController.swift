@@ -187,7 +187,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
         
     }
     
-    func setupLocalVM(){
+    func setupLocalVM() {
         localVM = UILabel(frame:CGRect(x: 0 , y: 40, width: loginView.bounds.width, height: 30))
         localVM.textColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         localVM.attributedText = NSAttributedString(string: "Number of VM on Local:")
@@ -204,6 +204,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
         let number_in_local = countServiceInLocal()
         localVMNumber.attributedText = NSAttributedString(string: number_in_local)
         loginView.addSubview(localVMNumber)
+  
     }
     
     func setupServerVM(){
@@ -380,6 +381,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
                     } catch {
                         NSLog("Error ocuured when clear the database")
                     }
+                    self.viewWillAppear(false)
             },
                 handlerTwo: {() -> Void in
                     return
@@ -389,7 +391,6 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
             completion: nil
         )
         // update on time
-        self.setupLocalVM()
     }
     
     func countServiceInLocal() -> String{
