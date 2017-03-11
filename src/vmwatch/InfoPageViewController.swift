@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 public class InfoPageViewController: UIViewController,RSKImageCropViewControllerDelegate {
     
@@ -199,7 +201,8 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
         localVMNumber = UILabel(frame:CGRect(x: 0 , y: 40, width: loginView.bounds.width, height: 30))
         localVMNumber.textAlignment = NSTextAlignment.right
         localVMNumber.textColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 245 / 255, alpha: 0.8)
-        localVMNumber.attributedText = NSAttributedString(string: "3")
+        let number_in_local = countServiceInLocal()
+        localVMNumber.attributedText = NSAttributedString(string: number_in_local)
         loginView.addSubview(localVMNumber)
     }
     
@@ -337,6 +340,10 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
                     )
                 }
             })
+            self.userImg = UIImage(data:imageData!)
+            setupProfileImg(img_name: userImg!)
+            
+            
         }else{
             indicator.dismiss()
             self.present(
@@ -361,6 +368,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
                 handlerOne: {() -> Void in
                     do{
                         try VMWEC2HistoryStorage().clearHistory()
+                        try GoogleHistoryStorage().clearHistory()
                         self.present(
                             self.alert.showAlertWithOneButton(
                                 title: "Success",
@@ -368,8 +376,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
                                 actionButton: "OK"
                             ),
                             animated: true,
-                            completion: nil
-                        )
+                            completion: nil                        )
                     } catch {
                         NSLog("Error ocuured when clear the database")
                     }
@@ -381,7 +388,35 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
             animated: true,
             completion: nil
         )
+        // update on time
+        self.setupLocalVM()
+    }
+    
+    func countServiceInLocal() -> String{
         
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var google_count = 0
+        var aws_count = 0
+        do{
+            let google_fetchRequest: NSFetchRequest<History_Google> = History_Google.fetchRequest()
+            let google_searchResults = try context.fetch(google_fetchRequest)
+            google_count = google_searchResults.count
+        }catch let error as NSError {
+            NSLog("Error with request: \(error)")
+        }
+        
+        do{
+            let aws_fetchRequest: NSFetchRequest<History_EC2> = History_EC2.fetchRequest()
+            let aws_searchResults = try context.fetch(aws_fetchRequest)
+            aws_count = aws_searchResults.count
+        }catch let error as NSError {
+            NSLog("Error with request: \(error)")
+        }
+        
+        let total_num = google_count + aws_count
+        let totalNumberInString = String(total_num)
+        
+        return totalNumberInString
     }
     
     //MARK: Image cropper delegate
@@ -401,4 +436,4 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     
     
     
-}
+};
