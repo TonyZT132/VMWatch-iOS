@@ -10,9 +10,9 @@ import UIKit
 
 class TabBarViewController: CYLTabBarController {
     
-    let tabTitle = ["New","Info"]
-    let selectedImage = ["new_selected","info_selected"]
-    let image = ["new","info"]
+    let tabTitle = ["Home","New","Info"]
+    let selectedImage = ["home_selected","new_selected","info_selected"]
+    let image = ["home","new","info"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,11 @@ class TabBarViewController: CYLTabBarController {
         /*Set up View Controllers*/
         let new : NewPageNavViewController = storyboard.instantiateViewController(withIdentifier: "newNav") as! NewPageNavViewController
         let info : InfoPageNavViewController = storyboard.instantiateViewController(withIdentifier: "infoNav") as! InfoPageNavViewController
+        let home : HomePageNavViewController = storyboard.instantiateViewController(withIdentifier: "homeNav") as! HomePageNavViewController
         
         /*Create Tab Bar Items Array*/
         var tabBarItemsAttributes: [[AnyHashable:Any]] = []
-        let viewControllers:[UIViewController] = [new,info]
+        let viewControllers:[UIViewController] = [home,new,info]
         
         for i in 0 ..< tabTitle.count {
             let dict: [NSObject : AnyObject] = [

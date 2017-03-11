@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1100E3A31E72901E003B62B2 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100E3A21E72901E003B62B2 /* InfoPageViewController.swift */; };
+		1100E3A81E739058003B62B2 /* HomePageNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100E3A71E739058003B62B2 /* HomePageNavViewController.swift */; };
+		1100E3AA1E73907B003B62B2 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100E3A91E73907B003B62B2 /* HomePageViewController.swift */; };
 		113D7F171E220A45009A2801 /* Google.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113D7F161E220A45009A2801 /* Google.storyboard */; };
 		261E81AF1DB56092009A8FD9 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E81181DB56092009A8FD9 /* Animator.swift */; };
 		261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261E81191DB56092009A8FD9 /* ChartAnimationEasing.swift */; };
@@ -223,6 +225,8 @@
 
 /* Begin PBXFileReference section */
 		1100E3A21E72901E003B62B2 /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
+		1100E3A71E739058003B62B2 /* HomePageNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNavViewController.swift; sourceTree = "<group>"; };
+		1100E3A91E73907B003B62B2 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		113D7F161E220A45009A2801 /* Google.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Google.storyboard; path = ../vmwatch/Google.storyboard; sourceTree = "<group>"; };
 		17C807D5AD95B494FD2DC4F9 /* Pods-VMWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMWatch/Pods-VMWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		261E81181DB56092009A8FD9 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -457,6 +461,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1100E3A41E738FE3003B62B2 /* Home Page */ = {
+			isa = PBXGroup;
+			children = (
+				1100E3A71E739058003B62B2 /* HomePageNavViewController.swift */,
+				1100E3A91E73907B003B62B2 /* HomePageViewController.swift */,
+			);
+			name = "Home Page";
+			sourceTree = "<group>";
+		};
 		113D7F181E220A7D009A2801 /* Google */ = {
 			isa = PBXGroup;
 			children = (
@@ -942,6 +955,7 @@
 		26A6228D1D8586D3003DD48E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1100E3A41E738FE3003B62B2 /* Home Page */,
 				266E129A1E009FF1005836F0 /* OCR Camera */,
 				264587DA1D81DAAF008B0B8D /* Tab Bar */,
 				264587E01D81EF85008B0B8D /* New Page */,
@@ -1371,6 +1385,7 @@
 				261E82181DB56092009A8FD9 /* LineChartRenderer.swift in Sources */,
 				261E81E51DB56092009A8FD9 /* IBarChartDataSet.swift in Sources */,
 				26DD163E1DFB04120010E5FC /* EC2InputParser.swift in Sources */,
+				1100E3A81E739058003B62B2 /* HomePageNavViewController.swift in Sources */,
 				261E81C01DB56092009A8FD9 /* Description.swift in Sources */,
 				261E81FE1DB56092009A8FD9 /* PieRadarHighlighter.swift in Sources */,
 				261E82041DB56092009A8FD9 /* CandleChartDataProvider.swift in Sources */,
@@ -1433,6 +1448,7 @@
 				261E81E61DB56092009A8FD9 /* IBarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				261E81CD1DB56092009A8FD9 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				261E821B1DB56092009A8FD9 /* PieChartRenderer.swift in Sources */,
+				1100E3AA1E73907B003B62B2 /* HomePageViewController.swift in Sources */,
 				261E81B21DB56092009A8FD9 /* BarLineChartViewBase.swift in Sources */,
 				261E81D31DB56092009A8FD9 /* CandleChartDataSet.swift in Sources */,
 				261E81E81DB56092009A8FD9 /* ICandleChartDataSet.swift in Sources */,

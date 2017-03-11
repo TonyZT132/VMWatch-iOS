@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rck-EK-1xM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SW6-F6-6ew">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--New-->
+        <!--Cloud Service-->
         <scene sceneID="aaW-JQ-Mhy">
             <objects>
                 <viewController id="9ry-7V-IqU" customClass="NewPageViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New" id="vPO-aY-9yO"/>
+                    <navigationItem key="navigationItem" title="Cloud Service" id="vPO-aY-9yO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-f8-6Ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,6 +140,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pW1-VI-m1T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4094" y="2513"/>
+        </scene>
+        <!--Home Page Nav View Controller-->
+        <scene sceneID="2zo-jW-urX">
+            <objects>
+                <navigationController storyboardIdentifier="homeNav" id="SW6-F6-6ew" customClass="HomePageNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sqc-7G-PJJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GyA-PY-64d" kind="relationship" relationship="rootViewController" id="lws-MZ-b1w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MK9-YG-ra1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4319" y="964"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="hmE-Oj-k46">
+            <objects>
+                <viewController storyboardIdentifier="homePage" id="GyA-PY-64d" customClass="HomePageViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lvf-C4-t0a"/>
+                        <viewControllerLayoutGuide type="bottom" id="AR1-rp-fXn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BQX-AV-53v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="rlL-Ek-yv2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jJV-B8-xcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3478" y="964"/>
         </scene>
         <!--New Page Nav View Controller-->
         <scene sceneID="X7T-vn-Igm">
