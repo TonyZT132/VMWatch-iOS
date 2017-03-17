@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SW6-F6-6ew">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ejv-lU-muE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-f8-6Ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1284" y="922.48875562218893"/>
+            <point key="canvasLocation" x="-344.80000000000001" y="922.48875562218893"/>
         </scene>
         <!--Info Page View Controller-->
         <scene sceneID="obX-WN-6gE">
@@ -63,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4Y-fA-BWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39" y="922"/>
+            <point key="canvasLocation" x="900" y="921.58920539730138"/>
         </scene>
         <!--Account Menu View Controller-->
         <scene sceneID="9xA-J6-BQM">
@@ -76,7 +76,7 @@
                     <view key="view" contentMode="scaleToFill" id="0jp-kf-gEa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vne-CB-gC4"/>
                 </viewController>
@@ -141,40 +141,35 @@
             </objects>
             <point key="canvasLocation" x="4094" y="2513"/>
         </scene>
-        <!--Home Page Nav View Controller-->
-        <scene sceneID="2zo-jW-urX">
-            <objects>
-                <navigationController storyboardIdentifier="homeNav" id="SW6-F6-6ew" customClass="HomePageNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sqc-7G-PJJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="GyA-PY-64d" kind="relationship" relationship="rootViewController" id="lws-MZ-b1w"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MK9-YG-ra1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4319" y="964"/>
-        </scene>
         <!--Home-->
-        <scene sceneID="hmE-Oj-k46">
+        <scene sceneID="0EU-L6-cbx">
             <objects>
-                <viewController storyboardIdentifier="homePage" id="GyA-PY-64d" customClass="HomePageViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homePage" id="sXr-NR-DkK" customClass="HomePageViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Lvf-C4-t0a"/>
-                        <viewControllerLayoutGuide type="bottom" id="AR1-rp-fXn"/>
+                        <viewControllerLayoutGuide type="top" id="Bxj-03-6wT"/>
+                        <viewControllerLayoutGuide type="bottom" id="W5q-1u-aqC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BQX-AV-53v">
+                    <view key="view" contentMode="scaleToFill" id="fO2-IQ-yUa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-Xe-4mu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fEU-Xe-4mu" secondAttribute="trailing" id="Fhm-gM-7k4"/>
+                            <constraint firstItem="fEU-Xe-4mu" firstAttribute="bottom" secondItem="W5q-1u-aqC" secondAttribute="top" id="IBU-q7-BgM"/>
+                            <constraint firstItem="fEU-Xe-4mu" firstAttribute="leading" secondItem="fO2-IQ-yUa" secondAttribute="leading" id="IgP-p4-Wal"/>
+                            <constraint firstItem="fEU-Xe-4mu" firstAttribute="top" secondItem="fO2-IQ-yUa" secondAttribute="top" id="rhr-tg-GDP"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="rlL-Ek-yv2"/>
+                    <navigationItem key="navigationItem" title="Home" id="Gw8-yn-y1n"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jJV-B8-xcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tEk-Lr-nRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3478" y="964"/>
+            <point key="canvasLocation" x="-2868" y="867.61619190404804"/>
         </scene>
         <!--New Page Nav View Controller-->
         <scene sceneID="X7T-vn-Igm">
@@ -192,7 +187,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VM1-ya-oYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2223" y="923"/>
+            <point key="canvasLocation" x="-1284" y="922.48875562218893"/>
         </scene>
         <!--Info Page Nav View Controller-->
         <scene sceneID="sZv-TS-Lev">
@@ -266,5 +261,26 @@
             </objects>
             <point key="canvasLocation" x="3041" y="2513"/>
         </scene>
+        <!--Home Page Nav View Controller-->
+        <scene sceneID="fg0-5K-uIx">
+            <objects>
+                <navigationController storyboardIdentifier="homeNav" automaticallyAdjustsScrollViewInsets="NO" id="Ejv-lU-muE" customClass="HomePageNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yze-uk-BBO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sXr-NR-DkK" kind="relationship" relationship="rootViewController" id="hOP-KE-nWG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9QL-Qg-DMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3807.1999999999998" y="867.61619190404804"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="background" width="750" height="1334"/>
+    </resources>
 </document>
