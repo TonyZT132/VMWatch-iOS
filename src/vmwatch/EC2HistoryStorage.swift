@@ -45,7 +45,7 @@ internal class VMWEC2HistoryStorage {
                 dict["access_id"] = trans.value(forKey: "access_id") as! String
                 dict["access_key"] = trans.value(forKey: "access_key") as! String
                 dict["instance_id"] = trans.value(forKey: "instance_id") as! String
-                dict["date"] = trans.value(forKey: "access_id") as! Date                
+                dict["date"] = trans.value(forKey: "date") as! Date
                 resultArr.add(dict)
             }
             return resultArr
