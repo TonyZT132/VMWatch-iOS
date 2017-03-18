@@ -86,7 +86,7 @@ public class ValidationPageViewController: UIViewController {
         let title_width: CGFloat = self.view.bounds.width * 0.8
         let title_height: CGFloat = 40
         let textView = UILabel(frame: CGRect(x: title_x, y: title_y, width: title_width, height: title_height))
-        textView.text = "PHONE VALIDATION"
+        textView.text = "VALIDATION"
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor(white: 1, alpha: 0)
@@ -201,6 +201,7 @@ public class ValidationPageViewController: UIViewController {
                         completion: nil
                     )
                 }else{
+                    self.resetTimer()
                     self.present(
                         self.alert.showAlertWithOneButton(
                             title: "Failed",
@@ -263,18 +264,18 @@ public class ValidationPageViewController: UIViewController {
         
         /*If counter reached 0, show the button again*/
         if(sendValidationCodeCountingRange == 0){
-            sendValidationCodeTimer.invalidate()
-            sendValidationCodeCountingRange = 40
-            self.butSendCode.setTitle("Resend Code", for:.normal)
-            self.butSendCode.isEnabled = true
-            countLabel.isHidden = true
-            butSendCode.isHidden = false
+            resetTimer()
         }
     }
     
-
-    
-    
+    func resetTimer(){
+        sendValidationCodeTimer.invalidate()
+        sendValidationCodeCountingRange = 40
+        self.butSendCode.setTitle("Send Code", for:.normal)
+        self.butSendCode.isEnabled = true
+        countLabel.isHidden = true
+        butSendCode.isHidden = false
+    }
     
     func validateTapped(_ sender: AnyObject) {
         do{
