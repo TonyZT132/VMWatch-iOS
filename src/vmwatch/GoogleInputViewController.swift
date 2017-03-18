@@ -92,21 +92,26 @@ public class GoogleInputViewController: UIViewController {
         view.addSubview(logoView)
     }
 
-    func setInputTxtField (y: CGFloat,txt: String) -> UITextField{
+    func setInputTxtField (y: CGFloat,txt: String) -> UITextField {
         let x: CGFloat = self.view.bounds.width * 0.05
         let width: CGFloat = self.view.bounds.width * 0.9
         let txtField = UITextField(frame: CGRect(x: x, y: y, width: width, height: 30))
         txtField.returnKeyType = .next
         txtField.textColor = UIColor.white
         txtField.attributedPlaceholder = NSAttributedString(string: txt, attributes: [NSForegroundColorAttributeName: UIColor(red: 196, green: 195, blue: 212, alpha: 1)])
+
+        let border = CALayer()
+        let widthBoarder = CGFloat(1.0)
+        border.borderColor = UIColor.white.cgColor
+        border.frame = CGRect(x: 0, y: txtField.frame.size.height - widthBoarder, width:  txtField.frame.size.width, height: txtField.frame.size.height)
+        border.borderWidth = widthBoarder
+        txtField.layer.addSublayer(border)
+        txtField.layer.masksToBounds = true
+        
         view.addSubview(txtField)
-        //add buttom boarder for text field
-        let bottomTxtFieldView = UIView(frame: CGRect(x: txtField.frame.minX, y: txtField.frame.maxY + 3, width: width, height: 1))
-        bottomTxtFieldView.backgroundColor = .white
-        bottomTxtFieldView.alpha = 0.5
-        view.addSubview(bottomTxtFieldView)
         return txtField
     }
+    
     func setupSubmitButton() {
         butSubmit = UIButton(frame: CGRect(x: self.view.bounds.width * 0.05, y: txtInstanceID.frame.maxY + 30, width: self.view.bounds.width * 0.9, height: 40))
         butSubmit.backgroundColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8)

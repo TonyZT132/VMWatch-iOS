@@ -217,16 +217,21 @@ class NewEC2WatchTableViewController: UITableViewController {
     @IBAction func startOCR(_ sender: Any) {
         
     }
-}
-
-extension String {
-    func sha1() -> String {
-        let data = self.data(using: String.Encoding.utf8)!
-        var digest = [UInt8](repeating: 0, count:Int(CC_SHA1_DIGEST_LENGTH))
-        data.withUnsafeBytes {
-            _ = CC_SHA1($0, CC_LONG(data.count), &digest)
-        }
-        let hexBytes = digest.map { String(format: "%02hhx", $0) }
-        return hexBytes.joined()
+    
+    func setInputTxtField (y: CGFloat,txt: String) -> UITextField {
+        let x: CGFloat = self.view.bounds.width * 0.05
+        let width: CGFloat = self.view.bounds.width * 0.9
+        let txtField = UITextField(frame: CGRect(x: x, y: y, width: width, height: 30))
+        txtField.returnKeyType = .next
+        txtField.textColor = UIColor.white
+        txtField.attributedPlaceholder = NSAttributedString(string: txt, attributes: [NSForegroundColorAttributeName: UIColor(red: 196, green: 195, blue: 212, alpha: 1)])
+        view.addSubview(txtField)
+        
+        //add buttom boarder for text field
+        let bottomTxtFieldView = UIView(frame: CGRect(x: txtField.frame.minX, y: txtField.frame.maxY + 3, width: width, height: 1))
+        bottomTxtFieldView.backgroundColor = .white
+        bottomTxtFieldView.alpha = 0.5
+        view.addSubview(bottomTxtFieldView)
+        return txtField
     }
 }

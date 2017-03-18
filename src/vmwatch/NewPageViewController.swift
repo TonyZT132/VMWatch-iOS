@@ -34,23 +34,39 @@ class NewPageViewController: UIViewController {
     }
     
     private func loadPage(){
-        do{
-            let serviceRequest = try PFCloud.callFunction("serviceRequest", withParameters: [:])
-            let jsonParser = VMWServiceJSONParser(inputData: serviceRequest)
-            SERVICE =  try jsonParser.parse()
-            self.set_view()
-        } catch {
-            self.present(
-                self.alert.showAlertWithOneButton(
-                    title: "Failed",
-                    message: "Could not get service",
-                    actionButton: "OK"
-                ),
-                animated: true,
-                completion: nil
-            )
+        indicator.showWithMessage(context: "Requsting")
+        PFCloud.callFunction(inBackground: "serviceRequest", withParameters: [:]) { (response, error) in
+            indicator.dismiss()
+            if(error == nil){
+                do{
+                    let jsonParser = VMWServiceJSONParser(inputData: response)
+                    SERVICE =  try jsonParser.parse()
+                    self.set_view()
+                }catch {
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Failed",
+                            message: "Could not get service",
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
+                }
+            }else{
+                self.present(
+                    self.alert.showAlertWithOneButton(
+                        title: "Failed",
+                        message: "Could not get service",
+                        actionButton: "OK"
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
         }
     }
+    
     private func set_view(){
         //set background
         let imageView   = UIImageView(frame: self.view.bounds);
@@ -79,7 +95,7 @@ class NewPageViewController: UIViewController {
             selectionButton.addTarget(self, action: #selector(self.buttonSelected(sender:)), for: .touchUpInside)
             selectionButton.clipsToBounds = true
             let logo = UIImage(named: dict["icon"] as! String)
-            let logoView = UIImageView(frame: selectionButton.bounds)
+            let logoView = UIImageView(frame: CGRect(x: 20, y: 10, width: width - 40, height: height - 20))
             logoView.image = logo
             logoView.contentMode = UIViewContentMode.scaleAspectFit
             selectionButton.addSubview(logoView)
@@ -96,7 +112,7 @@ class NewPageViewController: UIViewController {
         if(avaliability == true){
             switch sender.tag {
             case 0:
-                let ec2Setup : NewEC2WatchTableViewController = EC2View.instantiateViewController(withIdentifier: "ec2setup") as! NewEC2WatchTableViewController
+                let ec2Setup : NewEC2WatchViewController = EC2View.instantiateViewController(withIdentifier: "ec2setup") as! NewEC2WatchViewController
                 ec2Setup.hidesBottomBarWhenPushed = true
                 self.navigationController!.navigationBar.tintColor = UIColor.white
                 self.navigationController?.pushViewController(ec2Setup, animated: true)
