@@ -121,7 +121,7 @@ class NewEC2WatchTableViewController: UITableViewController {
                     self.navigationController!.navigationBar.tintColor = UIColor.white
                     self.navigationController?.pushViewController(ec2Result, animated: true)
                 }else{
-                    print(error)
+                    print(error!)
                     self.present(
                         self.alert.showAlertWithOneButton(
                             title: "Error",

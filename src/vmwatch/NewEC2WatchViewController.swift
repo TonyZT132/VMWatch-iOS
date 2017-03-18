@@ -10,6 +10,14 @@ import UIKit
 
 class NewEC2WatchViewController: UIViewController {
     
+    var region:String?
+    
+    var txtAccessID: UITextField!
+    var txtAccessKey: UITextField!
+    var txtInstanceID: UITextField!
+    
+    var regionButton: UIButton!
+    
     let WIDTH = UIScreen.main.bounds.width
     let HEIGHT = UIScreen.main.bounds.height
     var scrollView: UIScrollView!
@@ -24,6 +32,9 @@ class NewEC2WatchViewController: UIViewController {
         self.setScrollView()
         self.setLogoView()
         self.setInputList()
+        self.setRegionSelection()
+        self.setStorePreference()
+        self.setSubmitButton()
 
         scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
         // Do any additional setup after loading the view.
@@ -55,16 +66,15 @@ class NewEC2WatchViewController: UIViewController {
     }
     
     private func setInputList(){
-        
-        let txtAccessID = setInputTxtField(y: scrollViewHeight + 20,txt: "Access ID")
+        txtAccessID = setInputTxtField(y: scrollViewHeight + 20,txt: "Access ID")
         scrollView.addSubview(txtAccessID)
         scrollViewHeight += 20 + txtAccessID.frame.height
         
-        let txtAccessKey = setInputTxtField(y: scrollViewHeight + 20,txt: "Access Key")
+        txtAccessKey = setInputTxtField(y: scrollViewHeight + 20,txt: "Access Key")
         scrollView.addSubview(txtAccessKey)
         scrollViewHeight += 20 + txtAccessKey.frame.height
         
-        let txtInstanceID = setInputTxtField(y: scrollViewHeight + 20,txt: "Instance ID")
+        txtInstanceID = setInputTxtField(y: scrollViewHeight + 20,txt: "Instance ID")
         scrollView.addSubview(txtInstanceID)
         scrollViewHeight += 20 + txtInstanceID.frame.height
     }
@@ -90,15 +100,102 @@ class NewEC2WatchViewController: UIViewController {
         return txtField
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func setRegionSelection(){
+        let x: CGFloat = self.view.bounds.width * 0.05
+        let width: CGFloat = self.view.bounds.width * 0.9
+        
+        regionButton = UIButton(frame: CGRect(x:x , y: scrollViewHeight + 25, width: width, height: 40))
+        regionButton.setTitle("   Please select region", for: .normal)
+        regionButton.contentHorizontalAlignment = .left
+        regionButton.layer.borderWidth = 1
+        regionButton.layer.borderColor = UIColor.white.cgColor
+        regionButton.layer.cornerRadius = 5
+        regionButton.clipsToBounds = true
+        regionButton.titleLabel?.font = regionButton.titleLabel?.font.withSize(16)
+        regionButton.addTarget(self, action: #selector(self.selectRegion(sender:)), for: .touchUpInside)
+        
+        scrollViewHeight += 25 + regionButton.frame.height
+        scrollView.addSubview(regionButton)
     }
-    */
-
+    
+    @objc private func selectRegion (sender: UIButton!) {
+        /*Setup alert for photo selection type menu (take photo or choose existing photo)*/
+        let optionMenu = UIAlertController(title: nil, message: "Please select region", preferredStyle: .actionSheet)
+        
+        /*Setup the photo picker*/
+        let USEast = UIAlertAction(title: "US East (N. Virginia)", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.region = "us-east-1"
+            self.regionButton.setTitle("   us-east-1", for: .normal)
+            return
+        })
+        
+        let USWestOne = UIAlertAction(title: "US West (N. California)", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.region = "us-west-1"
+            self.regionButton.setTitle("   us-west-1", for: .normal)
+            return
+        })
+        
+        let USWestTwo = UIAlertAction(title: "US West (Oregon)", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.region = "us-west-2"
+            self.regionButton.setTitle("   us-west-2", for: .normal)
+            return
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.region = nil
+            self.regionButton.setTitle("   Please select region", for: .normal)
+            return
+        })
+        
+        /*Add all actions*/
+        optionMenu.addAction(USEast)
+        optionMenu.addAction(USWestOne)
+        optionMenu.addAction(USWestTwo)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
+    private func setStorePreference(){
+        if(PFUser.current() != nil){
+            let x: CGFloat = self.view.bounds.width * 0.05
+            let width: CGFloat = self.view.bounds.width * 0.9
+            let view = UIView(frame: CGRect(x:x , y: scrollViewHeight + 15, width: width, height: 45))
+            
+            let pSwitch = UISwitch(frame: CGRect(x:view.frame.width - 50 , y: 5, width: 30, height: 10))
+            view.addSubview(pSwitch)
+            
+            let label = UILabel(frame: CGRect(x:0 , y: 10, width: view.frame.width - 25 - pSwitch.frame.width, height: 25))
+            label.font = label.font.withSize(16)
+            label.text = "Store this VM"
+            label.textColor = .white
+            
+            view.addSubview(label)
+            
+            scrollView.addSubview(view)
+            scrollViewHeight += 15 + view.frame.height
+        }
+    }
+    
+    private func setSubmitButton(){
+        let x: CGFloat = self.view.bounds.width * 0.05
+        let width: CGFloat = self.view.bounds.width * 0.9
+        
+        let butSubmit = UIButton(frame: CGRect(x: x, y: scrollViewHeight + 60, width: width, height: 40))
+        butSubmit.backgroundColor = UIColor(red: 1 / 255, green: 61 / 255, blue: 123 / 255, alpha: 0.8)
+        butSubmit.setTitle("Submit", for: .normal)
+        butSubmit.addTarget(self, action: #selector(self.submitTapped), for: .touchUpInside)
+        butSubmit.layer.cornerRadius = butSubmit.frame.height * 0.5
+        butSubmit.layer.borderWidth = 1
+        butSubmit.layer.borderColor = UIColor.clear.cgColor
+        scrollView.addSubview(butSubmit)
+        scrollViewHeight += 60 + butSubmit.frame.height
+    }
+    
+    @objc private func submitTapped (sender: UIButton!){
+        print("Submit")
+    }
 }
