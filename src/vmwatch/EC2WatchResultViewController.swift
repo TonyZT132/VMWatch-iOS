@@ -15,6 +15,8 @@ class EC2WatchResultViewController: UIViewController {
     var instanceID:String?
     let alert = VMWAlertView()
     
+    var storeInstance:Bool! = false
+    
     var cpuUtilizationData:Double!
     var networkInData = NSMutableArray()
     var networkOutData = NSMutableArray()
@@ -67,7 +69,6 @@ class EC2WatchResultViewController: UIViewController {
         }
     }
     
-    
     func drawCPUUtilizationChart(){
         cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: CHART_HEIGHT))
         cpuUtilizationChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
@@ -76,6 +77,11 @@ class EC2WatchResultViewController: UIViewController {
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 10)) { (response, error) in
             if(error == nil){
+                self.storeHistory()
+                if(PFUser.current() != nil && self.storeInstance == true){
+                    self.storeAccessCredential()
+                }
+                
                 do {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.cpuUtilizationData = try jsonParser.getAverageData(category: EC2_AVERAGE)
@@ -291,6 +297,38 @@ class EC2WatchResultViewController: UIViewController {
             "metrics" as NSObject: metrics as AnyObject,
             "range" as NSObject: range as AnyObject
             ] as [NSObject:AnyObject]
+    }
+    
+    func storeHistory(){
+        
+        let history = VMWEC2HistoryStorage()
+        do{
+            try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+            try history.storeEC2History(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
+        } catch VMWEC2CoreDataStorageError.DatabaseStoreError {
+            NSLog("Could not save the history data due to database issue")
+        } catch VMWEC2CoreDataStorageError.DatabaseDeleteError {
+            NSLog("Fail to remove previous history data due to database issue")
+        } catch {
+            NSLog("Unexpected database issue")
+        }
+    }
+    
+    func storeAccessCredential(){
+        let storeParams = [
+            "accessid" as NSObject: self.accessID! as AnyObject,
+            "accesskey" as NSObject: self.accessKey! as AnyObject,
+            "instanceid" as NSObject: self.instanceID! as AnyObject,
+            "region" as NSObject: self.region as AnyObject
+            ] as [NSObject:AnyObject]
+        
+        PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: storeParams) { (response, ec2StoreError) in
+            if(ec2StoreError == nil){
+                NSLog("Instance Stored")
+            }else{
+                NSLog("Store Failed")
+            }
+        }
     }
     
     func setChartView(){

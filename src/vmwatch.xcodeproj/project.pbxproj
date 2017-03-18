@@ -192,7 +192,6 @@
 		26DE7ED61D81D7ED001E3571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DE7ED41D81D7ED001E3571 /* LaunchScreen.storyboard */; };
 		26DE7EE11D81D7ED001E3571 /* VMWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EE01D81D7ED001E3571 /* VMWatchTests.swift */; };
 		26DE7EEC1D81D7EE001E3571 /* VMWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DE7EEB1D81D7EE001E3571 /* VMWatchUITests.swift */; };
-		26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */; };
 		26F789F51DDE4FDE006F4658 /* EC2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F789F41DDE4FDE006F4658 /* EC2.storyboard */; };
 		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
 		D61AFE931E7263A6002AB1F6 /* GoogleInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */; };
@@ -421,7 +420,6 @@
 		26DE7EE71D81D7EE001E3571 /* VMWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VMWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DE7EEB1D81D7EE001E3571 /* VMWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMWatchUITests.swift; sourceTree = "<group>"; };
 		26DE7EED1D81D7EE001E3571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewEC2WatchTableViewController.swift; path = vmwatch/NewEC2WatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		26F789F41DDE4FDE006F4658 /* EC2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EC2.storyboard; path = vmwatch/EC2.storyboard; sourceTree = SOURCE_ROOT; };
 		26F789F81DDE5176006F4658 /* StoryboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardView.swift; sourceTree = "<group>"; };
 		4AE3424657854244CF007638 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1058,7 +1056,6 @@
 		26E040271DB0390B0068A184 /* EC2 */ = {
 			isa = PBXGroup;
 			children = (
-				26E0402C1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift */,
 				26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */,
 				2665B9CD1E7CA8E7004C52D1 /* NewEC2WatchViewController.swift */,
 			);
@@ -1414,7 +1411,6 @@
 				D61AFE951E72738B002AB1F6 /* GoogleNavViewController.swift in Sources */,
 				D66271FF1E6FF15E001F4EF1 /* LoginViewController.swift in Sources */,
 				261E81F31DB56092009A8FD9 /* DefaultValueFormatter.swift in Sources */,
-				26E0402D1DB03A6A0068A184 /* NewEC2WatchTableViewController.swift in Sources */,
 				261E821E1DB56092009A8FD9 /* ChevronDownShapeRenderer.swift in Sources */,
 				267CCB341D99B44600347E4C /* DKImagePickerControllerDefaultUIDelegate.swift in Sources */,
 				1100E3A31E72901E003B62B2 /* InfoPageViewController.swift in Sources */,

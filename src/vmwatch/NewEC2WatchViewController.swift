@@ -15,6 +15,9 @@ class NewEC2WatchViewController: UIViewController {
     var txtAccessID: UITextField!
     var txtAccessKey: UITextField!
     var txtInstanceID: UITextField!
+    var pSwitch: UISwitch!
+    
+    let alert = VMWAlertView()
     
     var regionButton: UIButton!
     
@@ -165,7 +168,7 @@ class NewEC2WatchViewController: UIViewController {
             let width: CGFloat = self.view.bounds.width * 0.9
             let view = UIView(frame: CGRect(x:x , y: scrollViewHeight + 15, width: width, height: 45))
             
-            let pSwitch = UISwitch(frame: CGRect(x:view.frame.width - 50 , y: 5, width: 30, height: 10))
+            pSwitch = UISwitch(frame: CGRect(x:view.frame.width - 50 , y: 5, width: 30, height: 10))
             view.addSubview(pSwitch)
             
             let label = UILabel(frame: CGRect(x:0 , y: 10, width: view.frame.width - 25 - pSwitch.frame.width, height: 25))
@@ -196,6 +199,97 @@ class NewEC2WatchViewController: UIViewController {
     }
     
     @objc private func submitTapped (sender: UIButton!){
-        print("Submit")
+        do{
+            let parser = VMWEC2InputParser()
+            try parser.accessIDParser(input: txtAccessID.text)
+            try parser.secretKeyParser(input: txtAccessKey.text)
+            try parser.instanceIDParser(input: txtInstanceID.text)
+            try parser.regionParser(input: self.region)
+            
+            indicator.showWithMessage(context: "Verifying")
+            PFCloud.callFunction(inBackground: "ec2UserVerification", withParameters: ["accessid": txtAccessID.text!, "accesskey":txtAccessKey.text!]) { (response, error) in
+                
+                indicator.dismiss()
+                if(error == nil){
+                    let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+                    
+                    if(PFUser.current() != nil && self.pSwitch != nil){
+                        if(self.pSwitch.isOn == true){
+                            ec2Result.storeInstance = true
+                        }
+                    }
+    
+                    ec2Result.accessID = self.txtAccessID.text!
+                    ec2Result.accessKey = self.txtAccessKey.text!
+                    ec2Result.instanceID = self.txtInstanceID.text!
+                    ec2Result.region = self.region
+                    ec2Result.hidesBottomBarWhenPushed = true
+                    self.navigationController!.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.pushViewController(ec2Result, animated: true)
+                }else{
+                    print(error!)
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Error",
+                            message: "Invalid Access Credentials",
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
+                }
+            }
+        } catch VMWEC2InputParserError.EmptyAccessKey {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Access ID is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch VMWEC2InputParserError.EmptySecretKey {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Secret key is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch VMWEC2InputParserError.EmptyInstanceID {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Instance ID is empty",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch VMWEC2InputParserError.EmptyRegion {
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Please select a region",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        } catch let error as NSError {
+            NSLog("Error with request: \(error)")
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Unexpected Error",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
+        }
     }
 }
