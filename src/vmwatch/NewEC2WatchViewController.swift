@@ -107,8 +107,8 @@ class NewEC2WatchViewController: UIViewController {
         let width: CGFloat = self.view.bounds.width * 0.9
         
         regionButton = UIButton(frame: CGRect(x:x , y: scrollViewHeight + 25, width: width, height: 40))
-        regionButton.setTitle("   Please select region", for: .normal)
-        regionButton.contentHorizontalAlignment = .left
+        regionButton.setTitle("Please select region", for: .normal)
+        regionButton.contentHorizontalAlignment = .center
         regionButton.layer.borderWidth = 1
         regionButton.layer.borderColor = UIColor.white.cgColor
         regionButton.layer.cornerRadius = 5
@@ -128,28 +128,28 @@ class NewEC2WatchViewController: UIViewController {
         let USEast = UIAlertAction(title: "US East (N. Virginia)", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.region = "us-east-1"
-            self.regionButton.setTitle("   us-east-1", for: .normal)
+            self.regionButton.setTitle("us-east-1", for: .normal)
             return
         })
         
         let USWestOne = UIAlertAction(title: "US West (N. California)", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.region = "us-west-1"
-            self.regionButton.setTitle("   us-west-1", for: .normal)
+            self.regionButton.setTitle("us-west-1", for: .normal)
             return
         })
         
         let USWestTwo = UIAlertAction(title: "US West (Oregon)", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.region = "us-west-2"
-            self.regionButton.setTitle("   us-west-2", for: .normal)
+            self.regionButton.setTitle("us-west-2", for: .normal)
             return
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             self.region = nil
-            self.regionButton.setTitle("   Please select region", for: .normal)
+            self.regionButton.setTitle("Please select region", for: .normal)
             return
         })
         
