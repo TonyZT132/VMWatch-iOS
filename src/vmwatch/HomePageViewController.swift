@@ -41,7 +41,6 @@ class HomePageViewController: UIViewController {
     }
     
     private func setScrollView(){
-        
         let NavBarYPosition:CGFloat = self.navigationController!.navigationBar.frame.maxY;
         let TabBarYPosition:CGFloat = self.tabBarController!.tabBar.frame.minY;
 
@@ -128,7 +127,7 @@ class HomePageViewController: UIViewController {
                 let dateView = UILabel(frame: CGRect(x: 5 + iconView.frame.width + 5, y: 10 + instanceIDView.frame.height + 5, width: VMItem.frame.width - iconView.frame.width - arrowView.frame.width - 40, height: 20) )
                 let accessDate = dict["date"] as! Date
                 let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "YYYY-MM-dd hh:mm a"
+                dateformatter.dateFormat = "YYYY-MM-dd HH:mm"
                 
                 dateView.text = " " + dateformatter.string(from: accessDate)
                 dateView.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)

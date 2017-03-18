@@ -50,9 +50,8 @@ class NewEC2WatchViewController: UIViewController {
     
     private func setScrollView(){
         let NavBarYPosition:CGFloat = self.navigationController!.navigationBar.frame.maxY;
-        let TabBarYPosition:CGFloat = self.tabBarController!.tabBar.frame.minY;
         
-        scrollView = UIScrollView(frame: CGRect(x:0, y: NavBarYPosition, width: WIDTH, height: HEIGHT - NavBarYPosition - (HEIGHT - TabBarYPosition)))
+        scrollView = UIScrollView(frame: CGRect(x:0, y: NavBarYPosition, width: WIDTH, height: HEIGHT - NavBarYPosition))
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.layer.backgroundColor = UIColor.clear.cgColor

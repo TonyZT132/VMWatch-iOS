@@ -32,7 +32,7 @@ class EC2WatchResultViewController: UIViewController {
     
     let WIDTH = UIScreen.main.bounds.width
     let HEIGHT = UIScreen.main.bounds.height
-    let CHART_HEIGHT:CGFloat = 300
+    let CHART_HEIGHT:CGFloat = 260
     
     var scrollViewHeight:CGFloat = 0
     
@@ -44,11 +44,9 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     private func setView(){
-        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width: WIDTH, height: HEIGHT))
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.layer.backgroundColor = UIColor.clear.cgColor
-        self.view.addSubview(scrollView)
+        self.setScrollView()
+        self.setLogoView()
+        self.setInstanceIDView()
         self.drawCPUUtilizationChart()
         self.drawNetworkInChart()
         self.drawNetworkOutChart()
@@ -69,9 +67,50 @@ class EC2WatchResultViewController: UIViewController {
         }
     }
     
+    func setScrollView(){
+        let NavBarYPosition:CGFloat = self.navigationController!.navigationBar.frame.maxY;
+        
+        scrollView = UIScrollView(frame: CGRect(x:0, y: NavBarYPosition, width: WIDTH, height: HEIGHT - NavBarYPosition))
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.layer.backgroundColor = UIColor.clear.cgColor
+        self.view.addSubview(scrollView)
+    }
+    
+    func setLogoView(){
+        scrollViewHeight += 25
+        let logoView = UIView(frame: CGRect(x: 25, y: scrollViewHeight, width: WIDTH - 50, height: 100) )
+        logoView.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        
+        let logo = UIImage(named: "aws-logo")
+        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: logoView.bounds.width, height: logoView.bounds.height))
+        logoImageView.image = logo
+        logoImageView.contentMode = UIViewContentMode.scaleAspectFit
+        logoView.addSubview(logoImageView)
+        
+        scrollView.addSubview(logoView)
+        scrollViewHeight += logoView.frame.height
+    }
+    
+    func setInstanceIDView(){
+        scrollViewHeight += 10
+        let title = UILabel(frame: CGRect(x: 25, y: scrollViewHeight, width: WIDTH - 50, height: 20) )
+        title.text = self.instanceID
+        title.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        title.font = title.font.withSize(12)
+        title.textColor = .white
+        title.textAlignment = .center
+        scrollView.addSubview(title)
+        scrollViewHeight += title.frame.height
+    }
+    
     func drawCPUUtilizationChart(){
-        cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: WIDTH, height: CHART_HEIGHT))
-        cpuUtilizationChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
+        scrollViewHeight += 5
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        
+        cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
+        cpuUtilizationChartView.layer.backgroundColor = UIColor.clear.cgColor
         let results = ["Used", "Not Used"]
         cpuUtilizationChartView.noDataText = "Loading Data"
         
@@ -109,13 +148,19 @@ class EC2WatchResultViewController: UIViewController {
         cpuUtilizationChartView.centerText = "CPUUtilization"
         cpuUtilizationChartView.holeColor = UIColor.white
         
-        self.scrollView.addSubview(cpuUtilizationChartView)
+        base.addSubview(cpuUtilizationChartView)
+        self.scrollView.addSubview(base)
         scrollViewHeight += CHART_HEIGHT
     }
     
     func drawNetworkInChart(){
-        networkInChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
-        networkInChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
+        
+        scrollViewHeight += 5
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        
+        networkInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
+        networkInChartView.layer.backgroundColor = UIColor.clear.cgColor
         self.networkInChartView.chartDescription?.text = "Tap node for details"
         self.networkInChartView.chartDescription?.textColor = UIColor.black
         self.networkInChartView.gridBackgroundColor = UIColor.darkGray
@@ -140,13 +185,19 @@ class EC2WatchResultViewController: UIViewController {
             }
         }
         
-        self.scrollView.addSubview(networkInChartView)
+        base.addSubview(networkInChartView)
+        self.scrollView.addSubview(base)
         scrollViewHeight += CHART_HEIGHT
     }
     
     func drawNetworkOutChart(){
-        networkOutChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
-        networkOutChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
+        
+        scrollViewHeight += 5
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        
+        networkOutChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
+        networkOutChartView.layer.backgroundColor = UIColor.clear.cgColor
         self.networkOutChartView.chartDescription?.text = "Tap node for details"
         self.networkOutChartView.chartDescription?.textColor = UIColor.black
         self.networkOutChartView.gridBackgroundColor = UIColor.darkGray
@@ -171,14 +222,20 @@ class EC2WatchResultViewController: UIViewController {
             }
         }
         
-        self.scrollView.addSubview(networkOutChartView)
+        base.addSubview(networkOutChartView)
+        self.scrollView.addSubview(base)
         scrollViewHeight += CHART_HEIGHT
         
     }
     
     func drawDiskReadBytesChart(){
-        diskReadChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
-        diskReadChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
+        
+        scrollViewHeight += 5
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        
+        diskReadChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
+        diskReadChartView.layer.backgroundColor = UIColor.clear.cgColor
         self.diskReadChartView.chartDescription?.text = "Tap node for details"
         self.diskReadChartView.chartDescription?.textColor = UIColor.black
         self.diskReadChartView.gridBackgroundColor = UIColor.darkGray
@@ -203,13 +260,19 @@ class EC2WatchResultViewController: UIViewController {
             }
         }
         
-        self.scrollView.addSubview(diskReadChartView)
+        base.addSubview(diskReadChartView)
+        self.scrollView.addSubview(base)
         scrollViewHeight += CHART_HEIGHT
     }
     
     func drawDiskWriteBytesChart(){
-        diskWriteChartView = LineChartView(frame: CGRect(x:0, y:scrollViewHeight, width: WIDTH, height: CHART_HEIGHT))
-        diskWriteChartView.layer.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha:1.0).cgColor
+        
+        scrollViewHeight += 5
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        
+        diskWriteChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
+        diskWriteChartView.layer.backgroundColor = UIColor.clear.cgColor
         self.diskWriteChartView.chartDescription?.text = "Tap node for details"
         self.diskWriteChartView.chartDescription?.textColor = UIColor.black
         self.diskWriteChartView.gridBackgroundColor = UIColor.darkGray
@@ -234,7 +297,8 @@ class EC2WatchResultViewController: UIViewController {
             }
         }
         
-        self.scrollView.addSubview(diskWriteChartView)
+        base.addSubview(diskWriteChartView)
+        self.scrollView.addSubview(base)
         scrollViewHeight += CHART_HEIGHT
     }
     
@@ -250,7 +314,7 @@ class EC2WatchResultViewController: UIViewController {
         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: label)
         let colors: [UIColor] = [
             UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha: 1.0),
-            UIColor.white
+            UIColor.red
         ]
         pieChartDataSet.colors = colors
         return PieChartData(dataSet: pieChartDataSet)
@@ -329,10 +393,6 @@ class EC2WatchResultViewController: UIViewController {
                 NSLog("Store Failed")
             }
         }
-    }
-    
-    func setChartView(){
-        
     }
 }
 
