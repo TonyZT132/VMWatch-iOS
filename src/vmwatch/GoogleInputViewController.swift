@@ -54,7 +54,7 @@ public class GoogleInputViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         
         // Removing Navigation bar
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     public override func viewWillLayoutSubviews() {
@@ -183,11 +183,14 @@ public class GoogleInputViewController: UIViewController {
                 if(error == nil){
                     /*if can successfully access gcc, store credentials in core data*/
                     self.storeGoogleHistory()
-                    let GoogleResult : GoogleResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleResultViewController
+                    
+                    let GoogleResult : GoogleWatchResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleWatchResultViewController
+
                     GoogleResult.hidesBottomBarWhenPushed = true
                     self.navigationController!.navigationBar.tintColor = UIColor.white
                     self.navigationController?.pushViewController(GoogleResult, animated: true)
                     
+                    GoogleResult.instanceID = self.txtInstanceID.text!
                     GoogleResult.response = response
                     
                 }else{

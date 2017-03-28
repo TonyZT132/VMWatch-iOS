@@ -59,7 +59,7 @@ internal class GoogleJSONParser {
                     for object in cpus {
                         if let inner_result = object as? [String : Any] {
                             var dict = [String:Any]()
-                            if let value = inner_result["value"] as? [String : Int]{
+                            if let value = inner_result["value"] as? [String : Any]{
                                 dict["data"] = value["int64Value"]
                             }
                             if let time = inner_result["interval"] as? [String : Any]{

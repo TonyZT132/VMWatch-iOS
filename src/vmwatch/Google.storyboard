@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,7 +31,7 @@
         <!--Result-->
         <scene sceneID="zem-kh-imD">
             <objects>
-                <viewController storyboardIdentifier="GoogleResult" id="nSc-mh-LBL" customClass="GoogleResultViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoogleResult" id="nSc-mh-LBL" customClass="GoogleWatchResultViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cia-ZF-adV"/>
                         <viewControllerLayoutGuide type="bottom" id="hXd-Ty-RXW"/>
@@ -45,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf3-rQ-tJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="65"/>
+            <point key="canvasLocation" x="1688.8" y="64.31784107946028"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R2m-B5-rD2">
