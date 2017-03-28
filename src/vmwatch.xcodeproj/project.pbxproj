@@ -197,7 +197,6 @@
 		26F789F91DDE5176006F4658 /* StoryboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F789F81DDE5176006F4658 /* StoryboardView.swift */; };
 		D61AFE931E7263A6002AB1F6 /* GoogleInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */; };
 		D61AFE951E72738B002AB1F6 /* GoogleNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */; };
-		D62346DA1E5D479D00D70D26 /* GoogleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */; };
 		D62346DD1E5D4ACF00D70D26 /* GoogleInputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */; };
 		D62346DF1E5D4B0200D70D26 /* GoogleJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */; };
 		D6498D621E601CB3007CB6A7 /* GoogleHistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */; };
@@ -427,7 +426,6 @@
 		4AE3424657854244CF007638 /* libPods-VMWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VMWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputViewController.swift; sourceTree = "<group>"; };
 		D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleNavViewController.swift; sourceTree = "<group>"; };
-		D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleResultViewController.swift; path = VMWatch/GoogleResultViewController.swift; sourceTree = SOURCE_ROOT; };
 		D62346DC1E5D4ACF00D70D26 /* GoogleInputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleInputParser.swift; sourceTree = "<group>"; };
 		D62346DE1E5D4B0200D70D26 /* GoogleJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleJSONParser.swift; sourceTree = "<group>"; };
 		D6498D611E601CB3007CB6A7 /* GoogleHistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleHistoryStorage.swift; sourceTree = "<group>"; };
@@ -477,7 +475,6 @@
 			children = (
 				D61AFE921E7263A6002AB1F6 /* GoogleInputViewController.swift */,
 				D61AFE941E72738B002AB1F6 /* GoogleNavViewController.swift */,
-				D62346D91E5D479D00D70D26 /* GoogleResultViewController.swift */,
 				11B663381E8B06A300FC0302 /* GoogleWatchResultViewController.swift */,
 			);
 			name = Google;
@@ -1555,7 +1552,6 @@
 				261E81D91DB56092009A8FD9 /* LineChartData.swift in Sources */,
 				267CCB391D99B44600347E4C /* DKAssetGroupGridLayout.swift in Sources */,
 				2620E2271D98C51A003615D4 /* Variable.swift in Sources */,
-				D62346DA1E5D479D00D70D26 /* GoogleResultViewController.swift in Sources */,
 				261E81B01DB56092009A8FD9 /* ChartAnimationEasing.swift in Sources */,
 				262C436F1E06EC8C004765EE /* VMWRecognitionTextStore.swift in Sources */,
 				261E81D61DB56092009A8FD9 /* ChartDataEntryBase.swift in Sources */,
