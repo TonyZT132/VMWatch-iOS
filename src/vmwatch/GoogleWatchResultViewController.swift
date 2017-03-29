@@ -283,19 +283,6 @@ class GoogleWatchResultViewController: UIViewController {
     }
 
 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /*Set up pie chart*/
     func setPieChart(label:String, dataPoints: [String], values: [Double]) -> PieChartData {
         var dataEntries: [ChartDataEntry] = []

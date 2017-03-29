@@ -77,7 +77,7 @@ public class GoogleInputViewController: UIViewController {
         txtProjectID = setInputTxtField(y: txtClientEmail.frame.maxY+10,txt: "Project ID")
         txtInstanceID = setInputTxtField(y: txtProjectID.frame.maxY+10,txt: "Instance ID")
         setupSubmitButton()
-        setupDismissButton()
+        //setupDismissButton()
     }
     
     override public func didReceiveMemoryWarning() {
@@ -122,6 +122,7 @@ public class GoogleInputViewController: UIViewController {
         butSubmit.layer.borderColor = UIColor.clear.cgColor
         view.addSubview(butSubmit)
     }
+    
     func setupDismissButton(){
         butDismiss = UIButton(frame: CGRect(x: self.view.bounds.width * 0.05, y: butSubmit.frame.maxY, width: butSubmit.frame.width, height: 40))
         let font = UIFont(name: "HelveticaNeue-Medium", size: 12)!
@@ -131,6 +132,7 @@ public class GoogleInputViewController: UIViewController {
         view.addSubview(butDismiss)
 
     }
+    
     func convertToDictionary(text: String) -> [String: Any]? {
         if let data = text.data(using: .utf8) {
             do {

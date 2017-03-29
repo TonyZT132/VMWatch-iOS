@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Google Cloud Compute-->
+        <!--GCC-->
         <scene sceneID="TAf-kb-Wpq">
             <objects>
-                <viewController id="Gft-J1-txK" customClass="GoogleInputViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoogleSetup" id="Gft-J1-txK" customClass="GoogleInputViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sPN-1I-Bue"/>
                         <viewControllerLayoutGuide type="bottom" id="7gf-zN-obE"/>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Google Cloud Compute" id="rJz-Nn-t4T"/>
+                    <navigationItem key="navigationItem" title="GCC" id="rJz-Nn-t4T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scF-D4-oBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,7 +66,7 @@
         <!--Google Nav View Controller-->
         <scene sceneID="A0D-SG-Zoi">
             <objects>
-                <navigationController storyboardIdentifier="GoogleSetup" id="D1D-jR-dbB" customClass="GoogleNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="D1D-jR-dbB" customClass="GoogleNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Isl-Mf-pNn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
