@@ -90,6 +90,7 @@ internal class GoogleHistoryStorage {
     }
     
     public func clearHistory() throws {
+
         let fetchRequest: NSFetchRequest<History_Google> = History_Google.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
         

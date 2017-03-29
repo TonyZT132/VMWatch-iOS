@@ -27,12 +27,29 @@ class HomePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.setScrollView()
-        self.setTitleView()
-        self.getLocalVMList()
+        //self.setTitleView()
+
         
         scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
+
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        // when tab home button, the view should be re-set
+        let subViews = self.scrollView.subviews
+        
+        // delete all views in scrollview
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        
+        // re-set the height of the scrollview
+        scrollViewHeight = 0
+        self.setTitleView()
+        VMList.removeAllObjects()
+        self.getLocalVMList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,10 +81,15 @@ class HomePageViewController: UIViewController {
     
     private func getLocalVMList(){
         let EC2history = VMWEC2HistoryStorage()
+        let Googlehistory = GoogleHistoryStorage()
         do{
             let EC2List =  try EC2history.getEC2History()
             for item in EC2List{
                 VMList.add(returnVMItem(item: item as! NSDictionary, cate: "aws"))
+            }
+            let GoogleList =  try Googlehistory.getGoogleHistory()
+            for item in GoogleList{
+                VMList.add(returnVMItem(item: item as! NSDictionary, cate: "google"))
             }
             self.setVMListView()
         
@@ -85,6 +107,7 @@ class HomePageViewController: UIViewController {
     }
     
     private func setVMListView(){
+        print(VMList)
         if(VMList.count > 0){
             for i in 0 ... (VMList.count - 1){
                 let dict = VMList[i] as! NSDictionary
