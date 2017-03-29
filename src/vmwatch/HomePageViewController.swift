@@ -201,22 +201,21 @@ class HomePageViewController: UIViewController {
     
     @objc private func pushGoogleResult(sender: UIButton){
         do{
-        let resultArray = try GoogleHistoryStorage().getGoogleHistory()
-        let dict = resultArray[sender.tag] as! [String:Any]
+            let resultArray = try GoogleHistoryStorage().getGoogleHistory()
+            let dict = resultArray[sender.tag] as! [String:Any]
         
-        PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" :  dict["private_key_id"], "privatekey" : dict["private_key"], "clientid" : dict["client_id"] , "clientemail" : dict["client_email"], "instanceid" : dict["instance_id"], "projectid" : dict["project_id"]]){ (response, error) in
-            if(error == nil){
-                /*if can successfully access gcc, store credentials in core data*/
-                let GoogleResult : GoogleWatchResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleWatchResultViewController
+            PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" :  dict["private_key_id"], "privatekey" : dict["private_key"], "clientid" : dict["client_id"] , "clientemail" : dict["client_email"], "instanceid" : dict["instance_id"], "projectid" : dict["project_id"]]){ (response, error) in
+                if(error == nil){
+                    let GoogleResult : GoogleWatchResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleWatchResultViewController
                 
-                GoogleResult.hidesBottomBarWhenPushed = true
-                self.navigationController!.navigationBar.tintColor = UIColor.white
-                self.navigationController?.pushViewController(GoogleResult, animated: true)
+                    GoogleResult.hidesBottomBarWhenPushed = true
+                    self.navigationController!.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.pushViewController(GoogleResult, animated: true)
                 
-                GoogleResult.instanceID = dict["instance_id"] as? String
-                GoogleResult.response = response
+                    GoogleResult.instanceID = dict["instance_id"] as? String
+                    GoogleResult.response = response
+                }
             }
-        }
         }catch{
             print("error")
         }
