@@ -107,7 +107,7 @@ class HomePageViewController: UIViewController {
     }
     
     private func setVMListView(){
-        print(VMList)
+        //print(VMList)
         if(VMList.count > 0){
             for i in 0 ... (VMList.count - 1){
                 let dict = VMList[i] as! NSDictionary
