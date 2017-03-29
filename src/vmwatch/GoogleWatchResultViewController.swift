@@ -172,7 +172,7 @@ class GoogleWatchResultViewController: UIViewController {
             do {
                 let jsonParser = GoogleJSONParser(inputData: response)
                 self.networksentInData = try jsonParser.getOtherArray(type: "network_sent")
-                print(self.networksentInData)
+                //print(self.networksentInData)
                 self.networksentInChartView.data = self.setLineChart(label: "Network Sent In(Bytes)", data: self.networksentInData)
             } catch GoogleJSONParserError.InvalidGoogleJSONDataError {
                 self.networksentInChartView.noDataText = "Paring issue, please retry"

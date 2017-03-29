@@ -49,6 +49,7 @@ internal class GoogleHistoryStorage {
                 dict["client_id"] = trans.value(forKey: "client_id") as! String
                 dict["client_email"] = trans.value(forKey: "client_email") as! String
                 dict["instance_id"] = trans.value(forKey: "instance_id") as! String
+                dict["project_id"] = trans.value(forKey: "project_id") as! String
                 dict["date"] = trans.value(forKey: "date") as! Date
                 resultArr.add(dict)
             }

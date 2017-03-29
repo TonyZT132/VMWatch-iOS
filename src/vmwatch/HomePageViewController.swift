@@ -159,11 +159,30 @@ class HomePageViewController: UIViewController {
                 VMItem.addSubview(dateView)
                 
                 let VMButton = UIButton(frame: CGRect(x: 0, y: 0, width: VMItem.frame.width, height: VMItem.frame.height))
-                VMButton.addTarget(self, action: #selector(self.buttonSelected(sender:)), for: .touchUpInside)
-                VMButton.tag = i
-                VMItem.addSubview(VMButton)
+                let cloud = dict["cate"] as! String
+                if(cloud == "google"){
+                    // button in the home page to quick access the result page
+                    do{
+                        let resultArray = try GoogleHistoryStorage().getGoogleHistory()
+                        for googleresult in resultArray.objectEnumerator().allObjects as! [[String:Any]]{
+                            let insID = dict["instance_id"] as! String
+                            let googlehistory_instanceID = googleresult["instance_id"] as! String
+                            if(googlehistory_instanceID == insID){
+                                VMButton.addTarget(self, action: #selector(pushGoogleResult), for: .touchUpInside)
+                                VMButton.tag = resultArray.index(of: googleresult)
+                                print("google: instanceID: \(googlehistory_instanceID) index \(resultArray.index(of: googleresult))")
+                                VMItem.addSubview(VMButton)
+                                scrollView.addSubview(VMItem)
+                            }
+                        }
+                    } catch {
+                        print("Google Fetch Result Error")
+                    }
+                }else if(cloud == "aws"){
+                    // add aws later
+                    
                 
-                scrollView.addSubview(VMItem)
+                }
                 scrollViewHeight += VM_ITEM_VIEW_HEIGHT
             }
         }
@@ -180,7 +199,27 @@ class HomePageViewController: UIViewController {
         }
     }
     
-    @objc private func buttonSelected (sender: UIButton!) {
-        print(sender.tag)
+    @objc private func pushGoogleResult(sender: UIButton){
+        do{
+        let resultArray = try GoogleHistoryStorage().getGoogleHistory()
+        let dict = resultArray[sender.tag] as! [String:Any]
+        
+        PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" :  dict["private_key_id"], "privatekey" : dict["private_key"], "clientid" : dict["client_id"] , "clientemail" : dict["client_email"], "instanceid" : dict["instance_id"], "projectid" : dict["project_id"]]){ (response, error) in
+            if(error == nil){
+                /*if can successfully access gcc, store credentials in core data*/
+                let GoogleResult : GoogleWatchResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleWatchResultViewController
+                
+                GoogleResult.hidesBottomBarWhenPushed = true
+                self.navigationController!.navigationBar.tintColor = UIColor.white
+                self.navigationController?.pushViewController(GoogleResult, animated: true)
+                
+                GoogleResult.instanceID = dict["instance_id"] as? String
+                GoogleResult.response = response
+            }
+        }
+        }catch{
+            print("error")
+        }
     }
+
 }
