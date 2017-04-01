@@ -111,6 +111,8 @@ class EC2WatchResultViewController: UIViewController {
         
         cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         cpuUtilizationChartView.layer.backgroundColor = UIColor.clear.cgColor
+        //cpuUtilizationChartView.lab
+        
         let results = ["Used", "Not Used"]
         cpuUtilizationChartView.noDataText = "Loading Data"
         
@@ -146,7 +148,12 @@ class EC2WatchResultViewController: UIViewController {
         }
 
         cpuUtilizationChartView.centerText = "CPUUtilization"
-        cpuUtilizationChartView.holeColor = UIColor.white
+        cpuUtilizationChartView.noDataTextColor = UIColor.white
+        cpuUtilizationChartView.holeColor = UIColor.clear
+        
+        cpuUtilizationChartView.chartDescription?.textColor = UIColor.white
+        cpuUtilizationChartView.chartDescription?.text = "CPU Utilization Data"
+        cpuUtilizationChartView.holeRadiusPercent = CGFloat(0.7)
         
         base.addSubview(cpuUtilizationChartView)
         self.scrollView.addSubview(base)

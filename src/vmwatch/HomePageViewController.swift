@@ -189,10 +189,8 @@ class HomePageViewController: UIViewController {
                         print("Google Fetch Result Error")
                     }
                 }else if(cloud == "aws"){
-                    // add aws later
                     VMButton.addTarget(self, action: #selector(pushAWSResult), for: .touchUpInside)
                     VMButton.tag = i
-                    //print("google: instanceID: \(googlehistory_instanceID) index \(resultArray.index(of: googleresult))")
                     VMItem.addSubview(VMButton)
                     scrollView.addSubview(VMItem)
                 }
@@ -230,7 +228,15 @@ class HomePageViewController: UIViewController {
                 }
             }
         }catch{
-            print("error")
+            self.present(
+                self.alert.showAlertWithOneButton(
+                    title: "Error",
+                    message: "Connection Failed",
+                    actionButton: "OK"
+                ),
+                animated: true,
+                completion: nil
+            )
         }
     }
     
