@@ -133,7 +133,9 @@ class EC2WatchResultViewController: UIViewController {
                     
                     let percentage = [self.cpuUtilizationData.roundTo(places: 0), (100.0 - self.cpuUtilizationData).roundTo(places: 0)]
                     
-                    self.cpuUtilizationChartView.data = self.setPieChart(label: "CPU Utilization(Percentage)", dataPoints: results, values: percentage)
+                    self.cpuUtilizationChartView.data = self.setPieChart(label: "", dataPoints: results, values: percentage)
+                    self.cpuUtilizationChartView.centerText = String(self.cpuUtilizationData.roundTo(places: 0)) + " %"
+                    
                 }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
                 } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
@@ -146,14 +148,17 @@ class EC2WatchResultViewController: UIViewController {
                 self.cpuUtilizationChartView.noDataText = "Connection issue, please retry"
             }
         }
-
-        cpuUtilizationChartView.centerText = "CPUUtilization"
+        
         cpuUtilizationChartView.noDataTextColor = UIColor.white
         cpuUtilizationChartView.holeColor = UIColor.clear
         
         cpuUtilizationChartView.chartDescription?.textColor = UIColor.white
-        cpuUtilizationChartView.chartDescription?.text = "CPU Utilization Data"
+        cpuUtilizationChartView.chartDescription?.text = "CPU Utilization (Percentage)"
         cpuUtilizationChartView.holeRadiusPercent = CGFloat(0.7)
+        cpuUtilizationChartView.drawCenterTextEnabled = true
+        cpuUtilizationChartView.highlightPerTapEnabled = false
+        cpuUtilizationChartView.rotationEnabled = false
+        //cpuUtilizationChartView.drawEntryLabelsEnabled = false
         
         base.addSubview(cpuUtilizationChartView)
         self.scrollView.addSubview(base)
@@ -168,9 +173,8 @@ class EC2WatchResultViewController: UIViewController {
         
         networkInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         networkInChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.networkInChartView.chartDescription?.text = "Tap node for details"
-        self.networkInChartView.chartDescription?.textColor = UIColor.black
-        self.networkInChartView.gridBackgroundColor = UIColor.darkGray
+        self.networkInChartView.chartDescription?.text = ""
+        self.networkInChartView.chartDescription?.textColor = UIColor.white
         self.networkInChartView.noDataText = "Loading data"
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60)) { (response, error) in
@@ -191,6 +195,8 @@ class EC2WatchResultViewController: UIViewController {
                 self.networkInChartView.noDataText = "Connection issue, please retry"
             }
         }
+        
+        self.networkInChartView.gridBackgroundColor = UIColor.white
         
         base.addSubview(networkInChartView)
         self.scrollView.addSubview(base)
