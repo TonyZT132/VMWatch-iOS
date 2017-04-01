@@ -29,11 +29,7 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
 
         self.setScrollView()
-        //self.setTitleView()
-
-        
         scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
-
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +37,7 @@ class HomePageViewController: UIViewController {
         let subViews = self.scrollView.subviews
         
         // delete all views in scrollview
-        for subview in subViews{
+        for subview in subViews {
             subview.removeFromSuperview()
         }
         
@@ -85,12 +81,15 @@ class HomePageViewController: UIViewController {
         do{
             let EC2List =  try EC2history.getEC2History()
             for item in EC2List{
-                VMList.add(returnVMItem(item: item as! NSDictionary, cate: "aws"))
+                VMList.add(returnVMItemAWS(item: item as! NSDictionary, cate: "aws"))
             }
             let GoogleList =  try Googlehistory.getGoogleHistory()
             for item in GoogleList{
-                VMList.add(returnVMItem(item: item as! NSDictionary, cate: "google"))
+                VMList.add(returnVMItemGoogle(item: item as! NSDictionary, cate: "google"))
             }
+            
+            // Add sort
+            
             self.setVMListView()
         
         } catch {
@@ -98,7 +97,18 @@ class HomePageViewController: UIViewController {
         }
     }
     
-    private func returnVMItem(item:NSDictionary, cate:String!) -> NSDictionary {
+    private func returnVMItemAWS(item:NSDictionary, cate:String!) -> NSDictionary {
+        var result:Dictionary = [String : Any]()
+        result["cate"] = cate
+        result["instance_id"] = item["instance_id"]
+        result["access_id"] = item["access_id"]
+        result["access_key"] = item["access_key"]
+        result["region"] = item["region"]
+        result["date"] = item["date"]
+        return result as NSDictionary
+    }
+    
+    private func returnVMItemGoogle(item:NSDictionary, cate:String!) -> NSDictionary {
         var result:Dictionary = [String : Any]()
         result["cate"] = cate
         result["instance_id"] = item["instance_id"]
@@ -180,8 +190,11 @@ class HomePageViewController: UIViewController {
                     }
                 }else if(cloud == "aws"){
                     // add aws later
-                    
-                
+                    VMButton.addTarget(self, action: #selector(pushAWSResult), for: .touchUpInside)
+                    VMButton.tag = i
+                    //print("google: instanceID: \(googlehistory_instanceID) index \(resultArray.index(of: googleresult))")
+                    VMItem.addSubview(VMButton)
+                    scrollView.addSubview(VMItem)
                 }
                 scrollViewHeight += VM_ITEM_VIEW_HEIGHT
             }
@@ -204,7 +217,7 @@ class HomePageViewController: UIViewController {
             let resultArray = try GoogleHistoryStorage().getGoogleHistory()
             let dict = resultArray[sender.tag] as! [String:Any]
         
-            PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" :  dict["private_key_id"], "privatekey" : dict["private_key"], "clientid" : dict["client_id"] , "clientemail" : dict["client_email"], "instanceid" : dict["instance_id"], "projectid" : dict["project_id"]]){ (response, error) in
+            PFCloud.callFunction(inBackground: "GoogleWatch", withParameters: ["privatekeyid" :  dict["private_key_id"]!, "privatekey" : dict["private_key"], "clientid" : dict["client_id"] , "clientemail" : dict["client_email"], "instanceid" : dict["instance_id"], "projectid" : dict["project_id"]]){ (response, error) in
                 if(error == nil){
                     let GoogleResult : GoogleWatchResultViewController = GoogleView.instantiateViewController(withIdentifier: "GoogleResult") as! GoogleWatchResultViewController
                 
@@ -220,5 +233,55 @@ class HomePageViewController: UIViewController {
             print("error")
         }
     }
-
+    
+    @objc private func pushAWSResult(sender: UIButton){
+        let instance = VMList[sender.tag] as! NSDictionary
+        let accessID = instance["access_id"] as! String
+        let accessKey = instance["access_key"] as! String
+        let instanceID = instance["instance_id"] as! String
+        let region = instance["region"] as! String
+        
+        self.present(
+            alert.showAlertWithTwoButton(
+                title: "Message",
+                message: "Do you want to connect to " + instanceID,
+                actionButtonOne: "Yes",
+                actionButtonTwo: "No",
+                handlerOne: {() -> Void in
+                    indicator.showWithMessage(context: "Verifying")
+                    PFCloud.callFunction(inBackground: "ec2UserVerification", withParameters: ["accessid": accessID, "accesskey":accessKey]) { (response, error) in
+                        
+                        indicator.dismiss()
+                        if(error == nil){
+                            let ec2Result : EC2WatchResultViewController = EC2View.instantiateViewController(withIdentifier: "ec2result") as! EC2WatchResultViewController
+                            
+                            ec2Result.accessID = accessID
+                            ec2Result.accessKey = accessKey
+                            ec2Result.instanceID = instanceID
+                            ec2Result.region = region
+                            ec2Result.hidesBottomBarWhenPushed = true
+                            self.navigationController!.navigationBar.tintColor = UIColor.white
+                            self.navigationController?.pushViewController(ec2Result, animated: true)
+                        }else{
+                            print(error!)
+                            self.present(
+                                self.alert.showAlertWithOneButton(
+                                    title: "Error",
+                                    message: "Invalid Access Credentials",
+                                    actionButton: "OK"
+                                ),
+                                animated: true,
+                                completion: nil
+                            )
+                        }
+                    }
+                },
+                handlerTwo: {() -> Void in
+                    return
+                }
+            ),
+            animated: true,
+            completion: nil
+        )
+    }
 }
