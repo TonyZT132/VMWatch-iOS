@@ -183,7 +183,11 @@ class HomePageViewController: UIViewController {
                             let googlehistory_instanceID = googleresult["instance_id"] as! String
                             if(googlehistory_instanceID == insID){
                                 VMButton.addTarget(self, action: #selector(pushGoogleResult), for: .touchUpInside)
+                                //VMButton.addTarget(self, action: #selector(pushGoogleResult), for: .)
                                 VMButton.tag = resultArray.index(of: googleresult)
+                                let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(GooglelongTap))
+                                VMButton.addGestureRecognizer(longGesture)
+                                longGesture.view?.tag = resultArray.index(of: googleresult)
                                 print("google: instanceID: \(googlehistory_instanceID) index \(resultArray.index(of: googleresult))")
                                 VMItem.addSubview(VMButton)
                                 scrollView.addSubview(VMItem)
@@ -195,6 +199,9 @@ class HomePageViewController: UIViewController {
                 }else if(cloud == "aws"){
                     VMButton.addTarget(self, action: #selector(pushAWSResult), for: .touchUpInside)
                     VMButton.tag = i
+                    let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
+                    VMButton.addGestureRecognizer(longGesture)
+                    longGesture.view?.tag = i
                     VMItem.addSubview(VMButton)
                     scrollView.addSubview(VMItem)
                 }
@@ -242,6 +249,112 @@ class HomePageViewController: UIViewController {
                 completion: nil
             )
         }
+    }
+    
+    func GooglelongTap(sender : UIGestureRecognizer){
+        let tag = (sender.view?.tag)! as Int
+        
+        /*Setup alert for photo selection type menu (take photo or choose existing photo)*/
+        let optionMenu = UIAlertController(title: nil, message: "Please select", preferredStyle: .actionSheet)
+        
+        let USWestTwo = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            do{
+                let resultArray = try GoogleHistoryStorage().getGoogleHistory()
+                let dict = resultArray[tag] as! [String:Any]
+                try GoogleHistoryStorage().deleteHistoryRecord(privateKeyID: dict["private_key_id"]! as! String, privateKey: dict["private_key"]! as! String, clientID: dict["client_id"]! as! String, clientEmail: dict["client_email"]! as! String, projectID: dict["project_id"]! as! String, instanceID: dict["instance_id"]! as! String)
+            
+                let subViews = self.scrollView.subviews
+            
+                // delete all views in scrollview
+                for subview in subViews {
+                    subview.removeFromSuperview()
+                }
+            
+                self.scrollViewHeight = 0
+                self.setTitleView()
+                self.VMList.removeAllObjects()
+                self.getLocalVMList()
+            } catch {
+                self.present(
+                    self.alert.showAlertWithOneButton(
+                        title: "Error",
+                        message: "Unexpected error",
+                        actionButton: "OK"
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
+            
+            return
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            //self.region = nil
+            //self.regionButton.setTitle("Please select region", for: .normal)
+            return
+        })
+        
+        optionMenu.addAction(USWestTwo)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
+    func longTap(sender : UIGestureRecognizer){
+        let tag = (sender.view?.tag)! as Int
+        
+        /*Setup alert for photo selection type menu (take photo or choose existing photo)*/
+        let optionMenu = UIAlertController(title: nil, message: "Please select", preferredStyle: .actionSheet)
+        
+        let USWestTwo = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let dict = self.VMList[tag] as! NSDictionary
+            let cate = dict["cate"] as! String
+            
+            if (cate == "aws"){
+                let EC2history = VMWEC2HistoryStorage()
+                do{
+                    try EC2history.deleteHistoryRecord(accessID: dict["access_id"] as! String, accessKey: dict["access_key"] as! String, instanceID: dict["instance_id"] as! String, region: dict["region"] as! String)
+                    
+                    let subViews = self.scrollView.subviews
+                    
+                    // delete all views in scrollview
+                    for subview in subViews {
+                        subview.removeFromSuperview()
+                    }
+                    
+                    self.scrollViewHeight = 0
+                    self.setTitleView()
+                    self.VMList.removeAllObjects()
+                    self.getLocalVMList()
+                    
+                } catch {
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Error",
+                            message: "Unexpected error",
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
+                }
+            }
+            return
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            //self.region = nil
+            //self.regionButton.setTitle("Please select region", for: .normal)
+            return
+        })
+        
+        optionMenu.addAction(USWestTwo)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     @objc private func pushAWSResult(sender: UIButton){
