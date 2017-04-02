@@ -113,12 +113,25 @@ class EC2WatchResultViewController: UIViewController {
         title.textColor = .white
         title.textAlignment = .center
         scrollView.addSubview(title)
+        scrollViewHeight += title.frame.height + 5
+    }
+    
+    func setTitleView(titleName:String){
+        //scrollViewHeight += 5
+        let title = UILabel(frame: CGRect(x: 25, y: scrollViewHeight, width: WIDTH - 50, height: 25) )
+        title.text = titleName
+        title.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        title.font = title.font.withSize(14)
+        title.textColor = .white
+        title.textAlignment = .center
+        scrollView.addSubview(title)
         scrollViewHeight += title.frame.height
     }
     
     func drawCPUUtilizationChart(){
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "CPU Utilization")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         cpuUtilizationChartView = PieChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
@@ -164,8 +177,6 @@ class EC2WatchResultViewController: UIViewController {
         cpuUtilizationChartView.noDataTextColor = UIColor.white
         cpuUtilizationChartView.holeColor = UIColor.clear
         
-        cpuUtilizationChartView.chartDescription?.textColor = UIColor.white
-        cpuUtilizationChartView.chartDescription?.text = "CPU Utilization (Percentage)"
         cpuUtilizationChartView.holeRadiusPercent = CGFloat(0.7)
         cpuUtilizationChartView.drawCenterTextEnabled = true
         cpuUtilizationChartView.highlightPerTapEnabled = false
@@ -177,9 +188,9 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     func drawNetworkInChart(){
-        
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Network In(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         networkInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
@@ -193,7 +204,7 @@ class EC2WatchResultViewController: UIViewController {
                 do {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.networkInData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-                    self.networkInChartView.data = self.setLineChart(label: "Network In(Byte)", data: self.networkInData)
+                    self.networkInChartView.data = self.setLineChart(label: "", data: self.networkInData)
                 } catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
                 } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
@@ -208,8 +219,8 @@ class EC2WatchResultViewController: UIViewController {
         }
         
         self.networkInChartView.gridBackgroundColor = UIColor.white
-        //self.networkInChartView.drawGridBackgroundEnabled = false
-        //self.networkInChartView.dr
+        self.networkInChartView.chartDescription?.textColor = UIColor.white
+        //self.networkInChartView.legend.labels
         
         base.addSubview(networkInChartView)
         self.scrollView.addSubview(base)
@@ -217,9 +228,9 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     func drawNetworkOutChart(){
-        
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Network Out(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         networkOutChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
@@ -234,7 +245,7 @@ class EC2WatchResultViewController: UIViewController {
                 do {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.networkOutData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-                    self.networkOutChartView.data = self.setLineChart(label: "Network Out(Byte)", data: self.networkOutData)
+                    self.networkOutChartView.data = self.setLineChart(label: "", data: self.networkOutData)
                 }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
                 } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
@@ -251,13 +262,12 @@ class EC2WatchResultViewController: UIViewController {
         base.addSubview(networkOutChartView)
         self.scrollView.addSubview(base)
         scrollViewHeight += CHART_HEIGHT
-        
     }
     
     func drawDiskReadBytesChart(){
-        
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Disk Read(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         diskReadChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
@@ -272,7 +282,7 @@ class EC2WatchResultViewController: UIViewController {
                 do {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.diskReadData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-                    self.diskReadChartView.data = self.setLineChart(label: "Disk Read(Byte)", data: self.diskReadData)
+                    self.diskReadChartView.data = self.setLineChart(label: "", data: self.diskReadData)
                 }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
                 } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {
@@ -294,7 +304,8 @@ class EC2WatchResultViewController: UIViewController {
     func drawDiskWriteBytesChart(){
         
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Disk Write(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         diskWriteChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
@@ -309,7 +320,7 @@ class EC2WatchResultViewController: UIViewController {
                 do {
                     let jsonParser = VMWEC2JSONParser(inputData: response)
                     self.diskWriteData = try jsonParser.getDataPointsArray(category: EC2_AVERAGE)
-                    self.diskWriteChartView.data = self.setLineChart(label: "Disk Write(Byte)", data: self.diskWriteData)
+                    self.diskWriteChartView.data = self.setLineChart(label: "", data: self.diskWriteData)
                 }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
                 } catch VMWEC2JSONParserError.InvalidInstanceIdOrRegionError {

@@ -31,7 +31,7 @@ open class Description: ComponentBase
     }
     
     /// The text to be shown as the description.
-    open var text: String? = "Description Label"
+    open var text: String? = ""
     
     /// Custom position for the description text in pixels on the screen.
     open var position: CGPoint? = nil
