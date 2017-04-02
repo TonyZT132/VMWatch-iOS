@@ -37,6 +37,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     // For button
     var butLogin: UIButton!
     var butLogout: UIButton!
+    var butShowList: UIButton!
     
     // For setup background
     var topBackgroundImg: UIImageView!
@@ -94,6 +95,7 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
             setupBackground()
             setupLoginView()
             setupClearHistoryButton()
+            setupShowListButton()
             setupLogoutButton()
             setupPhoneNumber(phone: phoneNumber!)
             setupLocalVM()
@@ -244,6 +246,17 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
         view.addSubview(botBackgroundImg)
     }
     
+    func setupShowListButton() {
+        butShowList = UIButton(frame: CGRect(x: 0, y: butLogin.frame.maxY-100, width: loginView.frame.width, height: 40))
+        butShowList.backgroundColor = UIColor(red: 0 / 255, green: 146 / 255, blue: 206 / 255, alpha: 0.8)
+        butShowList.setTitle("Show List", for: .normal)
+        // modify to add function of button
+        //butLogin.addTarget(self, action: #selector(), for: .touchUpInside)
+        butShowList.layer.cornerRadius = butLogin.frame.height * 0.5
+        butShowList.layer.borderWidth = 1
+        butShowList.layer.borderColor = UIColor.clear.cgColor
+        loginView.addSubview(butShowList)
+    }
     
     
     // Start Function
