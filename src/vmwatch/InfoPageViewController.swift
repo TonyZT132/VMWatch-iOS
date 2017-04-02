@@ -217,11 +217,15 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
         bottomVMServerView.backgroundColor = UIColor(red: 196 / 255, green: 195 / 255, blue: 212 / 255, alpha: 0.8)
         bottomVMServerView.alpha = 0.5
         loginView.addSubview(bottomVMServerView)
+        
         //add number to the right hand side
         serverVMNumber = UILabel(frame:CGRect(x: 0 , y: localVM.frame.maxY + 10, width: loginView.bounds.width, height: 30))
         serverVMNumber.textAlignment = NSTextAlignment.right
         serverVMNumber.textColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 245 / 255, alpha: 0.8)
-        serverVMNumber.attributedText = NSAttributedString(string: "1")
+        serverVMNumber.attributedText = NSAttributedString(string: "0")
+        if(PFUser.current() != nil){
+            self.getAccessCredential()
+        }
         loginView.addSubview(serverVMNumber)
     }
     
@@ -435,6 +439,23 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
         return
     }
     
-    
-    
+    func getAccessCredential(){
+        let storeParams = [
+            "userid" as NSObject: PFUser.current()?.objectId! as AnyObject
+            ] as [NSObject:AnyObject]
+        
+        PFCloud.callFunction(inBackground: "ec2UserDataGet", withParameters: storeParams) { (response, ec2StoreError) in
+            if(ec2StoreError == nil){
+                do{
+                    let parser = VMWEC2CredentialJSONParser(inputData: response)
+                    let arr = try parser.parse()
+                    self.serverVMNumber.attributedText = NSAttributedString(string: String(arr.count))
+                } catch {
+                    NSLog("Fail to get stored credentials")
+                }
+            }else{
+                NSLog("Fail to get stored credentials")
+            }
+        }
+    }
 };

@@ -48,7 +48,7 @@ class HomePageViewController: UIViewController {
         self.getLocalVMList()
         
         if(PFUser.current() != nil){
-            self.getAccessCredential()
+            //self.getAccessCredential()
         }
     }
 
@@ -305,6 +305,14 @@ class HomePageViewController: UIViewController {
                 do{
                     let parser = VMWEC2CredentialJSONParser(inputData: response)
                     let arr = try parser.parse()
+                    
+                    let instanceListView : InstanceListViewController = self.storyboard!.instantiateViewController(withIdentifier: "instanceList") as! InstanceListViewController
+                    
+                    instanceListView.VMList = arr
+                    instanceListView.hidesBottomBarWhenPushed = true
+                    //self.navigationController!.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.pushViewController(instanceListView, animated: true)
+                    
                 } catch {
                     self.present(
                         self.alert.showAlertWithOneButton(
