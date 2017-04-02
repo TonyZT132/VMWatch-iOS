@@ -183,6 +183,8 @@
 		26A6228F1D85DFA5003DD48E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6228E1D85DFA5003DD48E /* Timer.swift */; };
 		26A754891D9823F500FB7CC1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A754881D9823F500FB7CC1 /* Alert.swift */; };
 		26ADF1AF1DCF3026005ED225 /* EC2HistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADF1AE1DCF3026005ED225 /* EC2HistoryStorage.swift */; };
+		26B102301E907D92001BF9C3 /* InstanceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B1022F1E907D92001BF9C3 /* InstanceListViewController.swift */; };
+		26B102321E907DAC001BF9C3 /* InstanceListNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B102311E907DAC001BF9C3 /* InstanceListNavViewController.swift */; };
 		26B8DFFF1DB3E597009FC47D /* EC2JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B8DFFE1DB3E597009FC47D /* EC2JSONParser.swift */; };
 		26CA68E11DB3D84900D8EA3D /* EC2WatchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */; };
 		26DD163E1DFB04120010E5FC /* EC2InputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD163D1DFB04120010E5FC /* EC2InputParser.swift */; };
@@ -405,6 +407,8 @@
 		26A6228E1D85DFA5003DD48E /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		26A754881D9823F500FB7CC1 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = vmwatch/Alert.swift; sourceTree = SOURCE_ROOT; };
 		26ADF1AE1DCF3026005ED225 /* EC2HistoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC2HistoryStorage.swift; sourceTree = "<group>"; };
+		26B1022F1E907D92001BF9C3 /* InstanceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceListViewController.swift; sourceTree = "<group>"; };
+		26B102311E907DAC001BF9C3 /* InstanceListNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceListNavViewController.swift; sourceTree = "<group>"; };
 		26B8DFFE1DB3E597009FC47D /* EC2JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC2JSONParser.swift; sourceTree = "<group>"; };
 		26CA68E01DB3D84900D8EA3D /* EC2WatchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2WatchResultViewController.swift; path = vmwatch/EC2WatchResultViewController.swift; sourceTree = SOURCE_ROOT; };
 		26DD163D1DFB04120010E5FC /* EC2InputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EC2InputParser.swift; path = vmwatch/EC2InputParser.swift; sourceTree = SOURCE_ROOT; };
@@ -464,6 +468,7 @@
 		1100E3A41E738FE3003B62B2 /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
+				26B1022E1E907D7A001BF9C3 /* Instance List Page */,
 				1100E3A71E739058003B62B2 /* HomePageNavViewController.swift */,
 				1100E3A91E73907B003B62B2 /* HomePageViewController.swift */,
 			);
@@ -973,6 +978,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		26B1022E1E907D7A001BF9C3 /* Instance List Page */ = {
+			isa = PBXGroup;
+			children = (
+				26B1022F1E907D92001BF9C3 /* InstanceListViewController.swift */,
+				26B102311E907DAC001BF9C3 /* InstanceListNavViewController.swift */,
+			);
+			name = "Instance List Page";
+			sourceTree = "<group>";
+		};
 		26D9DD0B1D9AAE5C00A47416 /* DKImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1401,6 +1415,7 @@
 				261E81ED1DB56092009A8FD9 /* IPieChartDataSet.swift in Sources */,
 				261E820F1DB56092009A8FD9 /* AxisRendererBase.swift in Sources */,
 				261E82181DB56092009A8FD9 /* LineChartRenderer.swift in Sources */,
+				26B102301E907D92001BF9C3 /* InstanceListViewController.swift in Sources */,
 				261E81E51DB56092009A8FD9 /* IBarChartDataSet.swift in Sources */,
 				26DD163E1DFB04120010E5FC /* EC2InputParser.swift in Sources */,
 				1100E3A81E739058003B62B2 /* HomePageNavViewController.swift in Sources */,
@@ -1469,6 +1484,7 @@
 				261E81B21DB56092009A8FD9 /* BarLineChartViewBase.swift in Sources */,
 				261E81D31DB56092009A8FD9 /* CandleChartDataSet.swift in Sources */,
 				261E81E81DB56092009A8FD9 /* ICandleChartDataSet.swift in Sources */,
+				26B102321E907DAC001BF9C3 /* InstanceListNavViewController.swift in Sources */,
 				261E81B61DB56092009A8FD9 /* CombinedChartView.swift in Sources */,
 				261E81E71DB56092009A8FD9 /* IBubbleChartDataSet.swift in Sources */,
 				261E81B71DB56092009A8FD9 /* HorizontalBarChartView.swift in Sources */,

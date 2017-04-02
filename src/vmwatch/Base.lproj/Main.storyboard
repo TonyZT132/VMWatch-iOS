@@ -141,6 +141,36 @@
             </objects>
             <point key="canvasLocation" x="4094" y="2513"/>
         </scene>
+        <!--Instance List-->
+        <scene sceneID="KVP-Ob-UAu">
+            <objects>
+                <viewController storyboardIdentifier="instanceList" id="aZm-Tz-08d" customClass="InstanceListViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pda-kS-Csp"/>
+                        <viewControllerLayoutGuide type="bottom" id="lbc-qh-8L7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dtb-N0-E9D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="meu-Mz-AIg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="meu-Mz-AIg" firstAttribute="top" secondItem="dtb-N0-E9D" secondAttribute="top" id="2ml-Gd-fwd"/>
+                            <constraint firstItem="meu-Mz-AIg" firstAttribute="leading" secondItem="dtb-N0-E9D" secondAttribute="leading" id="VpL-L1-8zt"/>
+                            <constraint firstItem="meu-Mz-AIg" firstAttribute="bottom" secondItem="lbc-qh-8L7" secondAttribute="top" id="Wpc-po-IAE"/>
+                            <constraint firstAttribute="trailing" secondItem="meu-Mz-AIg" secondAttribute="trailing" id="pnd-0f-Gs7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Instance List" id="XJG-Od-HDR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asg-CC-bC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1284" y="-632.83358320839591"/>
+        </scene>
         <!--Home-->
         <scene sceneID="0EU-L6-cbx">
             <objects>
@@ -278,6 +308,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9QL-Qg-DMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2223" y="149"/>
+        </scene>
+        <!--Instance List Nav View Controller-->
+        <scene sceneID="hhp-hX-6fa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uaN-oM-Rea" customClass="InstanceListNavViewController" customModule="VMWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZMW-TU-vmg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aZm-Tz-08d" kind="relationship" relationship="rootViewController" id="AFc-xm-bOk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yhF-K5-bW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2223" y="-632"/>
         </scene>
     </scenes>
     <resources>

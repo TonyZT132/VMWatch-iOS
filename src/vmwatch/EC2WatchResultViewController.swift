@@ -65,6 +65,10 @@ class EC2WatchResultViewController: UIViewController {
                 completion: nil
             )
         }
+        
+        if(self.storeInstance == true){
+            self.storeAccessCredential()
+        }
     }
     
     func setScrollView(){
@@ -396,14 +400,15 @@ class EC2WatchResultViewController: UIViewController {
             "accessid" as NSObject: self.accessID! as AnyObject,
             "accesskey" as NSObject: self.accessKey! as AnyObject,
             "instanceid" as NSObject: self.instanceID! as AnyObject,
-            "region" as NSObject: self.region as AnyObject
+            "region" as NSObject: self.region as AnyObject,
+            "userid" as NSObject: PFUser.current()?.objectId! as AnyObject
             ] as [NSObject:AnyObject]
         
         PFCloud.callFunction(inBackground: "ec2UserDataStore", withParameters: storeParams) { (response, ec2StoreError) in
             if(ec2StoreError == nil){
                 NSLog("Instance Stored")
             }else{
-                NSLog("Store Failed")
+                NSLog("Store Failed: " + ec2StoreError.debugDescription)
             }
         }
     }

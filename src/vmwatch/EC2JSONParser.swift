@@ -73,6 +73,41 @@ internal class VMWEC2JSONParser {
     }
 }
 
+internal class VMWEC2CredentialJSONParser{
+    private var data:Any?
+    
+    public init(inputData:Any?) {
+        self.data = inputData
+    }
+    
+    public func parse() throws -> NSMutableArray {
+        if(self.data != nil){
+            let dataArr = NSMutableArray()
+            if let credentialArray = self.data as? NSArray {
+                if(credentialArray.count > 0){
+                    for i in 0 ..< credentialArray.count {
+                        if let dataObj = credentialArray[i] as? NSDictionary {
+                            var dict = [String:AnyObject]()
+                            dict["cate"] = "aws" as AnyObject?
+                            dict["access_id"] = dataObj["ai"]! as AnyObject
+                            dict["access_key"] = dataObj["ak"]! as AnyObject
+                            dict["instance_id"] = dataObj["ii"]! as AnyObject
+                            dict["region"] = dataObj["re"]! as AnyObject
+                            dataArr.add(dict as NSDictionary)
+                        } else {
+                            throw VMWEC2JSONParserError.InvalidEC2JSONDataError
+                        }
+                    }
+                    return dataArr
+                }else{
+                    throw VMWEC2JSONParserError.InvalidInstanceIdOrRegionError
+                }
+            }
+        }
+        throw VMWEC2JSONParserError.InvalidEC2JSONDataError
+    }
+}
+
 enum VMWEC2JSONParserError: Error {
     case InvalidEC2JSONDataError
     case InvalidInstanceIdOrRegionError
