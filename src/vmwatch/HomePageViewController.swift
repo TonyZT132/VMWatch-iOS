@@ -33,6 +33,7 @@ class HomePageViewController: UIViewController {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         // when tab home button, the view should be re-set
         let subViews = self.scrollView.subviews
         
@@ -41,15 +42,14 @@ class HomePageViewController: UIViewController {
             subview.removeFromSuperview()
         }
         
-        // re-set the height of the scrollview
         scrollViewHeight = 0
         self.setTitleView()
         VMList.removeAllObjects()
         self.getLocalVMList()
-        
-        if(PFUser.current() != nil){
-            //self.getAccessCredential()
-        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -293,48 +293,5 @@ class HomePageViewController: UIViewController {
             animated: true,
             completion: nil
         )
-    }
-    
-    func getAccessCredential(){
-        let storeParams = [
-            "userid" as NSObject: PFUser.current()?.objectId! as AnyObject
-            ] as [NSObject:AnyObject]
-        
-        PFCloud.callFunction(inBackground: "ec2UserDataGet", withParameters: storeParams) { (response, ec2StoreError) in
-            if(ec2StoreError == nil){
-                do{
-                    let parser = VMWEC2CredentialJSONParser(inputData: response)
-                    let arr = try parser.parse()
-                    
-                    let instanceListView : InstanceListViewController = self.storyboard!.instantiateViewController(withIdentifier: "instanceList") as! InstanceListViewController
-                    
-                    instanceListView.VMList = arr
-                    instanceListView.hidesBottomBarWhenPushed = true
-                    //self.navigationController!.navigationBar.tintColor = UIColor.white
-                    self.navigationController?.pushViewController(instanceListView, animated: true)
-                    
-                } catch {
-                    self.present(
-                        self.alert.showAlertWithOneButton(
-                            title: "Error",
-                            message: "Parser fail",
-                            actionButton: "OK"
-                        ),
-                        animated: true,
-                        completion: nil
-                    )
-                }
-            }else{
-                self.present(
-                    self.alert.showAlertWithOneButton(
-                        title: "Error",
-                        message: "Fail to get stored credentials",
-                        actionButton: "OK"
-                    ),
-                    animated: true,
-                    completion: nil
-                )
-            }
-        }
     }
 }

@@ -43,6 +43,14 @@ class EC2WatchResultViewController: UIViewController {
         self.setView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func setView(){
         self.setScrollView()
         self.setLogoView()

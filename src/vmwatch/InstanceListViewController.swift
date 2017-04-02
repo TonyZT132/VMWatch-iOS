@@ -26,14 +26,33 @@ class InstanceListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setScrollView()
-        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
-        setVMListView()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+//        let subViews = self.scrollView.subviews
+//        
+//        // delete all views in scrollview
+//        for subview in subViews {
+//            subview.removeFromSuperview()
+//        }
+        
+        // re-set the height of the scrollview
+        self.setScrollView()
+        scrollViewHeight = 0
+        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
+        setVMListView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func setScrollView(){

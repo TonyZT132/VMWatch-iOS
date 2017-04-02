@@ -249,9 +249,8 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
     func setupShowListButton() {
         butShowList = UIButton(frame: CGRect(x: 0, y: butLogin.frame.maxY-100, width: loginView.frame.width, height: 40))
         butShowList.backgroundColor = UIColor(red: 0 / 255, green: 146 / 255, blue: 206 / 255, alpha: 0.8)
-        butShowList.setTitle("Show List", for: .normal)
-        // modify to add function of button
-        //butLogin.addTarget(self, action: #selector(), for: .touchUpInside)
+        butShowList.setTitle("Saved VM", for: .normal)
+        butShowList.addTarget(self, action: #selector(displayInstanceListView), for: .touchUpInside)
         butShowList.layer.cornerRadius = butLogin.frame.height * 0.5
         butShowList.layer.borderWidth = 1
         butShowList.layer.borderColor = UIColor.clear.cgColor
@@ -471,4 +470,48 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
             }
         }
     }
+    
+    func displayInstanceListView(_ sender: AnyObject){
+        let storeParams = [
+            "userid" as NSObject: PFUser.current()?.objectId! as AnyObject
+            ] as [NSObject:AnyObject]
+        
+        PFCloud.callFunction(inBackground: "ec2UserDataGet", withParameters: storeParams) { (response, ec2StoreError) in
+            if(ec2StoreError == nil){
+                do{
+                    let parser = VMWEC2CredentialJSONParser(inputData: response)
+                    let arr = try parser.parse()
+                    
+                    let instanceListView : InstanceListViewController = self.storyboard!.instantiateViewController(withIdentifier: "instanceList") as! InstanceListViewController
+                    
+                    instanceListView.VMList = arr
+                    instanceListView.hidesBottomBarWhenPushed = true
+                    //self.navigationController!.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.pushViewController(instanceListView, animated: true)
+                    
+                } catch {
+                    self.present(
+                        self.alert.showAlertWithOneButton(
+                            title: "Error",
+                            message: "Parser fail",
+                            actionButton: "OK"
+                        ),
+                        animated: true,
+                        completion: nil
+                    )
+                }
+            }else{
+                self.present(
+                    self.alert.showAlertWithOneButton(
+                        title: "Error",
+                        message: "Fail to get stored credentials",
+                        actionButton: "OK"
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
+        }
+    }
+
 };
