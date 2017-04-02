@@ -82,15 +82,6 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
             let userName = PFUser.current()?.object(forKey: "nickname") as? String
             let phoneNumber = PFUser.current()?.object(forKey: "username") as? String
             let userImageFile = PFUser.current()!.object(forKey: "profileImage")  as! PFFile
-            userImageFile.getDataInBackground(block: { (imageData, error) in
-                if(error == nil){
-                    if (imageData != nil) {
-                        self.userImg = UIImage(data:imageData!)
-                    }
-                }else{
-                    self.userImg = UIImage(named: "non_user")
-                }
-            })
             
             setupBackground()
             setupLoginView()
@@ -102,6 +93,18 @@ public class InfoPageViewController: UIViewController,RSKImageCropViewController
             setupServerVM()
             setupProfileImg(img_name: userImg!)
             setupName(name: userName!)
+            
+            userImageFile.getDataInBackground(block: { (imageData, error) in
+                if(error == nil){
+                    if (imageData != nil) {
+                        self.userImg = UIImage(data:imageData!)
+                        self.profileImg.image = self.userImg
+                    }
+                }else{
+                    self.userImg = UIImage(named: "non_user")
+                }
+            })
+            
             view.addSubview(loginView)
         }
     }
