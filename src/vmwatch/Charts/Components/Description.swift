@@ -24,6 +24,7 @@ open class Description: ComponentBase
             font = NSUIFont.systemFont(ofSize: NSUIFont.systemFontSize())
         #else
             font = NSUIFont.systemFont(ofSize: 8.0)
+            //font.textColor
         #endif
         
         super.init()
@@ -42,5 +43,5 @@ open class Description: ComponentBase
     open var font: NSUIFont
     
     /// Text color used for drawing the description text
-    open var textColor = NSUIColor.black
+    open var textColor = NSUIColor.white
 }

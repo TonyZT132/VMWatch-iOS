@@ -54,10 +54,10 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     internal var _data: ChartData?
     
     /// Flag that indicates if highlighting per tap (touch) is enabled
-    fileprivate var _highlightPerTapEnabled = true
+    fileprivate var _highlightPerTapEnabled = false
     
     /// If set to true, chart continues to scroll after touch up
-    open var dragDecelerationEnabled = true
+    open var dragDecelerationEnabled = false
     
     /// Deceleration friction coefficient in [0 ; 1] interval, higher values indicate that speed will decrease slowly, for example if it set to 0, it will stop immediately.
     /// 1 is an invalid value, and will be converted to 0.999 automatically.
@@ -138,7 +138,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     open var noDataFont: NSUIFont! = NSUIFont(name: "HelveticaNeue", size: 12.0)
     
     /// color of the no data text
-    open var noDataTextColor: NSUIColor = NSUIColor.black
+    open var noDataTextColor: NSUIColor = NSUIColor.white
     
     internal var _legendRenderer: LegendRenderer!
     

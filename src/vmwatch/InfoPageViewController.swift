@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-public class InfoPageViewController: UIViewController,RSKImageCropViewControllerDelegate {
+public class InfoPageViewController: UIViewController, RSKImageCropViewControllerDelegate {
     
     // MARK: - Variables
     

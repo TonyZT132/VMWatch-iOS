@@ -170,7 +170,6 @@ class EC2WatchResultViewController: UIViewController {
         cpuUtilizationChartView.drawCenterTextEnabled = true
         cpuUtilizationChartView.highlightPerTapEnabled = false
         cpuUtilizationChartView.rotationEnabled = false
-        //cpuUtilizationChartView.drawEntryLabelsEnabled = false
         
         base.addSubview(cpuUtilizationChartView)
         self.scrollView.addSubview(base)
@@ -209,6 +208,8 @@ class EC2WatchResultViewController: UIViewController {
         }
         
         self.networkInChartView.gridBackgroundColor = UIColor.white
+        //self.networkInChartView.drawGridBackgroundEnabled = false
+        //self.networkInChartView.dr
         
         base.addSubview(networkInChartView)
         self.scrollView.addSubview(base)
@@ -355,20 +356,23 @@ class EC2WatchResultViewController: UIViewController {
         
         let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: label)
         set1.axisDependency = .left
-        set1.setColor(UIColor.red.withAlphaComponent(0.5))
-        set1.setCircleColor(UIColor.red)
+        set1.setColor(UIColor.blue.withAlphaComponent(0.5))
+        set1.setCircleColor(UIColor.blue)
         set1.lineWidth = 2.0
         set1.circleRadius = 6.0
         set1.fillAlpha = 65 / 255.0
-        set1.fillColor = UIColor.yellow
-        set1.highlightColor = UIColor.green
-        set1.drawCircleHoleEnabled = true
+        set1.fillColor = UIColor.blue
+        set1.highlightColor = UIColor.blue
+        set1.drawCircleHoleEnabled = false
+        set1.drawCirclesEnabled = false
+        set1.drawVerticalHighlightIndicatorEnabled = false
+        set1.drawHorizontalHighlightIndicatorEnabled = false
         
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(set1)
         
         let data: LineChartData = LineChartData(dataSets: dataSets)
-        data.setValueTextColor(UIColor.red)
+        data.setValueTextColor(UIColor.white)
         return data
     }
     
