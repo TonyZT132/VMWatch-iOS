@@ -159,7 +159,7 @@ class EC2WatchResultViewController: UIViewController {
                     let percentage = [self.cpuUtilizationData.roundTo(places: 0), (100.0 - self.cpuUtilizationData).roundTo(places: 0)]
                     
                     self.cpuUtilizationChartView.data = self.setPieChart(label: "", dataPoints: results, values: percentage)
-                    self.cpuUtilizationChartView.centerText = String(self.cpuUtilizationData.roundTo(places: 0)) + " %"
+                    self.cpuUtilizationChartView.centerText = "Used: " + String(self.cpuUtilizationData.roundTo(places: 0)) + " %"
                     
                 }  catch VMWEC2JSONParserError.InvalidEC2JSONDataError {
                     self.networkInChartView.noDataText = "Paring issue, please retry"
@@ -198,6 +198,9 @@ class EC2WatchResultViewController: UIViewController {
         self.networkInChartView.chartDescription?.text = ""
         self.networkInChartView.chartDescription?.textColor = UIColor.white
         self.networkInChartView.noDataText = "Loading data"
+        networkInChartView.xAxis.labelTextColor = UIColor.white
+        networkInChartView.leftAxis.labelTextColor = UIColor.white
+        networkInChartView.rightAxis.labelTextColor = UIColor.white
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60)) { (response, error) in
             if(error == nil){
@@ -235,10 +238,13 @@ class EC2WatchResultViewController: UIViewController {
         
         networkOutChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         networkOutChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.networkOutChartView.chartDescription?.text = "Tap node for details"
+        self.networkOutChartView.chartDescription?.text = ""
         self.networkOutChartView.chartDescription?.textColor = UIColor.black
         self.networkOutChartView.gridBackgroundColor = UIColor.darkGray
         self.networkOutChartView.noDataText = "Loading data"
+        networkOutChartView.xAxis.labelTextColor = UIColor.white
+        networkOutChartView.leftAxis.labelTextColor = UIColor.white
+        networkOutChartView.rightAxis.labelTextColor = UIColor.white
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60)) { (response, error) in
             if(error == nil){
@@ -272,10 +278,13 @@ class EC2WatchResultViewController: UIViewController {
         
         diskReadChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         diskReadChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.diskReadChartView.chartDescription?.text = "Tap node for details"
+        self.diskReadChartView.chartDescription?.text = ""
         self.diskReadChartView.chartDescription?.textColor = UIColor.black
         self.diskReadChartView.gridBackgroundColor = UIColor.darkGray
         self.diskReadChartView.noDataText = "Loading data"
+        diskReadChartView.xAxis.labelTextColor = UIColor.white
+        diskReadChartView.leftAxis.labelTextColor = UIColor.white
+        diskReadChartView.rightAxis.labelTextColor = UIColor.white
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60)) { (response, error) in
             if(error == nil){
@@ -310,10 +319,13 @@ class EC2WatchResultViewController: UIViewController {
         
         diskWriteChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         diskWriteChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.diskWriteChartView.chartDescription?.text = "Tap node for details"
+        self.diskWriteChartView.chartDescription?.text = ""
         self.diskWriteChartView.chartDescription?.textColor = UIColor.black
         self.diskWriteChartView.gridBackgroundColor = UIColor.darkGray
         self.diskWriteChartView.noDataText = "Loading Data"
+        diskWriteChartView.xAxis.labelTextColor = UIColor.white
+        diskWriteChartView.leftAxis.labelTextColor = UIColor.white
+        diskWriteChartView.rightAxis.labelTextColor = UIColor.white
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60)) { (response, error) in
             if(error == nil){
@@ -350,8 +362,8 @@ class EC2WatchResultViewController: UIViewController {
         
         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: label)
         let colors: [UIColor] = [
-            UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha: 1.0),
-            UIColor.red
+            UIColor(red: 98 / 255, green: 187 / 255, blue: 255 / 255, alpha: 1),
+            UIColor(red: 121 / 255, green: 101 / 255, blue: 241 / 255, alpha: 1),
         ]
         pieChartDataSet.colors = colors
         return PieChartData(dataSet: pieChartDataSet)
@@ -367,8 +379,8 @@ class EC2WatchResultViewController: UIViewController {
         
         let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: label)
         set1.axisDependency = .left
-        set1.setColor(UIColor.blue.withAlphaComponent(0.5))
-        set1.setCircleColor(UIColor.blue)
+        set1.setColor(UIColor(red: 98 / 255, green: 187 / 255, blue: 255 / 255, alpha: 1))
+        set1.setCircleColor(UIColor(red: 98 / 255, green: 187 / 255, blue: 255 / 255, alpha: 1))
         set1.lineWidth = 2.0
         set1.circleRadius = 6.0
         set1.fillAlpha = 65 / 255.0

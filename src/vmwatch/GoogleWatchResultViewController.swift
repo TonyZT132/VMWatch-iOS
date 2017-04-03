@@ -98,7 +98,7 @@ class GoogleWatchResultViewController: UIViewController {
     
     func setInstanceIDView(){
         scrollViewHeight += 10
-        let title = UILabel(frame: CGRect(x: 25, y: scrollViewHeight, width: WIDTH - 50, height: 20) )
+        let title = UILabel(frame: CGRect(x: 25, y: scrollViewHeight, width: WIDTH - 50, height: 20))
         title.text = self.instanceID
         title.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         title.font = title.font.withSize(12)
@@ -108,11 +108,25 @@ class GoogleWatchResultViewController: UIViewController {
         scrollViewHeight += title.frame.height
     }
     
+    func setTitleView(titleName:String){
+        //scrollViewHeight += 5
+        let title = UILabel(frame: CGRect(x: 25, y: scrollViewHeight, width: WIDTH - 50, height: 25) )
+        title.text = titleName
+        title.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+        title.font = title.font.withSize(14)
+        title.textColor = .white
+        title.textAlignment = .center
+        scrollView.addSubview(title)
+        scrollViewHeight += title.frame.height
+    }
+    
     
     func drawCpuInChart(){
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "CPU Utilization")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
+
         
         cpuInChartView = PieChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         cpuInChartView.layer.backgroundColor = UIColor.clear.cgColor
@@ -133,7 +147,9 @@ class GoogleWatchResultViewController: UIViewController {
                 
                 let percentage = [self.cpuInData.roundTo(places: 0), (100.0 - self.cpuInData).roundTo(places: 0)]
                 
-                self.cpuInChartView.data = self.setPieChart(label: "CPU Utilization(Percentage)", dataPoints: results, values: percentage)
+                self.cpuInChartView.data = self.setPieChart(label: "", dataPoints: results, values: percentage)
+                self.cpuInChartView.centerText = "Used: " + String(self.cpuInData.roundTo(places: 0)) + " %"
+
             } catch GoogleJSONParserError.InvalidGoogleJSONDataError {
                 self.cpuInChartView.noDataText = "Paring issue, please retry"
             } catch {
@@ -144,8 +160,16 @@ class GoogleWatchResultViewController: UIViewController {
         }
         
         
-        cpuInChartView.centerText = "CPUUtilization"
-        cpuInChartView.holeColor = UIColor.white
+        //cpuInChartView.centerText = "CPUUtilization"
+        //cpuInChartView.holeColor = UIColor.white
+        
+        cpuInChartView.noDataTextColor = UIColor.white
+        cpuInChartView.holeColor = UIColor.clear
+        
+        cpuInChartView.holeRadiusPercent = CGFloat(0.7)
+        cpuInChartView.drawCenterTextEnabled = true
+        cpuInChartView.highlightPerTapEnabled = false
+        cpuInChartView.rotationEnabled = false
         
         base.addSubview(cpuInChartView)
         self.scrollView.addSubview(base)
@@ -156,14 +180,19 @@ class GoogleWatchResultViewController: UIViewController {
     func drawNetworkSentInChart(){
         
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Network Sent(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         networksentInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         networksentInChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.networksentInChartView.chartDescription?.text = "Tap node for details"
-        self.networksentInChartView.chartDescription?.textColor = UIColor.black
-        self.networksentInChartView.gridBackgroundColor = UIColor.darkGray
+        networksentInChartView.xAxis.labelTextColor = UIColor.white
+        networksentInChartView.leftAxis.labelTextColor = UIColor.white
+        networksentInChartView.rightAxis.labelTextColor = UIColor.white
+
+        self.networksentInChartView.chartDescription?.text = ""
+        self.networksentInChartView.chartDescription?.textColor = UIColor.white
+        self.networksentInChartView.gridBackgroundColor = UIColor.white
         self.networksentInChartView.noDataText = "Loading data"
         
         
@@ -173,7 +202,7 @@ class GoogleWatchResultViewController: UIViewController {
                 let jsonParser = GoogleJSONParser(inputData: response)
                 self.networksentInData = try jsonParser.getOtherArray(type: "network_sent")
                 //print(self.networksentInData)
-                self.networksentInChartView.data = self.setLineChart(label: "Network Sent In(Bytes)", data: self.networksentInData)
+                self.networksentInChartView.data = self.setLineChart(label: "", data: self.networksentInData)
             } catch GoogleJSONParserError.InvalidGoogleJSONDataError {
                 self.networksentInChartView.noDataText = "Paring issue, please retry"
             } catch {
@@ -191,21 +220,26 @@ class GoogleWatchResultViewController: UIViewController {
     
     func drawNetworkReceivedInChart(){
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Network Received(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         networkreceivedInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         networkreceivedInChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.networkreceivedInChartView.chartDescription?.text = "Tap node for details"
-        self.networkreceivedInChartView.chartDescription?.textColor = UIColor.black
-        self.networkreceivedInChartView.gridBackgroundColor = UIColor.darkGray
+        networkreceivedInChartView.xAxis.labelTextColor = UIColor.white
+        networkreceivedInChartView.leftAxis.labelTextColor = UIColor.white
+        networkreceivedInChartView.rightAxis.labelTextColor = UIColor.white
+        
+        self.networkreceivedInChartView.chartDescription?.text = ""
+        self.networkreceivedInChartView.chartDescription?.textColor = UIColor.white
+        self.networkreceivedInChartView.gridBackgroundColor = UIColor.white
         self.networkreceivedInChartView.noDataText = "Loading data"
         
         if(response != nil){
             do {
                 let jsonParser = GoogleJSONParser(inputData: response)
                 self.networkreceivedInData = try jsonParser.getOtherArray(type: "network_received")
-                self.networkreceivedInChartView.data = self.setLineChart(label: "Network Received In(Bytes)", data: self.networkreceivedInData)
+                self.networkreceivedInChartView.data = self.setLineChart(label: "", data: self.networkreceivedInData)
             } catch GoogleJSONParserError.InvalidGoogleJSONDataError {
                 self.networkreceivedInChartView.noDataText = "Paring issue, please retry"
             } catch {
@@ -223,21 +257,26 @@ class GoogleWatchResultViewController: UIViewController {
     
     func drawDiskReadInChart(){
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Disk Read(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         diskreadInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         diskreadInChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.diskreadInChartView.chartDescription?.text = "Tap node for details"
-        self.diskreadInChartView.chartDescription?.textColor = UIColor.black
-        self.diskreadInChartView.gridBackgroundColor = UIColor.darkGray
+        diskreadInChartView.xAxis.labelTextColor = UIColor.white
+        diskreadInChartView.leftAxis.labelTextColor = UIColor.white
+        diskreadInChartView.rightAxis.labelTextColor = UIColor.white
+        
+        self.diskreadInChartView.chartDescription?.text = ""
+        self.diskreadInChartView.chartDescription?.textColor = UIColor.white
+        self.diskreadInChartView.gridBackgroundColor = UIColor.white
         self.diskreadInChartView.noDataText = "Loading data"
         
         if(response != nil){
             do {
                 let jsonParser = GoogleJSONParser(inputData: response)
                 self.diskreadInData = try jsonParser.getOtherArray(type: "disk_read")
-                self.diskreadInChartView.data = self.setLineChart(label: "Disk Read In(Bytes)", data: self.diskreadInData)
+                self.diskreadInChartView.data = self.setLineChart(label: "", data: self.diskreadInData)
             } catch GoogleJSONParserError.InvalidGoogleJSONDataError {
                 self.diskreadInChartView.noDataText = "Paring issue, please retry"
             } catch {
@@ -254,21 +293,27 @@ class GoogleWatchResultViewController: UIViewController {
     
     func drawDiskWriteInChart(){
         scrollViewHeight += 5
-        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight + 5, width: WIDTH - 50, height: CHART_HEIGHT))
+        setTitleView(titleName: "Disk Write(Byte)")
+        let base = UIView(frame: CGRect(x:25, y:scrollViewHeight, width: WIDTH - 50, height: CHART_HEIGHT))
         base.backgroundColor = UIColor(red: 39 / 255, green: 57 / 255, blue: 74 / 255, alpha: 1)
         
         diskwriteInChartView = LineChartView(frame: CGRect(x:0, y:0, width: base.frame.width, height: base.frame.height))
         diskwriteInChartView.layer.backgroundColor = UIColor.clear.cgColor
-        self.diskwriteInChartView.chartDescription?.text = "Tap node for details"
-        self.diskwriteInChartView.chartDescription?.textColor = UIColor.black
-        self.diskwriteInChartView.gridBackgroundColor = UIColor.darkGray
+        diskwriteInChartView.xAxis.labelTextColor = UIColor.white
+        diskwriteInChartView.leftAxis.labelTextColor = UIColor.white
+        diskwriteInChartView.rightAxis.labelTextColor = UIColor.white
+        
+        
+        self.diskwriteInChartView.chartDescription?.text = ""
+        self.diskwriteInChartView.chartDescription?.textColor = UIColor.white
+        self.diskwriteInChartView.gridBackgroundColor = UIColor.white
         self.diskwriteInChartView.noDataText = "Loading Data"
         
         if(response != nil){
             do {
                 let jsonParser = GoogleJSONParser(inputData: response)
                 self.diskwriteInData = try jsonParser.getOtherArray(type: "disk_write")
-                self.diskwriteInChartView.data = self.setLineChart(label: "Disk Write In(Bytes)", data: self.diskwriteInData)
+                self.diskwriteInChartView.data = self.setLineChart(label: "", data: self.diskwriteInData)
             } catch GoogleJSONParserError.InvalidGoogleJSONDataError {
                 self.diskwriteInChartView.noDataText = "Paring issue, please retry"
             } catch {
@@ -293,9 +338,14 @@ class GoogleWatchResultViewController: UIViewController {
         }
         
         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: label)
+        //let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
+
+        
+
         let colors: [UIColor] = [
-            UIColor(red: 2.0/255.0, green: 119.0/255.0, blue: 189.0/255.0, alpha: 1.0),
-            UIColor.red
+            UIColor(red: 98 / 255, green: 187 / 255, blue: 255 / 255, alpha: 1),
+            UIColor(red: 121 / 255, green: 101 / 255, blue: 241 / 255, alpha: 1),
+
         ]
         pieChartDataSet.colors = colors
         return PieChartData(dataSet: pieChartDataSet)
@@ -312,20 +362,23 @@ class GoogleWatchResultViewController: UIViewController {
         
         let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: label)
         set1.axisDependency = .left
-        set1.setColor(UIColor.red.withAlphaComponent(0.5))
-        set1.setCircleColor(UIColor.red)
-        set1.lineWidth = 3.0
+        set1.setColor(UIColor(red: 98 / 255, green: 187 / 255, blue: 255 / 255, alpha: 1))
+        set1.setCircleColor(UIColor(red: 98 / 255, green: 187 / 255, blue: 255 / 255, alpha: 1))
+        set1.lineWidth = 2.0
         set1.circleRadius = 6.0
         set1.fillAlpha = 65 / 255.0
-        set1.fillColor = UIColor.yellow
-        set1.highlightColor = UIColor.green
-        set1.drawCircleHoleEnabled = true
+        set1.fillColor = UIColor.blue
+        set1.highlightColor = UIColor.blue
+        set1.drawCircleHoleEnabled = false
+        set1.drawCirclesEnabled = false
+        set1.drawVerticalHighlightIndicatorEnabled = false
+        set1.drawHorizontalHighlightIndicatorEnabled = false
         
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(set1)
         
         let data: LineChartData = LineChartData(dataSets: dataSets)
-        data.setValueTextColor(UIColor.red)
+        data.setValueTextColor(UIColor.white)
         return data
     }
 
