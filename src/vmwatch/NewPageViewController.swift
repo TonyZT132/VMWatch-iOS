@@ -144,34 +144,4 @@ class NewPageViewController: UIViewController {
             )
         }
     }
-    
-    func printHistoryData(){
-        let history = VMWEC2HistoryStorage()
-        do{
-            self.historydata = try history.getEC2History()
-            
-            if(historydata.count > 0){
-                for trans in historydata{
-                    let accessID = (trans as AnyObject).value(forKey: "access_id") as! String
-                    let accessKey = (trans as AnyObject).value(forKey: "access_key") as! String
-                    let instanceID = (trans as AnyObject).value(forKey: "instance_id") as! String
-                    let region = (trans as AnyObject).value(forKey: "region") as! String
-                    let date = (trans as AnyObject).value(forKey: "date") as! Date
-                    
-                    let accessIDLast4 = accessID.substring(from:accessID.index(accessID.endIndex, offsetBy: -4))
-                    let accessKeyLast4 = accessKey.substring(from:accessKey.index(accessKey.endIndex, offsetBy: -4))
-                    let instanceIDLast4 = instanceID.substring(from:instanceID.index(instanceID.endIndex, offsetBy: -4))
-                    print("******\(accessIDLast4)")
-                    print("**************\(accessKeyLast4)")
-                    print("i-******\(instanceIDLast4)")
-                    print(region)
-                    print(date)
-                }
-            } else {
-                NSLog("No history data found in the database")
-            }
-        } catch{
-            NSLog("Could not get history data due to database issue")
-        }
-    }
 }
