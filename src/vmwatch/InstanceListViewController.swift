@@ -18,7 +18,7 @@ class InstanceListViewController: UIViewController {
     
     var scrollViewHeight:CGFloat = 0
     
-    let SPACE:CGFloat! = 30
+    let SPACE:CGFloat! = 5
     let TITLE_VIEW_HEIGHT:CGFloat! = 20
     let VM_ITEM_VIEW_HEIGHT:CGFloat! = 70
     
@@ -280,27 +280,31 @@ class InstanceListViewController: UIViewController {
         do{
             try PFCloud.callFunction("deleteEC2CredentialRecord", withParameters: storeParams)
                 //indicator.dismiss()
-                let subViews = self.scrollView.subviews
-            
-                // delete all views in scrollview
-                for subview in subViews {
-                    subview.removeFromSuperview()
-                }
-            
-                // re-set the height of the scrollview
-                self.scrollViewHeight = 0
-                self.setVMListView()
+
         }catch{
-            self.present(
-                self.alert.showAlertWithOneButton(
-                    title: "Error",
-                    message: "Delete Failed",
-                    actionButton: "OK"
-                ),
-                animated: true,
-                completion: nil
-            )
+//            self.present(
+//                self.alert.showAlertWithOneButton(
+//                    title: "Error",
+//                    message: "Delete Failed",
+//                    actionButton: "OK"
+//                ),
+//                animated: true,
+//                completion: nil
+//            )
+            print("Error")
         }
+        
+        let subViews = self.scrollView.subviews
+        
+        // delete all views in scrollview
+        for subview in subViews {
+            subview.removeFromSuperview()
+        }
+        
+        // re-set the height of the scrollview
+        self.scrollViewHeight = 0
+        self.setVMListView()
+        
 //        PFCloud.callFunction(inBackground: "deleteEC2CredentialRecord", withParameters: storeParams) { (response, ec2StoreError) in
 //            if(ec2StoreError == nil){
 //                
