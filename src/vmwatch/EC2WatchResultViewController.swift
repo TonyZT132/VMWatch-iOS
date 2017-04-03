@@ -140,6 +140,8 @@ class EC2WatchResultViewController: UIViewController {
         
         let results = ["Used", "Not Used"]
         cpuUtilizationChartView.noDataText = "Loading Data"
+        self.cpuUtilizationChartView.legend.enabled = false
+
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "CPUUtilization", range: 10)) { (response, error) in
             if(error == nil){
@@ -201,6 +203,8 @@ class EC2WatchResultViewController: UIViewController {
         networkInChartView.xAxis.labelTextColor = UIColor.white
         networkInChartView.leftAxis.labelTextColor = UIColor.white
         networkInChartView.rightAxis.labelTextColor = UIColor.white
+        self.networkInChartView.legend.enabled = false
+
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkIn", range: 60)) { (response, error) in
             if(error == nil){
@@ -245,6 +249,8 @@ class EC2WatchResultViewController: UIViewController {
         networkOutChartView.xAxis.labelTextColor = UIColor.white
         networkOutChartView.leftAxis.labelTextColor = UIColor.white
         networkOutChartView.rightAxis.labelTextColor = UIColor.white
+        self.networkOutChartView.legend.enabled = false
+
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "NetworkOut", range: 60)) { (response, error) in
             if(error == nil){
@@ -285,6 +291,8 @@ class EC2WatchResultViewController: UIViewController {
         diskReadChartView.xAxis.labelTextColor = UIColor.white
         diskReadChartView.leftAxis.labelTextColor = UIColor.white
         diskReadChartView.rightAxis.labelTextColor = UIColor.white
+        self.diskReadChartView.legend.enabled = false
+
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "DiskReadBytes", range: 60)) { (response, error) in
             if(error == nil){
@@ -326,6 +334,8 @@ class EC2WatchResultViewController: UIViewController {
         diskWriteChartView.xAxis.labelTextColor = UIColor.white
         diskWriteChartView.leftAxis.labelTextColor = UIColor.white
         diskWriteChartView.rightAxis.labelTextColor = UIColor.white
+        self.diskWriteChartView.legend.enabled = false
+
         
         PFCloud.callFunction(inBackground: "ec2Watch", withParameters: getParams(metrics: "DiskWriteBytes", range: 60)) { (response, error) in
             if(error == nil){

@@ -132,6 +132,8 @@ class GoogleWatchResultViewController: UIViewController {
         cpuInChartView.layer.backgroundColor = UIColor.clear.cgColor
         let results = ["Used", "Not Used"]
         cpuInChartView.noDataText = "Loading Data"
+        self.cpuInChartView.legend.enabled = false
+
         
         if(response != nil){
             do {
@@ -194,6 +196,8 @@ class GoogleWatchResultViewController: UIViewController {
         self.networksentInChartView.chartDescription?.textColor = UIColor.white
         self.networksentInChartView.gridBackgroundColor = UIColor.white
         self.networksentInChartView.noDataText = "Loading data"
+        self.networksentInChartView.legend.enabled = false
+
         
         
         
@@ -234,6 +238,8 @@ class GoogleWatchResultViewController: UIViewController {
         self.networkreceivedInChartView.chartDescription?.textColor = UIColor.white
         self.networkreceivedInChartView.gridBackgroundColor = UIColor.white
         self.networkreceivedInChartView.noDataText = "Loading data"
+        self.networkreceivedInChartView.legend.enabled = false
+
         
         if(response != nil){
             do {
@@ -271,6 +277,7 @@ class GoogleWatchResultViewController: UIViewController {
         self.diskreadInChartView.chartDescription?.textColor = UIColor.white
         self.diskreadInChartView.gridBackgroundColor = UIColor.white
         self.diskreadInChartView.noDataText = "Loading data"
+        self.diskreadInChartView.legend.enabled = false
         
         if(response != nil){
             do {
@@ -308,6 +315,8 @@ class GoogleWatchResultViewController: UIViewController {
         self.diskwriteInChartView.chartDescription?.textColor = UIColor.white
         self.diskwriteInChartView.gridBackgroundColor = UIColor.white
         self.diskwriteInChartView.noDataText = "Loading Data"
+        self.diskwriteInChartView.legend.enabled = false
+
         
         if(response != nil){
             do {
