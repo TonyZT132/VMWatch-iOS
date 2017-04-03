@@ -73,10 +73,6 @@ class EC2WatchResultViewController: UIViewController {
                 completion: nil
             )
         }
-        
-        if(self.storeInstance == true){
-            self.storeAccessCredential()
-        }
     }
     
     func setScrollView(){

@@ -279,50 +279,50 @@ class InstanceListViewController: UIViewController {
         
         do{
             try PFCloud.callFunction("deleteEC2CredentialRecord", withParameters: storeParams)
-                //indicator.dismiss()
-
         }catch{
-//            self.present(
-//                self.alert.showAlertWithOneButton(
-//                    title: "Error",
-//                    message: "Delete Failed",
-//                    actionButton: "OK"
-//                ),
-//                animated: true,
-//                completion: nil
-//            )
             print("Error")
         }
         
-        let subViews = self.scrollView.subviews
+        reloadView()
+    }
+    
+    func reloadView(){
+        let storeParams = [
+            "userid" as NSObject: PFUser.current()?.objectId! as AnyObject
+            ] as [NSObject:AnyObject]
         
-        // delete all views in scrollview
-        for subview in subViews {
-            subview.removeFromSuperview()
+        PFCloud.callFunction(inBackground: "ec2UserDataGet", withParameters: storeParams) { (response, ec2StoreError) in
+            if(ec2StoreError == nil){
+                do{
+                    let parser = VMWEC2CredentialJSONParser(inputData: response)
+                    self.VMList = try parser.parse()
+                    
+                } catch {
+                    self.VMList = []
+                }
+                
+                let subViews = self.scrollView.subviews
+                
+                // delete all views in scrollview
+                for subview in subViews {
+                    subview.removeFromSuperview()
+                }
+                
+                // re-set the height of the scrollview
+                self.scrollViewHeight = 0
+                self.setVMListView()
+            }else{
+                self.present(
+                    self.alert.showAlertWithOneButton(
+                        title: "Error",
+                        message: "Fail to get stored credentials",
+                        actionButton: "OK"
+                    ),
+                    animated: true,
+                    completion: nil
+                )
+            }
         }
-        
-        // re-set the height of the scrollview
-        self.scrollViewHeight = 0
-        self.setVMListView()
-        
-//        PFCloud.callFunction(inBackground: "deleteEC2CredentialRecord", withParameters: storeParams) { (response, ec2StoreError) in
-//            if(ec2StoreError == nil){
-//                
-//                indicator.dismiss()
-//                let subViews = self.scrollView.subviews
-//                
-//                // delete all views in scrollview
-//                for subview in subViews {
-//                    subview.removeFromSuperview()
-//                }
-//                
-//                // re-set the height of the scrollview
-//                self.scrollViewHeight = 0
-//                self.setVMListView()
-//            }else{
-//                NSLog("Store Failed: " + ec2StoreError.debugDescription)
-//            }
-//        }
     }
 
     /*
