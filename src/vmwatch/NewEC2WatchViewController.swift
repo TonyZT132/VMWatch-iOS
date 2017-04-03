@@ -48,6 +48,14 @@ class NewEC2WatchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     private func setScrollView(){
         let NavBarYPosition:CGFloat = self.navigationController!.navigationBar.frame.maxY;
         

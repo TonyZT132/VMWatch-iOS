@@ -33,14 +33,6 @@ class NewPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
     private func loadPage(){
         indicator.showWithMessage(context: "Requsting")
         PFCloud.callFunction(inBackground: "serviceRequest", withParameters: [:]) { (response, error) in
