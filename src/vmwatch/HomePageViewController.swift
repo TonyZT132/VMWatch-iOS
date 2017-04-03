@@ -46,6 +46,7 @@ class HomePageViewController: UIViewController {
         self.setTitleView()
         VMList.removeAllObjects()
         self.getLocalVMList()
+        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -275,6 +276,7 @@ class HomePageViewController: UIViewController {
                 self.setTitleView()
                 self.VMList.removeAllObjects()
                 self.getLocalVMList()
+                self.scrollView.contentSize = CGSize(width: self.WIDTH, height: self.scrollViewHeight)
             } catch {
                 self.present(
                     self.alert.showAlertWithOneButton(
@@ -286,7 +288,6 @@ class HomePageViewController: UIViewController {
                     completion: nil
                 )
             }
-            
             return
         })
         

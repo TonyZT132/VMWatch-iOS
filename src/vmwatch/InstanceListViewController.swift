@@ -27,6 +27,7 @@ class InstanceListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,19 +37,19 @@ class InstanceListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.setScrollView()
+        let subViews = self.scrollView.subviews
         
-//        let subViews = self.scrollView.subviews
-//        
-//        // delete all views in scrollview
-//        for subview in subViews {
-//            subview.removeFromSuperview()
-//        }
+        // delete all views in scrollview
+        for subview in subViews {
+            subview.removeFromSuperview()
+        }
         
         // re-set the height of the scrollview
-        self.setScrollView()
+        
         scrollViewHeight = 0
-        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
         setVMListView()
+        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -129,6 +130,9 @@ class InstanceListViewController: UIViewController {
                 }else if(cloud == "aws"){
                     VMButton.addTarget(self, action: #selector(pushAWSResult), for: .touchUpInside)
                     VMButton.tag = i
+                    let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
+                    VMButton.addGestureRecognizer(longGesture)
+                    longGesture.view?.tag = i
                     VMItem.addSubview(VMButton)
                     scrollView.addSubview(VMItem)
                 }
@@ -228,7 +232,71 @@ class InstanceListViewController: UIViewController {
             completion: nil
         )
     }
-
+    
+    func longTap(sender : UIGestureRecognizer){
+        let tag = (sender.view?.tag)! as Int
+        
+        let instance = VMList[tag] as! NSDictionary
+        let accessID = instance["access_id"] as! String
+        let accessKey = instance["access_key"] as! String
+        let instanceID = instance["instance_id"] as! String
+        let region = instance["region"] as! String
+        
+        /*Setup alert for photo selection type menu (take photo or choose existing photo)*/
+        let optionMenu = UIAlertController(title: nil, message: "Please select", preferredStyle: .actionSheet)
+        
+        let USWestTwo = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let dict = self.VMList[tag] as! NSDictionary
+            let cate = dict["cate"] as! String
+            
+            if (cate == "aws"){
+                self.deleteAccessCredential(accessID: accessID, accessKey: accessKey, instanceID: instanceID, region: region)
+            }
+            return
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            return
+        })
+        
+        optionMenu.addAction(USWestTwo)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
+    func deleteAccessCredential(accessID:String, accessKey:String, instanceID:String, region:String){
+        
+        let storeParams = [
+            "accessid" as NSObject: accessID as AnyObject,
+            "accesskey" as NSObject: accessKey as AnyObject,
+            "instanceid" as NSObject: instanceID as AnyObject,
+            "region" as NSObject: region as AnyObject,
+            "userid" as NSObject: PFUser.current()?.objectId! as AnyObject
+        ] as [NSObject:AnyObject]
+        
+        indicator.showWithMessage(context: "Deleting")
+        PFCloud.callFunction(inBackground: "deleteEC2CredentialRecord", withParameters: storeParams) { (response, ec2StoreError) in
+            if(ec2StoreError == nil){
+                
+                indicator.dismiss()
+                let subViews = self.scrollView.subviews
+                
+                // delete all views in scrollview
+                for subview in subViews {
+                    subview.removeFromSuperview()
+                }
+                
+                // re-set the height of the scrollview
+                self.scrollViewHeight = 0
+                self.setVMListView()
+            }else{
+                NSLog("Store Failed: " + ec2StoreError.debugDescription)
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

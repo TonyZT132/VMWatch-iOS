@@ -43,7 +43,6 @@ public class InfoPageViewController: UIViewController, RSKImageCropViewControlle
     var topBackgroundImg: UIImageView!
     var botBackgroundImg: UIView!
     
-    
     let inputParser = VMWUserInfoInputParser()
     let alert = VMWAlertView()
     var croppedImage: UIImage!
@@ -235,7 +234,6 @@ public class InfoPageViewController: UIViewController, RSKImageCropViewControlle
     }
     
     func setupBackground(){
-        
         // top part
         let topbackgroundImg_y = self.view.bounds.height * 0.155
         topBackgroundImg = UIImageView(frame: CGRect(x: 0, y:0, width: view.bounds.width , height: self.view.bounds.height ))
@@ -413,7 +411,6 @@ public class InfoPageViewController: UIViewController, RSKImageCropViewControlle
     }
     
     func countServiceInLocal() -> String{
-        
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         var google_count = 0
         var aws_count = 0
@@ -494,9 +491,9 @@ public class InfoPageViewController: UIViewController, RSKImageCropViewControlle
                     
                 } catch {
                     self.present(
-                        self.alert.showAlertWithOneButton(
+                        self.alert.showAlertWithOneButton (
                             title: "Error",
-                            message: "Parser fail",
+                            message: "Could not find any instances",
                             actionButton: "OK"
                         ),
                         animated: true,
@@ -516,5 +513,4 @@ public class InfoPageViewController: UIViewController, RSKImageCropViewControlle
             }
         }
     }
-
 };

@@ -404,7 +404,6 @@ class EC2WatchResultViewController: UIViewController {
     }
     
     func storeHistory(){
-        
         let history = VMWEC2HistoryStorage()
         do{
             try history.deleteHistoryRecord(accessID: self.accessID!, accessKey: self.accessKey!, instanceID: self.instanceID!, region: self.region!)
