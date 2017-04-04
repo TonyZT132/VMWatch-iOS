@@ -39,7 +39,7 @@ class NewEC2WatchViewController: UIViewController {
         self.setStorePreference()
         self.setSubmitButton()
 
-        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight)
+        scrollView.contentSize = CGSize(width: WIDTH, height: scrollViewHeight + 120)
         // Do any additional setup after loading the view.
     }
 
