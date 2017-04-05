@@ -20,11 +20,24 @@ The goal of this project is to design an iOS application which allows users to m
 * Twilio
 * Heroku
 
-### Screenshots
-
-
 ### Development Team
 * Tuo Zhang
 * YiZheng Yang
 * Yuxuan Zhang
 * Yanrong Wang
+
+### Screenshots
+#### Menu Page
+<img src="http://i.imgur.com/Rnuy4Pr.png" width="300">
+
+#### AWS Page
+<img src="http://i.imgur.com/uqpsMR1.png" width="300">
+
+#### GCC Page
+<img src="http://i.imgur.com/sElB4w5.png" width="300">
+
+#### Monitoring Page
+<img src="http://i.imgur.com/m1f4Gge.png" width="300">
+
+#### Profile Page
+<img src="http://i.imgur.com/vwyKQ99.png" width="300">
